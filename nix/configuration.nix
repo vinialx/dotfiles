@@ -26,14 +26,14 @@
     "udev.log_level=3"
     "systemd.show_status=auto"
   ];
-  loader.timeout = 0;
 };
  
   # Bootloader.
   boot.loader = {
+    timeout = null;
     systemd-boot = {
       enable = true;
-    };
+    	};
     efi.canTouchEfiVariables = true;
   };
 
@@ -114,6 +114,9 @@
   # Enable git.
   programs.git.enable = true;
 
+  #Enable docker.
+  virtualisation.docker.enable = true;
+ 
   # Enable zsh module
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
@@ -160,7 +163,7 @@
   users.users.vinicius = {
     isNormalUser = true;
     description = "vinicius";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker"];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -192,6 +195,10 @@
     alsa-utils
     opencode
     direnv
+    docker
+    docker-compose
+    dbeaver-bin
+    flameshot
   ];
 
   # Enable nix-ld.
