@@ -1,15 +1,12 @@
 { config, pkgs, ... }:
-
 {
   imports = [ ./hardware-configuration.nix ];
-
   boot = {
     plymouth = {
       enable = true;
       theme = "mac-style";
       themePackages = [ pkgs.mac-style-plymouth ];
     };
-
     consoleLogLevel = 3;
     initrd.verbose = false;
     initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
@@ -20,18 +17,14 @@
       "nvidia-drm.modeset=1"
     ];
   };
-
   boot.loader = {
     timeout = null;
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
-
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
-
   time.timeZone = "America/Sao_Paulo";
-
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "pt_BR.UTF-8";
@@ -44,21 +37,16 @@
     LC_TELEPHONE = "pt_BR.UTF-8";
     LC_TIME = "pt_BR.UTF-8";
   };
-
   services.xserver.enable = true;
-
   # Wayland + GDM
   services.displayManager.gdm.enable = true;
   services.displayManager.gdm.wayland = true;
   services.desktopManager.gnome.enable = true;
-
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
-
   services.xserver.videoDrivers = [ "nvidia" ];
-
   hardware.nvidia = {
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -66,14 +54,12 @@
     powerManagement.finegrained = false;
     modesetting.enable = true;
     open = false;
-
     prime = {
       sync.enable = true;
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";
     };
   };
-
   # Variáveis que corrigem o lag no GNOME Wayland com NVIDIA
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";
@@ -84,18 +70,15 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
   };
-
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
-
   services.printing.enable = true;
   nixpkgs.config.allowUnfree = true;
   services.flatpak.enable = true;
   programs.git.enable = true;
   virtualisation.docker.enable = true;
-
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.ohMyZsh = {
@@ -103,9 +86,7 @@
     theme = "af-magic";
     plugins = ["git" "sudo" "docker"];
   };
-
   services.tailscale.enable = true;
-
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -114,24 +95,19 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-
   nix.settings.experimental-features = ["nix-command" "flakes"];
-
   nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 5d";
   };
-
   users.users.vinicius = {
     isNormalUser = true;
     description = "vinicius";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [];
   };
-
-  programs.firefox.enable = false;
-
+  programs.firefox.enable = true;
   environment.systemPackages = with pkgs; [
     wget
     brave
@@ -155,14 +131,19 @@
     docker-compose
     dbeaver-bin
     gnome-tweaks
+    xdg-desktop-portal
+    xdg-desktop-portal-gnome
+    unzip
+    imagemagick
+    zoxide
+    fzf
   ];
-
+  
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc
     zlib
     glib
   ];
-
   system.stateVersion = "25.11";
 }
