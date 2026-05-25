@@ -1,0 +1,58 @@
+format = """
+$directory$git_branch$git_status$nodejs$golang$python$c$nix_shell$cmd_duration
+$character"""
+
+[directory]
+style = "bold #ffffff"
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+symbol = " "
+style = "bold #808080"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "bold #ff5555"
+format = '([$all_status$ahead_behind]($style) )'
+
+[cmd_duration]
+min_time = 2000
+format = "[ $duration]($style) "
+style = "#808080"
+
+[nodejs]
+symbol = " "
+style = "#808080"
+format = "[$symbol$version]($style) "
+detect_extensions = ["ts", "tsx", "js", "jsx"]
+
+[golang]
+symbol = " "
+style = "#808080"
+format = "[$symbol$version]($style) "
+
+# Python
+[python]
+symbol = " "
+style = "#808080"
+format = "[$symbol$version]($style) "
+
+[c]
+symbol = " "
+style = "#808080"
+format = "[$symbol$version]($style) "
+
+[nix_shell]
+symbol = " "
+style = "#808080"
+format = "[$symbol$state]($style) "
+impure_msg = "impure"
+pure_msg = "pure"
+
+[package]
+disabled = true
+
+[character]
+success_symbol = "[»](bold #ffffff)"
+error_symbol = "[»](bold #ff5555)"
