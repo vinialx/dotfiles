@@ -79,13 +79,17 @@
   services.flatpak.enable = true;
   programs.git.enable = true;
   virtualisation.docker.enable = true;
-  programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-  programs.zsh.ohMyZsh = {
+ programs.zsh = {
+  enable = true;
+  ohMyZsh = {
     enable = true;
-    theme = "";
-    plugins = ["git" "sudo" "docker" "docker-compose" "fzf" "colored-man-pages" "command-not-found" ];
+    plugins = [ "git" "docker" "docker-compose" "fzf" "colored-man-pages" "command-not-found" ];
+    theme = "powerlevel10k/powerlevel10k";
+    customPkgs = [ pkgs.zsh-powerlevel10k ];
   };
+};
+
   services.tailscale.enable = true;
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -137,7 +141,7 @@
     imagemagick
     zoxide
     fzf
-    starship
+    zsh-powerlevel10k
   ];
   
   programs.nix-ld.enable = true;

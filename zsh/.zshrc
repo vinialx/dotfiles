@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # @vinialx zsh profile configuration
 
 alias nix-config='sudo nvim /etc/nixos/configuration.nix'
@@ -12,7 +19,8 @@ ZSH_THEME=""
 eval "$(direnv hook zsh)"
 
 # zoxide configuration.
-eval "$(zoxide init zsh)"
+export _ZO_FZF_OPTS="--height 40% --reverse --border"
+eval "$(zoxide init zsh --cmd cd)"
 
 # fzf configuration.
 eval "$(fzf --zsh)"
@@ -29,5 +37,5 @@ export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# starship configuration.
-eval "$(starship init zsh)"
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

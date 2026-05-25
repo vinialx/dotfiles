@@ -1,7 +1,7 @@
 theme = Mellifluous
 background-opacity = 0.9
 background-blur = 30
-font-family = "IntoneMono Nerd Font"
+font-family = "SpaceMono Nerd Font Mono"
 font-size = 13
 cursor-style = bar
 cursor-style-blink = true
