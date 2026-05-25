@@ -83,8 +83,8 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.ohMyZsh = {
     enable = true;
-    theme = "af-magic";
-    plugins = ["git" "sudo" "docker"];
+    theme = "";
+    plugins = ["git" "sudo" "docker" "docker-compose" "fzf" "colored-man-pages" "command-not-found" ];
   };
   services.tailscale.enable = true;
   services.pulseaudio.enable = false;
@@ -137,6 +137,7 @@
     imagemagick
     zoxide
     fzf
+    starship
   ];
   
   programs.nix-ld.enable = true;
