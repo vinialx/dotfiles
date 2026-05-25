@@ -142,6 +142,8 @@
     zoxide
     fzf
     zsh-powerlevel10k
+    go
+    python314
   ];
   
   programs.nix-ld.enable = true;
