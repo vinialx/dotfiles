@@ -149,6 +149,7 @@
     bat
     obs-studio
     onlyoffice-desktopeditors
+    nodejs
   ];
   
   programs.nix-ld.enable = true;
