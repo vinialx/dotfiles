@@ -1,14 +1,32 @@
 return {
   "christoomey/vim-tmux-navigator",
-  event = "VeryLazy", -- Esse é o segredo que o post revelou!
-  keys = {
-    { "<C-h>", "<cmd>TmuxNavigateLeft<cr>",  desc = "Janela da Esquerda" },
-    { "<C-j>", "<cmd>TmuxNavigateDown<cr>",  desc = "Janela de Baixo" },
-    { "<C-k>", "<cmd>TmuxNavigateUp<cr>",    desc = "Janela de Cima" },
-    { "<C-l>", "<cmd>TmuxNavigateRight<cr>", desc = "Janela da Direita" },
+  lazy = false,
+  cmd = {
+    "TmuxNavigateLeft",
+    "TmuxNavigateDown",
+    "TmuxNavigateUp",
+    "TmuxNavigateRight",
   },
-  config = function()
-    -- Desativa os mapeamentos padrões do próprio plugin para não duplicar com os nossos acima
+  keys = {
+    { "<c-h>", "<cmd>TmuxNavigateLeft<cr>" },
+    { "<c-j>", "<cmd>TmuxNavigateDown<cr>" },
+    { "<c-k>", "<cmd>TmuxNavigateUp<cr>" },
+    { "<c-l>", "<cmd>TmuxNavigateRight<cr>" },
+  },
+  init = function()
     vim.g.tmux_navigator_no_mappings = 1
+    vim.g.tmux_navigator_save_on_switch = 2
+    vim.g.tmux_navigator_disable_when_zoomed = 1
+
+    -- Força o keymap na neotree também
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "neo-tree",
+      callback = function()
+        vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { buffer = true })
+        vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { buffer = true })
+        vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { buffer = true })
+        vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { buffer = true })
+      end,
+    })
   end,
 }

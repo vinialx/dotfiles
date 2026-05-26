@@ -144,6 +144,9 @@
     zsh-powerlevel10k
     go
     python314
+    gcc
+    obsidian
+    bat
   ];
   
   programs.nix-ld.enable = true;

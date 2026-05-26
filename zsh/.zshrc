@@ -7,9 +7,12 @@ fi
 
 # @vinialx zsh profile configuration
 
-alias nix-config='sudo nvim /etc/nixos/configuration.nix'
-alias nix-update='sudo nixos-rebuild switch'
-alias nix-clear='sudo nix-collect-garbage'
+alias nxcfg='sudo nvim /etc/nixos/configuration.nix'
+alias nxupd='sudo nixos-rebuild switch'
+alias nxclr='sudo nix-collect-garbage'
+alias nxclrd='sudo nix-collect-garbage -d'
+alias nv='nvim'
+alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
 
 # omz configuration.
 export ZSH="$ZSH"

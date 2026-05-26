@@ -7,6 +7,5 @@ return {
       -- Opções opcionais de customização aqui
       -- minimal = true, -- Ativa o modo de poucas cores
     })
-    vim.cmd("colorscheme kanso") -- ou kanso-zen, kanso-ink, kanso-pearl
   end,
 }
