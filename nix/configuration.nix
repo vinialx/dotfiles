@@ -148,6 +148,7 @@
     obsidian
     bat
     obs-studio
+    onlyoffice-desktopeditors
   ];
   
   programs.nix-ld.enable = true;
