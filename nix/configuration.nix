@@ -147,6 +147,7 @@
     gcc
     obsidian
     bat
+    obs-studio
   ];
   
   programs.nix-ld.enable = true;
