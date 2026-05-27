@@ -18,6 +18,9 @@ alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
 export ZSH="$ZSH"
 ZSH_THEME=""
 
+# rtk configuration.
+export PATH="$HOME/.local/bin:$PATH"
+
 # direnv configuration.
 eval "$(direnv hook zsh)"
 
