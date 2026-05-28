@@ -13,6 +13,7 @@ alias nxclr='sudo nix-collect-garbage'
 alias nxclrd='sudo nix-collect-garbage -d'
 alias nv='nvim'
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
+alias brd='bun run dev'
 
 # omz configuration.
 export ZSH="$ZSH"
