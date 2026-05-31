@@ -150,6 +150,7 @@
     obs-studio
     onlyoffice-desktopeditors
     nodejs
+    iscc
   ];
   
   programs.nix-ld.enable = true;
