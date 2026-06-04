@@ -33,6 +33,33 @@ eval "$(zoxide init zsh --cmd cd)"
 # fzf configuration.
 eval "$(fzf --zsh)"
 
+# zoxide + fzf functions.
+cpz() {
+  local dest_search="${@[-1]}"
+  local files=("${@[1,-2]}")
+  local target
+  
+  target=$(zoxide query -i "$dest_search")
+  
+  if [ -n "$target" ]; then
+    cp -r "${files[@]}" "$target"
+    echo "✨ Copiado para: $target"
+  fi
+}
+
+mvz() {
+  local dest_search="${@[-1]}"
+  local files=("${@[1,-2]}")
+  local target
+  
+  target=$(zoxide query -i "$dest_search")
+  
+  if [ -n "$target" ]; then
+    mv "${files[@]}" "$target"
+    echo "🚚 Movido para: $target"
+  fi
+}
+
 # integration zoxide & fzf.
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
