@@ -7,6 +7,5 @@ return {
       theme = "dark",
       transparent = true,
     })
-    vim.cmd("colorscheme no-clown-fiesta")
   end,
 }
