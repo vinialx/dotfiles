@@ -70,6 +70,7 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
   };
+
   services.xserver.xkb = {
     layout = "us";
     variant = "";
@@ -151,6 +152,7 @@
     onlyoffice-desktopeditors
     nodejs
     iscc
+    proton-vpn-cli
   ];
   
   programs.nix-ld.enable = true;
