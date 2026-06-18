@@ -153,6 +153,7 @@
     nodejs
     iscc
     proton-vpn-cli
+    tenacity
   ];
   
   programs.nix-ld.enable = true;

@@ -1,0 +1,6 @@
+matches:
+  - trigger: ":vin"
+    replace: "*Vinicius Aloise*\n\n"
+
+  - trigger: ":agradec"
+    replace: "Show! Qualquer dúvida ou problema estamos à disposição!"
