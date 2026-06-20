@@ -15,6 +15,8 @@ alias nv='nvim'
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
 alias brd='bun run dev'
 alias brb='bun run build'
+alias taskmgrbk-ssh='fly ssh console -a wires-task-manager-server'
+alias taskmgrcl-ssh='fly ssh console -a wires-task-manager-server'
 
 # omz configuration.
 export ZSH="$ZSH"

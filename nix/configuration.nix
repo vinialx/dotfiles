@@ -154,6 +154,9 @@
     iscc
     proton-vpn-cli
     tenacity
+    burpsuite
+    flyctl
+    openssl
   ];
   
   programs.nix-ld.enable = true;
