@@ -16,7 +16,7 @@ alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
 alias brd='bun run dev'
 alias brb='bun run build'
 alias taskmgrbk-ssh='fly ssh console -a wires-task-manager-server'
-alias taskmgrcl-ssh='fly ssh console -a wires-task-manager-server'
+alias taskmgrcl-ssh='fly ssh console -a wires-task-manager-client'
 
 # omz configuration.
 export ZSH="$ZSH"
@@ -73,6 +73,7 @@ export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
 # bun exports.
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

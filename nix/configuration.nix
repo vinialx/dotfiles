@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 {
   imports = [ ./hardware-configuration.nix ];
+
+  hardware.enableAllFirmware = true;
+
   boot = {
     plymouth = {
       enable = true;
@@ -9,12 +12,18 @@
     };
     consoleLogLevel = 3;
     initrd.verbose = false;
-    initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+    initrd.kernelModules = [
+      "nvidia"
+      "nvidia_modeset"
+      "nvidia_uvm"
+      "nvidia_drm"
+    ];
     kernelParams = [
       "quiet"
       "udev.log_level=3"
       "systemd.show_status=auto"
       "nvidia-drm.modeset=1"
+      "snd_intel_dspcfg.dsp_driver=3"
     ];
   };
   boot.loader = {
@@ -50,7 +59,7 @@
   hardware.nvidia = {
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-    powerManagement.enable = true;        # importante em notebook
+    powerManagement.enable = true; # importante em notebook
     powerManagement.finegrained = false;
     modesetting.enable = true;
     open = false;
@@ -81,15 +90,22 @@
   programs.git.enable = true;
   virtualisation.docker.enable = true;
   users.defaultUserShell = pkgs.zsh;
- programs.zsh = {
-  enable = true;
-  ohMyZsh = {
+  programs.zsh = {
     enable = true;
-    plugins = [ "git" "docker" "docker-compose" "fzf" "colored-man-pages" "command-not-found" ];
-    theme = "powerlevel10k/powerlevel10k";
-    customPkgs = [ pkgs.zsh-powerlevel10k ];
+    ohMyZsh = {
+      enable = true;
+      plugins = [
+        "git"
+        "docker"
+        "docker-compose"
+        "fzf"
+        "colored-man-pages"
+        "command-not-found"
+      ];
+      theme = "powerlevel10k/powerlevel10k";
+      customPkgs = [ pkgs.zsh-powerlevel10k ];
+    };
   };
-};
 
   services.tailscale.enable = true;
   services.pulseaudio.enable = false;
@@ -100,7 +116,10 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -109,8 +128,12 @@
   users.users.vinicius = {
     isNormalUser = true;
     description = "vinicius";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
+    packages = with pkgs; [ ];
   };
   programs.firefox.enable = true;
   environment.systemPackages = with pkgs; [
@@ -143,8 +166,6 @@
     zoxide
     fzf
     zsh-powerlevel10k
-    go
-    python314
     gcc
     obsidian
     bat
@@ -157,8 +178,12 @@
     burpsuite
     flyctl
     openssl
+    gh
+    shotcut
+    ngrok
+    chromium
   ];
-  
+
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc
