@@ -121,6 +121,14 @@
     glib
   ];
 
+  programs.git.enable = true;
+  programs.zsh.enable = true;
+
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
   users.defaultUserShell = pkgs.zsh;
   users.users.vinicius = {
     isNormalUser = true;
@@ -140,5 +148,5 @@
     xdg-desktop-portal-gnome
   ];
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
 }

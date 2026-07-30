@@ -1,0 +1,72 @@
+* {
+    background:     rgba(30, 30, 46, 0.75);
+    background-alt: rgba(49, 50, 68, 0.5);  
+    foreground:     #cdd6f4;               
+    accent:         #89bfa8;                
+    selected:       #b4befe;                
+    
+    background-color: transparent;
+    text-color:       @foreground;
+}
+
+window {
+    transparency:     "real";
+    background-color: @background;
+    text-color:       @foreground;
+    border:           2px;
+    border-color:     @accent;
+    border-radius:    16px;                
+    width:            600px;
+    padding:          20px;
+}
+
+mainbox {
+    spacing:          15px;
+    background-color: transparent;
+    children:         [ inputbar, listview ];
+}
+
+inputbar {
+    background-color: @background-alt;
+    border-radius:    10px;               
+    padding:          12px;
+    spacing:          10px;
+    children:         [ prompt, entry ];
+}
+
+prompt {
+    enabled:          true;
+    text-color:       @accent;
+}
+
+entry {
+    placeholder:      "Pesquisar aplicativos...";
+    placeholder-color: rgba(205, 214, 244, 0.4);
+    text-color:       @foreground;
+}
+
+listview {
+    background-color: transparent;
+    columns:          1;
+    lines:            8;
+    spacing:          5px;
+    cycle:            true;
+    dynamic:          true;
+}
+
+element {
+    background-color: transparent;
+    text-color:       @foreground;
+    border-radius:    8px;                  
+    padding:          10px;
+}
+
+element selected {
+    background-color: @accent;
+    text-color:       #1e1e2e;             
+}
+
+element-icon {
+    size:             24px;
+    margin-right:     10px;
+}
