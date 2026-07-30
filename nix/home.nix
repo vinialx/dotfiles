@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 {
   home.username = "vinicius";
   home.homeDirectory = "/home/vinicius";
@@ -6,6 +6,17 @@
 
   home.enableNixpkgsReleaseCheck = false;
 
+  #cursor.
+  home.pointerCursor = {
+    enable = true;
+    name = "phinger-cursors-dark";
+    package = pkgs.phinger-cursors;
+    size = 20;
+    gtk.enable = true;
+    x11.enable = true;
+  };
+
+  #home packages.
   home.packages = with pkgs; [
     anydesk
     awww
@@ -20,6 +31,7 @@
     fzf
     gcc
     gnome-tweaks
+    grim
     imagemagick
     insomnia
     iscc
@@ -32,14 +44,18 @@
     obsidian
     opencode
     openssl
+    phinger-cursors
     proton-vpn-cli
     remmina
     ripgrep
     shotcut
+    slurp
+    swappy
     tenacity
     unzip
     vesktop
     warehouse
+    ytmdesktop
     zsh
   ];
 
@@ -99,7 +115,6 @@
     enable = true;
     configType = "hyprlang";
     settings = {
-      # Monitor padrão e resolução automática
       monitor = [
 	"DP-1, 1920x1080@144, 0x0, 1"
 	"eDP-1, 1920x1080@165, 0x1080, 1"
@@ -110,16 +125,21 @@
 	kb_variant = "abnt2";
       };
 
-      # Atalhos principais (Modificador = Tecla Super / Windows)
+      env = [
+        "XCURSOR_THEME,phinger-cursors-dark"
+        "XCURSOR_SIZE,24"
+      ];
+
       "$mod" = "SUPER";
 
       bind = [
-        "$mod, T, exec, ghostty" # Abre o terminal Ghostty
-        "$mod, W, killactive," # Fecha a janela ativa
-        "$mod, L, exit," # Sai do Hyprland
-        "$mod, E, exec, nautilus" # Gerenciador de arquivos
-        "$mod, V, togglefloating," # Alterna janela flutuante
-        "$mod, R, exec, rofi -show drun" # Lançador de apps (Rofi)
+        "$mod, T, exec, ghostty"
+        "$mod, Q, killactive,"
+	"$mod SHIFT, Q, forcekillactive"
+        "$mod, E, exec, nautilus"
+	"$mod SHIFT, L, exit"
+        "$mod, V, togglefloating,"
+        "$mod, R, exec, rofi -show drun"
 
 	#move windows.
 	"$mod SHIFT, h, movewindow, l"
@@ -127,11 +147,21 @@
         "$mod SHIFT, k, movewindow, u"
         "$mod SHIFT, j, movewindow, d"
 
-        # Foco entre janelas com as setas ou HJKL
+        #window focus (neovim style).
         "$mod, h, movefocus, l"
         "$mod, l, movefocus, r"
         "$mod, k, movefocus, u"
         "$mod, j, movefocus, d"
+
+	#flameshot screenshot.
+	", Print, exec, grim -g \"$(slurp)\" - | swappy -f -"
+
+	#workspaces.
+	"$mod, LEFT, workspace, -1"
+     	"$mod, RIGHT, workspace, +1"
+
+      	"$mod SHIFT, LEFT, movetoworkspace, -1"
+      	"$mod SHIFT, RIGHT, movetoworkspace, +1"
       ];
 
       # Configurações visuais e bordas limpas
@@ -164,22 +194,35 @@
         layer = "top";
         position = "top";
         height = 36;
-        modules-left = [ "hyprland/workspaces" ];
+        modules-left = [ "hyprland/workspaces" "mpris" ];
         modules-center = [ "clock" ];
         modules-right = [
           "pulseaudio"
-          "network"
+          "memory"
           "battery"
         ];
 
+	mpris = {
+          format = "  {artist} - {title}";
+          format-paused = "  <em>{status}</em>";
+          max-length = 30;
+          player = "spotify";
+        };
+
         clock = {
-          format = "{:%H:%M:%ss}";
-          tooltip = false;
+          format = "{:%H:%M:%S}";
+          interval = 1;
+	  tooltip = false;
         };
 
         battery = {
           format = "{capacity}% 󰁹";
         };
+
+	memory = {
+	  format = "{}% ";
+          interval = 5;
+	};
 
         pulseaudio = {
           format = "{volume}% 󰕾";
