@@ -90,7 +90,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestions.enable = true;
+    autosuggestion.enable = true;
     syntax-highlighting.enable = true;
   };
 }
