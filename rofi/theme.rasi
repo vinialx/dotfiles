@@ -1,9 +1,9 @@
 * {
-    background:     rgba(30, 30, 46, 0.75);
-    background-alt: rgba(49, 50, 68, 0.5);  
-    foreground:     #cdd6f4;               
-    accent:         #89bfa8;                
-    selected:       #b4befe;                
+    background:     rgba(46, 46, 46, 0.8);
+    background-alt: rgba(46, 46, 46, 0.5);  
+    foreground:     #d4d4d4;               
+    accent:         #000000;                
+    selected:       #000000;                
     
     background-color: transparent;
     text-color:       @foreground;

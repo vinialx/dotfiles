@@ -1,4 +1,9 @@
-{ config, inputs, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   home.username = "vinicius";
   home.homeDirectory = "/home/vinicius";
@@ -116,13 +121,13 @@
     configType = "hyprlang";
     settings = {
       monitor = [
-	"DP-1, 1920x1080@144, 0x0, 1"
-	"eDP-1, 1920x1080@165, 0x1080, 1"
+        "DP-1, 1920x1080@144, 0x0, 1"
+        "eDP-1, 1920x1080@165, 0x1080, 1"
       ];
 
       input = {
-	kb_layout = "br";
-	kb_variant = "abnt2";
+        kb_layout = "br";
+        kb_variant = "abnt2";
       };
 
       env = [
@@ -135,15 +140,15 @@
       bind = [
         "$mod, T, exec, ghostty"
         "$mod, Q, killactive,"
-	"$mod SHIFT, Q, forcekillactive"
+        "$mod SHIFT, Q, forcekillactive"
         "$mod, E, exec, nautilus"
-	"$mod SHIFT, L, exit"
+        #"$mod SHIFT, L, exit"
         "$mod, V, togglefloating,"
         "$mod, R, exec, rofi -show drun"
 
-	#move windows.
-	"$mod SHIFT, h, movewindow, l"
-	"$mod SHIFT, l, movewindow, r"
+        #move windows.
+        "$mod SHIFT, h, movewindow, l"
+        "$mod SHIFT, l, movewindow, r"
         "$mod SHIFT, k, movewindow, u"
         "$mod SHIFT, j, movewindow, d"
 
@@ -153,16 +158,44 @@
         "$mod, k, movefocus, u"
         "$mod, j, movefocus, d"
 
-	#flameshot screenshot.
-	", Print, exec, grim -g \"$(slurp)\" - | swappy -f -"
+        #flameshot screenshot.
+        ", Print, exec, grim -g \"$(slurp)\" - | swappy -f -"
 
-	#workspaces.
-	"$mod, LEFT, workspace, -1"
-     	"$mod, RIGHT, workspace, +1"
+        #workspaces.
+        "$mod, LEFT, workspace, -1"
+        "$mod, RIGHT, workspace, +1"
+        "$mod SHIFT, LEFT, movetoworkspace, -1"
+        "$mod SHIFT, RIGHT, movetoworkspace, +1"
 
-      	"$mod SHIFT, LEFT, movetoworkspace, -1"
-      	"$mod SHIFT, RIGHT, movetoworkspace, +1"
+	#special workspace.
+	"$mod, M, movetoworkspacesilent, special"
+	"$mod SHIFT, M, togglespecialworkspace,"
       ];
+
+      binde = [
+        "$mod CONTROL, l, resizeactive, 20 0"
+  	"$mod CONTROL, h, resizeactive, -20 0"
+  	"$mod CONTROL, k, resizeactive, 0 -20"
+	"$mod CONTROL, j, resizeactive, 0 20"
+      ];
+
+      #animations.
+      animations = {
+enabled = true;
+
+  bezier = [
+    "myBezier, 0.05, 0.9, 0.1, 1.05"
+  ];
+
+  animation = [
+    "windows, 1, 3, myBezier"
+    "windowsOut, 1, 3, default, popin 80%"
+    "border, 1, 5, default"
+    "borderangle, 1, 4, default"
+    "fade, 1, 3, default"
+    "workspaces, 1, 3, default"
+  ];
+};
 
       # Configurações visuais e bordas limpas
       general = {
@@ -183,7 +216,10 @@
         };
       };
 
-      exec-once = ["waybar" "awww-daemon"];
+      exec-once = [
+        "waybar"
+        "awww-daemon"
+      ];
     };
   };
 
@@ -194,7 +230,10 @@
         layer = "top";
         position = "top";
         height = 36;
-        modules-left = [ "hyprland/workspaces" "mpris" ];
+        modules-left = [
+          "hyprland/workspaces"
+          "mpris"
+        ];
         modules-center = [ "clock" ];
         modules-right = [
           "pulseaudio"
@@ -202,7 +241,7 @@
           "battery"
         ];
 
-	mpris = {
+        mpris = {
           format = "  {artist} - {title}";
           format-paused = "  <em>{status}</em>";
           max-length = 30;
@@ -212,17 +251,17 @@
         clock = {
           format = "{:%H:%M:%S}";
           interval = 1;
-	  tooltip = false;
+          tooltip = false;
         };
 
         battery = {
           format = "{capacity}% 󰁹";
         };
 
-	memory = {
-	  format = "{}% ";
+        memory = {
+          format = "{}% ";
           interval = 5;
-	};
+        };
 
         pulseaudio = {
           format = "{volume}% 󰕾";
