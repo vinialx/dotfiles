@@ -107,6 +107,10 @@
     };
   };
 
+  services.power-profiles-daemon.enable = true;
+
+  boot.kernelModules = [ "acer-wmi" ];
+
   services.tailscale.enable = true;
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -170,7 +174,7 @@
     obsidian
     bat
     obs-studio
-    onlyoffice-desktopeditors
+    libreoffice-fresh
     nodejs
     iscc
     proton-vpn-cli
@@ -182,6 +186,7 @@
     shotcut
     ngrok
     chromium
+    insomnia
   ];
 
   programs.nix-ld.enable = true;
