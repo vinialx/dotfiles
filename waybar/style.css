@@ -1,0 +1,46 @@
+* {
+  font-family: "Hurmit Nerd Font Mono";
+  font-size: 13px;
+  border: none;
+  border-radius: 0;
+}
+
+window#waybar {
+  background: transparent;
+}
+
+/* Estilo das Ilhas Flutuantes */
+.modules-left,
+.modules-center,
+.modules-right {
+  background: rgba(26, 27, 38, 0.85); /* Tom escuro Tokyo Night */
+  margin: 8px 10px 0px 10px;
+  padding: 2px 12px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+#clock {
+  color: #7aa2f7;
+  font-weight: bold;
+}
+
+#workspaces button {
+  color: #a9b1d6;
+  border-radius: 8px;
+  padding: 0 6px;
+  margin: 0 2px;
+}
+
+#workspaces button.active {
+  background: #7aa2f7;
+  color: #1a1b26;
+  font-weight: bold;
+}
+
+#pulseaudio,
+#network,
+#battery {
+  color: #bb9af7;
+  padding: 0 6px;
+}

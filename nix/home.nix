@@ -8,6 +8,7 @@
 
   home.packages = with pkgs; [
     anydesk
+    awww
     bitwarden-desktop
     brave
     burpsuite
@@ -35,7 +36,6 @@
     remmina
     ripgrep
     shotcut
-    swww
     tenacity
     unzip
     vesktop
@@ -114,9 +114,9 @@
       "$mod" = "SUPER";
 
       bind = [
-        "$mod, Q, exec, ghostty" # Abre o terminal Ghostty
-        "$mod, C, killactive," # Fecha a janela ativa
-        "$mod, M, exit," # Sai do Hyprland
+        "$mod, T, exec, ghostty" # Abre o terminal Ghostty
+        "$mod, W, killactive," # Fecha a janela ativa
+        "$mod, L, exit," # Sai do Hyprland
         "$mod, E, exec, nautilus" # Gerenciador de arquivos
         "$mod, V, togglefloating," # Alterna janela flutuante
         "$mod, R, exec, rofi -show drun" # Lançador de apps (Rofi)
@@ -153,7 +153,7 @@
         };
       };
 
-      exec-once = ["waybar" "sww-daemon &"];
+      exec-once = ["waybar" "awww-daemon"];
     };
   };
 
@@ -173,7 +173,7 @@
         ];
 
         clock = {
-          format = "{:%H:%M}";
+          format = "{:%H:%M:%ss}";
           tooltip = false;
         };
 
@@ -187,50 +187,7 @@
       }
     ];
 
-    style = ''
-      * {
-        font-family: "SpaceMono Nerd Font Mono";
-        font-size: 13px;
-        border: none;
-        border-radius: 0;
-      }
-
-      window#waybar {
-        background: transparent;
-      }
-
-      /* Estilo das Ilhas Flutuantes */
-      .modules-left, .modules-center, .modules-right {
-        background: rgba(26, 27, 38, 0.85); /* Tom escuro Tokyo Night */
-        margin: 8px 10px 0px 10px;
-        padding: 2px 12px;
-        border-radius: 16px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-      }
-
-      #clock {
-        color: #7aa2f7;
-        font-weight: bold;
-      }
-
-      #workspaces button {
-        color: #a9b1d6;
-        border-radius: 8px;
-        padding: 0 6px;
-        margin: 0 2px;
-      }
-
-      #workspaces button.active {
-        background: #7aa2f7;
-        color: #1a1b26;
-        font-weight: bold;
-      }
-
-      #pulseaudio, #network, #battery {
-        color: #bb9af7;
-        padding: 0 6px;
-      }
-    '';
+    style = ../waybar/style.css;
   };
 
 }
