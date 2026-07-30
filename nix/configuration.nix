@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 {
   imports = [ ./hardware-configuration.nix ];
-
   hardware.enableAllFirmware = true;
 
   boot = {
@@ -25,12 +24,14 @@
       "nvidia-drm.modeset=1"
       "snd_intel_dspcfg.dsp_driver=3"
     ];
+    kernelModules = [ "acer-wmi" ];
+    loader = {
+      timeout = null;
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
   };
-  boot.loader = {
-    timeout = null;
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
+
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
   time.timeZone = "America/Sao_Paulo";
@@ -46,20 +47,26 @@
     LC_TELEPHONE = "pt_BR.UTF-8";
     LC_TIME = "pt_BR.UTF-8";
   };
+
   services.xserver.enable = true;
-  # Wayland + GDM
+  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
   services.displayManager.gdm.enable = true;
   services.displayManager.gdm.wayland = true;
   services.desktopManager.gnome.enable = true;
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
-  services.xserver.videoDrivers = [ "nvidia" ];
+
   hardware.nvidia = {
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-    powerManagement.enable = true; # importante em notebook
+    powerManagement.enable = true;
     powerManagement.finegrained = false;
     modesetting.enable = true;
     open = false;
@@ -69,7 +76,7 @@
       nvidiaBusId = "PCI:1:0:0";
     };
   };
-  # Variáveis que corrigem o lag no GNOME Wayland com NVIDIA
+
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
@@ -80,46 +87,23 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
   services.printing.enable = true;
-  nixpkgs.config.allowUnfree = true;
   services.flatpak.enable = true;
-  programs.git.enable = true;
-  virtualisation.docker.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-  programs.zsh = {
-    enable = true;
-    ohMyZsh = {
-      enable = true;
-      plugins = [
-        "git"
-        "docker"
-        "docker-compose"
-        "fzf"
-        "colored-man-pages"
-        "command-not-found"
-      ];
-      theme = "powerlevel10k/powerlevel10k";
-      customPkgs = [ pkgs.zsh-powerlevel10k ];
-    };
-  };
-
   services.power-profiles-daemon.enable = true;
-
-  boot.kernelModules = [ "acer-wmi" ];
-
   services.tailscale.enable = true;
-  services.pulseaudio.enable = false;
+
   security.rtkit.enable = true;
+  services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+
+  virtualisation.docker.enable = true;
+
+  nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -129,6 +113,15 @@
     dates = "weekly";
     options = "--delete-older-than 5d";
   };
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc
+    zlib
+    glib
+  ];
+
+  users.defaultUserShell = pkgs.zsh;
   users.users.vinicius = {
     isNormalUser = true;
     description = "vinicius";
@@ -137,63 +130,15 @@
       "wheel"
       "docker"
     ];
-    packages = with pkgs; [ ];
   };
-  programs.firefox.enable = true;
+
   environment.systemPackages = with pkgs; [
     wget
-    brave
-    anydesk
-    remmina
-    vesktop
-    tmux
-    neovim
-    ghostty
-    tailscale
-    warehouse
-    nil
-    ente-auth
-    bitwarden-desktop
-    fd
-    ripgrep
     alsa-utils
-    opencode
-    direnv
-    docker
     docker-compose
-    dbeaver-bin
-    gnome-tweaks
     xdg-desktop-portal
     xdg-desktop-portal-gnome
-    unzip
-    imagemagick
-    zoxide
-    fzf
-    zsh-powerlevel10k
-    gcc
-    obsidian
-    bat
-    obs-studio
-    libreoffice-fresh
-    nodejs
-    iscc
-    proton-vpn-cli
-    tenacity
-    burpsuite
-    flyctl
-    openssl
-    gh
-    shotcut
-    ngrok
-    chromium
-    insomnia
   ];
 
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    stdenv.cc.cc
-    zlib
-    glib
-  ];
   system.stateVersion = "25.11";
 }

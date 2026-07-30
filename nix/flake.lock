@@ -18,6 +18,27 @@
         "type": "github"
       }
     },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785306346,
+        "narHash": "sha256-DScBkW0fOgpGPK2trNoX3ryLTlaC14+gglFo/BhGJ4g=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "e705714e918c3b11affcdd15db2cbe3a070420a0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "master",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "mac-style-plymouth": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -57,6 +78,7 @@
     },
     "root": {
       "inputs": {
+        "home-manager": "home-manager",
         "mac-style-plymouth": "mac-style-plymouth",
         "nixpkgs": "nixpkgs"
       }

@@ -1,11 +1,16 @@
 {
-  description = "nixos system configuration flake";
+  description = "nixos nitro-v15 configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     mac-style-plymouth = {
       url = "github:SergioRibera/s4rchiso-plymouth-theme";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -15,6 +20,7 @@
       self,
       nixpkgs,
       mac-style-plymouth,
+      home-manager,
       ...
     }@inputs:
     {
@@ -28,6 +34,15 @@
 
             ./hardware-configuration.nix
             ./configuration.nix
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.users.vinicius = import ./home.nix;
+            }
           ];
         };
       };
