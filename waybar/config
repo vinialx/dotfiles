@@ -1,40 +1,154 @@
 [
   {
-    "battery": {
-      "format": "{capacity}% 󰁹"
-    },
-    "clock": {
-      "format": "{:%H:%M:%S}",
-      "interval": 1,
-      "tooltip": false
-    },
-    "height": 36,
+    /* global settings. */
+    "height": 55,
     "layer": "top",
-    "memory": {
-      "format": "{}% ",
-      "interval": 5
-    },
+    "position": "top",
+
+    /* modules organization. */
+    "modules-left": [
+      "custom/nixos",
+      "hyprland/workspaces",
+      "custom/separator",
+      "custom/clipboard",
+      "custom/separator",
+      "group/media"
+    ],
     "modules-center": [
       "clock"
     ],
-    "modules-left": [
-      "hyprland/workspaces",
-      "mpris"
-    ],
     "modules-right": [
-      "pulseaudio",
+      "group/volume",
+      "custom/separator",
+      "cpu",
+      "custom/separator",
       "memory",
-      "battery"
+      "custom/separator",
+      "temperature",
+      "custom/separator",
+      "battery",
+      "custom/separator",
+      "custom/turnoff"
     ],
-    "mpris": {
-      "format": "  {artist} - {title}",
-      "format-paused": "  <em>{status}</em>",
-      "max-length": 30,
-      "player": "spotify"
+
+    /* modules. */
+    "custom/nixos": {
+      "format": "󱄅",
+      "tooltip": false,
+      "on-click": "xdg-open https://github.com/Wires-Solucao-e-Servicos/"
     },
-    "position": "top",
+
+    "battery": {
+      "format": "{capacity}% {icon}",
+      "format-charging": "{capacity}% 󰂄",
+      "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+      "interval": 60
+    },
+
+    "clock": {
+      "format": "{:%a, %d %b %H:%M:%S}",
+      "interval": 1,
+      "tooltip": false
+    },
+
+    "memory": {
+      "format": " {used:0.1f}GB ",
+      "tooltip": false,
+      "interval": 5
+    },
+
+    "cpu": {
+      "format": "{}% ",
+      "tooltip": false,
+      "interval": 10
+    },
+
+    "temperature": {
+      "format": "{temperatureC}°C",
+      "tooltip": false
+    },
+
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "on-click": "activate"
+    },
+
+    /* media player. */
+   "mpris": {
+      "player": "playerctld",
+      "format-playing": " {artist} - {title}",
+      "format-paused": " {artist} - {title}",
+      "format-stopped": "",
+      "max-length": 30,
+      "interval": 1
+    },
+
+    "custom/media-prev": {
+    "format": "󰒮",
+    "on-click": "playerctl -p playerctld previous",
+    "tooltip": false
+},
+"custom/media-playpause": {
+  "exec": "playerctl -p playerctld status 2>/dev/null | grep -q Playing && echo '󰏤' || echo '󰐊'",
+  "interval": 1,
+  "on-click": "playerctl -p playerctld play-pause",
+  "tooltip": false
+},
+"custom/media-next": {
+  "format": "󰒭",
+  "on-click": "playerctl -p playerctld next",
+  "tooltip": false
+},
+    "group/media": {
+      "orientation": "horizontal",
+      "modules": [
+        "custom/media-prev",
+        "custom/media-playpause",
+        "custom/media-next",
+        "mpris"
+      ]
+    },
+
+    /* volume group. */
+    "group/volume": {
+      "orientation": "horizontal",
+      "modules": [
+        "pulseaudio",
+        "pulseaudio/slider"
+      ]
+    },
     "pulseaudio": {
-      "format": "{volume}% 󰕾"
+      "format": "{volume}% {icon}",
+      "format-muted": "󰝟",
+      "format-icons": {
+        "default": ["󰕿", "󰖀", "󰕾"]
+      },
+      "scroll-step": 1,
+      "ignored-sinks": ["Easy Effects Sink"],
+      "on-click": "pavucontrol"
+    },
+
+    "pulseaudio/slider": {
+      "min": 0,
+      "max": 100,
+      "orientation": "horizontal"
+    },
+
+    "custom/turnoff": {
+      "format": "⏻",
+      "on-click": "wlogout",
+      "tooltip": false
+    },
+
+    "custom/separator": {
+      "format": "│",
+      "tooltip": false
+    },
+
+    "custom/clipboard": {
+      "format": "",
+      "on-click": "cliphist list | rofi -dmenu -display-columns 2 -p 'Clipboard' | cliphist decode | wl-copy",
+      "tooltip": false
     }
   }
 ]

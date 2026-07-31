@@ -1,46 +1,118 @@
 * {
-  font-family: "Hurmit Nerd Font Mono";
-  font-size: 13px;
+  font-family: "SpaceMono Nerd Font Mono";
+  font-size: 14px;
+  font-weight: 800;
   border: none;
   border-radius: 0;
 }
 
 window#waybar {
-  background: transparent;
+  background: #000000;
+  color: #ffffff;
+  padding: 0 5px;
 }
 
 /* floating islands. */
 .modules-left,
 .modules-center,
 .modules-right {
-  background: rgba(26, 27, 38, 0.85);
-  margin: 8px 10px 0px 10px;
-  padding: 2px 12px;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  margin: 5px 0;
+  padding: 1px 8px;
   border-radius: 16px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
-
 #clock {
-  color: #7aa2f7;
-  font-weight: bold;
+  color: #ffffff;
+  min-width: 150px;
 }
-
 #workspaces button {
-  color: #a9b1d6;
+  color: rgba(255, 255, 255, 0.5);
   border-radius: 8px;
   padding: 0 6px;
   margin: 0 2px;
 }
-
 #workspaces button.active {
-  background: #7aa2f7;
-  color: #1a1b26;
+  background: #ffffff;
+  color: #000000;
   font-weight: bold;
 }
-
-#pulseaudio,
 #network,
-#battery {
-  color: #bb9af7;
+#battery,
+#memory,
+#cpu {
+  color: #ffffff;
   padding: 0 6px;
+}
+/* group media */
+#custom-media-prev,
+#custom-media-playpause,
+#custom-media-next {
+  color: #ffffff;
+  padding: 0 6px;
+}
+#mpris {
+  color: rgba(255, 255, 255, 0.75);
+  padding: 0 8px;
+}
+
+/* group volume */
+#pulseaudio {
+  color: #ffffff;
+  font-size: 14px;
+}
+#pulseaudio-slider {
+  min-width: 100px;
+  border-radius: 12px;
+  background-color: #000000;
+}
+#pulseaudio-slider slider {
+  min-height: 9px;
+  min-width: 9px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+#pulseaudio-slider trough {
+  min-height: 5px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+#pulseaudio-slider highlight {
+  min-height: 5px;
+  border-radius: 4px 0 0 4px;
+  background-color: #ffffff;
+}
+
+/* custom icons only. */
+#custom-turnoff,
+#custom-nixos {
+  color: #ffffff;
+  padding: 0 8px;
+  font-weight: 500;
+}
+#custom-nixos {
+  font-size: 25px;
+}
+#custom-turnoff {
+  font-size: 22px;
+}
+
+/* custom clipboard */
+#custom-clipboard {
+  color: #ffffff;
+  padding: 0 8px;
+  font-size: 18px;
+}
+#custom-clipboard:hover {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* custom separator*/
+#custom-separator {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 16px;
+  padding: 0 8px;
+  margin: 0;
 }

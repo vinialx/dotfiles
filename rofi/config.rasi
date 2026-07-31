@@ -1,4 +1,0 @@
-configuration {
-  modi: "drun,clipboard:cliphist list";
-}
-@theme "theme.rasi"

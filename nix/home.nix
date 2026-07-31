@@ -29,6 +29,7 @@
     brave
     burpsuite
     chromium
+    cliphist
     dbeaver-bin
     ente-auth
     fd
@@ -49,17 +50,22 @@
     obsidian
     opencode
     openssl
+    pavucontrol
     phinger-cursors
+    playerctl
     proton-vpn-cli
     remmina
     ripgrep
     shotcut
     slurp
+    spotify
     swappy
     tenacity
     unzip
     vesktop
     warehouse
+    wlogout
+    wl-clipboard
     ytmdesktop
     zsh
   ];
@@ -108,7 +114,8 @@
   };
 
   #rofi configuration.
-  xdg.configFile."rofi/theme.rasi".source = ../rofi/theme.rasi;
+  xdg.configFile."rofi/theme.rasi".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/rofi/theme.rasi";
 
   programs.rofi = {
     enable = true;
@@ -218,15 +225,19 @@
       exec-once = [
         "waybar"
         "awww-daemon"
+        "wl-paste --watch cliphist store"
       ];
     };
   };
 
-  xdg.configFile."waybar/config".source = ../waybar/config;
-
+  xdg.configFile."waybar/config".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/waybar/config";
   programs.waybar = {
     enable = true;
-    style = ../waybar/style.css;
+    style = config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/waybar/style.css";
   };
+
+  # wlogout configuration.
+  xdg.configFile."wlogout".source = config.lib.file.mkOutOfStoreSymlink "../wlogout";
 
 }

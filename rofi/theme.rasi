@@ -1,10 +1,10 @@
 * {
-    background:     rgba(46, 46, 46, 0.8);
-    background-alt: rgba(46, 46, 46, 0.5);  
-    foreground:     #d4d4d4;               
-    accent:         #000000;                
-    selected:       #000000;                
-    
+    background:     rgba(0, 0, 0, 0.85);
+    background-alt: rgba(255, 255, 255, 0.06);
+    foreground:     #ffffff;
+    accent:         #ffffff;
+    selected-text:  #000000;
+
     background-color: transparent;
     text-color:       @foreground;
 }
@@ -13,10 +13,10 @@ window {
     transparency:     "real";
     background-color: @background;
     text-color:       @foreground;
-    border:           2px;
-    border-color:     @accent;
-    border-radius:    16px;                
-    width:            600px;
+    border:           1px;
+    border-color:     rgba(255, 255, 255, 0.25);
+    border-radius:    16px;
+    width:            650px;
     padding:          20px;
 }
 
@@ -28,7 +28,7 @@ mainbox {
 
 inputbar {
     background-color: @background-alt;
-    border-radius:    10px;               
+    border-radius:    10px;
     padding:          12px;
     spacing:          10px;
     children:         [ prompt, entry ];
@@ -40,33 +40,34 @@ prompt {
 }
 
 entry {
-    placeholder:      "Pesquisar aplicativos...";
-    placeholder-color: rgba(205, 214, 244, 0.4);
-    text-color:       @foreground;
+    placeholder:       "Buscar no histórico...";
+    placeholder-color: rgba(255, 255, 255, 0.35);
+    text-color:        @foreground;
 }
 
 listview {
     background-color: transparent;
     columns:          1;
-    lines:            8;
-    spacing:          5px;
+    lines:            10;
+    spacing:          4px;
     cycle:            true;
     dynamic:          true;
+    scrollbar:        false;
 }
 
 element {
     background-color: transparent;
     text-color:       @foreground;
-    border-radius:    8px;                  
-    padding:          10px;
+    border-radius:    8px;
+    padding:          10px 12px;
 }
 
 element selected {
     background-color: @accent;
-    text-color:       #1e1e2e;             
+    text-color:       @selected-text;
 }
 
-element-icon {
-    size:             24px;
-    margin-right:     10px;
+element-text {
+    text-color:       inherit;
+    highlight:        bold rgba(255, 255, 255, 0.6);
 }
