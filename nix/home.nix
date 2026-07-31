@@ -167,37 +167,36 @@
         "$mod SHIFT, LEFT, movetoworkspace, -1"
         "$mod SHIFT, RIGHT, movetoworkspace, +1"
 
-	#special workspace.
-	"$mod, M, movetoworkspacesilent, special"
-	"$mod SHIFT, M, togglespecialworkspace,"
+        #special workspace.
+        "$mod, M, movetoworkspacesilent, special"
+        "$mod SHIFT, M, togglespecialworkspace,"
       ];
 
       binde = [
         "$mod CONTROL, l, resizeactive, 20 0"
-  	"$mod CONTROL, h, resizeactive, -20 0"
-  	"$mod CONTROL, k, resizeactive, 0 -20"
-	"$mod CONTROL, j, resizeactive, 0 20"
+        "$mod CONTROL, h, resizeactive, -20 0"
+        "$mod CONTROL, k, resizeactive, 0 -20"
+        "$mod CONTROL, j, resizeactive, 0 20"
       ];
 
       #animations.
       animations = {
-enabled = true;
+        enabled = true;
 
-  bezier = [
-    "myBezier, 0.05, 0.9, 0.1, 1.05"
-  ];
+        bezier = [
+          "myBezier, 0.05, 0.9, 0.1, 1.05"
+        ];
 
-  animation = [
-    "windows, 1, 3, myBezier"
-    "windowsOut, 1, 3, default, popin 80%"
-    "border, 1, 5, default"
-    "borderangle, 1, 4, default"
-    "fade, 1, 3, default"
-    "workspaces, 1, 3, default"
-  ];
-};
+        animation = [
+          "windows, 1, 3, myBezier"
+          "windowsOut, 1, 3, default, popin 80%"
+          "border, 1, 5, default"
+          "borderangle, 1, 4, default"
+          "fade, 1, 3, default"
+          "workspaces, 1, 3, default"
+        ];
+      };
 
-      # Configurações visuais e bordas limpas
       general = {
         gaps_in = 5;
         gaps_out = 10;
@@ -223,52 +222,10 @@ enabled = true;
     };
   };
 
+  xdg.configFile."waybar/config".source = ../waybar/config;
+
   programs.waybar = {
     enable = true;
-    settings = [
-      {
-        layer = "top";
-        position = "top";
-        height = 36;
-        modules-left = [
-          "hyprland/workspaces"
-          "mpris"
-        ];
-        modules-center = [ "clock" ];
-        modules-right = [
-          "pulseaudio"
-          "memory"
-          "battery"
-        ];
-
-        mpris = {
-          format = "  {artist} - {title}";
-          format-paused = "  <em>{status}</em>";
-          max-length = 30;
-          player = "spotify";
-        };
-
-        clock = {
-          format = "{:%H:%M:%S}";
-          interval = 1;
-          tooltip = false;
-        };
-
-        battery = {
-          format = "{capacity}% 󰁹";
-        };
-
-        memory = {
-          format = "{}% ";
-          interval = 5;
-        };
-
-        pulseaudio = {
-          format = "{volume}% 󰕾";
-        };
-      }
-    ];
-
     style = ../waybar/style.css;
   };
 

@@ -9,11 +9,11 @@ window#waybar {
   background: transparent;
 }
 
-/* Estilo das Ilhas Flutuantes */
+/* floating islands. */
 .modules-left,
 .modules-center,
 .modules-right {
-  background: rgba(26, 27, 38, 0.85); /* Tom escuro Tokyo Night */
+  background: rgba(26, 27, 38, 0.85);
   margin: 8px 10px 0px 10px;
   padding: 2px 12px;
   border-radius: 16px;

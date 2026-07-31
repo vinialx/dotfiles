@@ -1,0 +1,40 @@
+[
+  {
+    "battery": {
+      "format": "{capacity}% 󰁹"
+    },
+    "clock": {
+      "format": "{:%H:%M:%S}",
+      "interval": 1,
+      "tooltip": false
+    },
+    "height": 36,
+    "layer": "top",
+    "memory": {
+      "format": "{}% ",
+      "interval": 5
+    },
+    "modules-center": [
+      "clock"
+    ],
+    "modules-left": [
+      "hyprland/workspaces",
+      "mpris"
+    ],
+    "modules-right": [
+      "pulseaudio",
+      "memory",
+      "battery"
+    ],
+    "mpris": {
+      "format": "  {artist} - {title}",
+      "format-paused": "  <em>{status}</em>",
+      "max-length": 30,
+      "player": "spotify"
+    },
+    "position": "top",
+    "pulseaudio": {
+      "format": "{volume}% 󰕾"
+    }
+  }
+]
