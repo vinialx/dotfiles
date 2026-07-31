@@ -1,0 +1,39 @@
+* {
+  font-family: "SpaceMono Nerd Font Mono";
+  font-size: 15px;
+  background-image: none;
+  transition: all 0.2s ease-in-out;
+}
+
+window {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+button {
+  color: #ffffff;
+  background-color: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+
+  margin: 80px 40px;
+  padding: 50px 0;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: 0.1s;
+}
+
+button label {
+  padding: 0;
+  margin: 0;
+}
+
+button:focus,
+button:active,
+button:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+  outline-style: none;
+}

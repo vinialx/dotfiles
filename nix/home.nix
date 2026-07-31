@@ -230,14 +230,14 @@
     };
   };
 
-  xdg.configFile."waybar/config".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/waybar/config";
+  xdg.configFile."waybar/config".source = config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/waybar/config";
+
   programs.waybar = {
     enable = true;
     style = config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/waybar/style.css";
   };
 
   # wlogout configuration.
-  xdg.configFile."wlogout".source = config.lib.file.mkOutOfStoreSymlink "../wlogout";
+  xdg.configFile."wlogout".source = config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/wlogout";
 
 }

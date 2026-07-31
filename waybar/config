@@ -35,7 +35,7 @@
     "custom/nixos": {
       "format": "󱄅",
       "tooltip": false,
-      "on-click": "xdg-open https://github.com/Wires-Solucao-e-Servicos/"
+      "on-click": "xdg-open https://search.nixos.org/packages"
     },
 
     "battery": {
