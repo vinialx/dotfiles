@@ -8,6 +8,7 @@ alias nv='nvim'
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
 alias brd='bun run dev'
 alias brb='bun run build'
+
 alias taskmgrbk-ssh='fly ssh console -a wires-task-manager-server'
 alias taskmgrcl-ssh='fly ssh console -a wires-task-manager-client'
 
@@ -137,15 +138,8 @@ alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify -m "--wip-- [skip ci]"'
 alias gpfwl='git push --force-with-lease'
 
-# omz configuration.
-export ZSH="$ZSH"
-ZSH_THEME=""
-
 # rtk configuration.
 export PATH="$HOME/.local/bin:$PATH"
-
-#starship configuration.
-eval "$(starship init zsh)"
 
 # direnv configuration.
 eval "$(direnv hook zsh)"
@@ -167,7 +161,7 @@ cpz() {
   
   if [ -n "$target" ]; then
     cp -r "${files[@]}" "$target"
-    echo "✨ Copiado para: $target"
+    echo "copied to: $target"
   fi
 }
 
@@ -180,7 +174,7 @@ mvz() {
   
   if [ -n "$target" ]; then
     mv "${files[@]}" "$target"
-    echo "🚚 Movido para: $target"
+    echo "moved to: $target"
   fi
 }
 

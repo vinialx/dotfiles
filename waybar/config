@@ -147,7 +147,7 @@
 
     "custom/clipboard": {
       "format": "",
-      "on-click": "cliphist list | rofi -dmenu -display-columns 2 -p 'Clipboard' | cliphist decode | wl-copy",
+      "on-click": "cliphist list | rofi -dmenu -p 'Clipboard' -theme ~/.config/rofi/theme.rasi | cliphist decode | wl-copy",      
       "tooltip": false
     }
   }

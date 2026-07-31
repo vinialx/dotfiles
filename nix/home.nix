@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   pkgs,
   ...
 }:
@@ -32,6 +31,8 @@
     cliphist
     dbeaver-bin
     ente-auth
+    eza
+    fastfetch
     fd
     flyctl
     fzf
@@ -67,7 +68,6 @@
     wlogout
     wl-clipboard
     ytmdesktop
-    zsh
   ];
 
   programs.bat.enable = true;
@@ -103,14 +103,43 @@
     };
   };
 
+  #terminal configuration.
   programs.tmux.enable = true;
   programs.zoxide.enable = true;
-
   programs.starship = {
     enable = true;
+    enableZshIntegration = true;
     settings = builtins.fromTOML (
       builtins.readFile "${pkgs.starship}/share/starship/presets/pastel-powerline.toml"
     );
+  };
+
+  #zsh configuration.
+  programs.zsh = {
+    enable = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "git"
+        "docker"
+        "docker-compose"
+        "fzf"
+        "colored-man-pages"
+        "command-not-found"
+        "history-substring-search"
+      ];
+    };
+    shellAliases = {
+      ls = "eza --icons --group-directories-first";
+    };
+    initContent = ''
+      bindkey '^[[A' history-substring-search-up
+      bindkey '^[[B' history-substring-search-down
+      bindkey '^[[1;5C' forward-word
+      bindkey '^[[1;5D' backward-word
+
+      source ${config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/zsh/custom.zsh"}
+    '';
   };
 
   #rofi configuration.
@@ -230,7 +259,8 @@
     };
   };
 
-  xdg.configFile."waybar/config".source = config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/waybar/config";
+  xdg.configFile."waybar/config".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/waybar/config";
 
   programs.waybar = {
     enable = true;
@@ -238,6 +268,7 @@
   };
 
   # wlogout configuration.
-  xdg.configFile."wlogout".source = config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/wlogout";
+  xdg.configFile."wlogout".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/wlogout";
 
 }
