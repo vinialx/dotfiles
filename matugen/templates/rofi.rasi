@@ -1,0 +1,105 @@
+* {
+    background:       {{colors.surface.default.hex}};
+    background-alt:   {{colors.surface_container.default.hex}};
+    foreground:       {{colors.on_surface.default.hex}};
+    foreground-dim:   {{colors.on_surface_variant.default.hex}};
+    accent:           {{colors.primary.default.hex}};
+    selected-text:    {{colors.on_primary.default.hex}};
+    border-color:     {{colors.outline.default.hex}};
+
+    background-color: transparent;
+    text-color:       @foreground;
+}
+
+window {
+    transparency:     "real";
+    background-color: @background;
+    text-color:       @foreground;
+    border:           1px;
+    border-color:     @border-color;
+    border-radius:    20px;
+    width:            650px;
+    padding:          24px;
+}
+
+mainbox {
+    spacing:          18px;
+    background-color: transparent;
+    children:         [ inputbar, listview ];
+}
+
+inputbar {
+    background-color: @background-alt;
+    border:           1px;
+    border-color:     rgba(255, 255, 255, 0.1);
+    border-radius:    12px;
+    padding:          14px 16px;
+    spacing:          12px;
+    children:         [ prompt, entry ];
+}
+
+prompt {
+    enabled:          true;
+    text-color:       @accent;
+    font:             "SpaceMono Nerd Font Mono 13";
+}
+
+entry {
+    placeholder:       "Buscar...";
+    placeholder-color: @foreground-dim;
+    text-color:        @foreground;
+    font:              "SpaceMono Nerd Font Mono 13";
+}
+
+listview {
+    background-color: transparent;
+    columns:          1;
+    lines:            10;
+    spacing:          6px;
+    cycle:            true;
+    dynamic:          true;
+    scrollbar:        false;
+}
+
+element {
+    background-color: transparent;
+    text-color:       @foreground;
+    border-radius:    10px;
+    padding:          11px 14px;
+    orientation:      horizontal;
+}
+
+element-icon {
+    size:             22px;
+    margin:           0 12px 0 0;
+    vertical-align:   0.5;
+}
+
+element-text {
+    text-color:       inherit;
+    vertical-align:   0.5;
+    highlight:        bold {{colors.on_surface.default.hex}};
+}
+
+element normal.normal {
+    background-color: transparent;
+}
+
+element alternate.normal {
+    background-color: {{colors.surface_container_low.default.hex}};
+}
+
+element selected {
+    background-color: @accent;
+    text-color:       @selected-text;
+    border-radius:    10px;
+}
+
+error-message {
+    background-color: @background;
+    text-color:       {{colors.error.default.hex}};
+    border:           1px;
+    border-color:     {{colors.error.default.hex}};
+    border-radius:    12px;
+    padding:          16px;
+}

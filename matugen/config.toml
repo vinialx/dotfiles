@@ -1,0 +1,20 @@
+[config]
+reload_apps = false
+
+[templates.swaync]
+input_path = "~/dotfiles/matugen/templates/swaync.css"
+output_path = "~/.config/swaync/style.css"
+post_hook = "swaync-client -R"
+
+[templates.waybar]
+input_path = "~/dotfiles/matugen/templates/waybar.css"
+output_path = "~/.config/waybar/style.css"
+post_hook = "pkill -9 waybar; sleep 0.5; waybar &"
+
+[templates.rofi]
+input_path = "~/dotfiles/matugen/templates/rofi.rasi"
+output_path = "~/.config/rofi/theme.rasi"
+
+[templates.wlogout]
+input_path = "~/dotfiles/matugen/templates/wlogout.css"
+output_path = "~/.config/wlogout/style.css"

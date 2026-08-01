@@ -10,30 +10,24 @@ window {
 }
 
 button {
-  color: #ffffff;
-  background-color: #000000;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #e4e1e9;
+  background-color: #1f1f25;
+  border: 1px solid #918f9a;
   border-radius: 16px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 
   margin: 80px 40px;
-  padding: 50px 0;
+  padding: 40px 0;
 
   background-repeat: no-repeat;
   background-position: center;
-  transition: 0.1s;
-}
-
-button label {
-  padding: 0;
-  margin: 0;
 }
 
 button:focus,
 button:active,
 button:hover {
-  background-color: #ffffff;
-  color: #000000;
-  border: 1px solid #ffffff;
+  background-color: #bfc2ff;
+  color: #272b60;
+  border: 1px solid #bfc2ff;
   outline-style: none;
 }

@@ -13,8 +13,8 @@
   #cursor.
   home.pointerCursor = {
     enable = true;
-    name = "phinger-cursors-dark";
-    package = pkgs.phinger-cursors;
+    name = "Bibata-Modern-Ice";
+    package = pkgs.bibata-cursors;
     size = 20;
     gtk.enable = true;
     x11.enable = true;
@@ -41,10 +41,12 @@
     gcc
     gnome-tweaks
     grim
+    hyprshade
     imagemagick
     insomnia
     iscc
     libreoffice-fresh
+    matugen
     neovim
     networkmanager
     ngrok
@@ -66,6 +68,7 @@
     slurp
     spotify
     swappy
+    swaynotificationcenter
     tenacity
     unzip
     vesktop
@@ -90,6 +93,14 @@
     userName = "vinicius";
     userEmail = "vini.aloise.silva@gmail.com";
   };
+
+  #matugen configuration.
+  xdg.configFile."matugen".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/matugen";
+
+  #swaync configuration.
+  xdg.configFile."swaync/config.json".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/swaync/config.json";
 
   programs.ghostty = {
     enable = true;
@@ -152,9 +163,6 @@
   };
 
   #rofi configuration.
-  xdg.configFile."rofi/theme.rasi".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/rofi/theme.rasi";
-
   programs.rofi = {
     enable = true;
     theme = "theme";
@@ -175,11 +183,6 @@
         kb_variant = "abnt2";
       };
 
-      env = [
-        "XCURSOR_THEME,phinger-cursors-dark"
-        "XCURSOR_SIZE,24"
-      ];
-
       "$mod" = "SUPER";
 
       bind = [
@@ -190,31 +193,30 @@
         #"$mod SHIFT, L, exit"
         "$mod, V, togglefloating,"
         "$mod, R, exec, rofi -show drun"
-
         #move windows.
         "$mod SHIFT, h, movewindow, l"
         "$mod SHIFT, l, movewindow, r"
         "$mod SHIFT, k, movewindow, u"
         "$mod SHIFT, j, movewindow, d"
-
         #window focus (neovim style).
         "$mod, h, movefocus, l"
         "$mod, l, movefocus, r"
         "$mod, k, movefocus, u"
         "$mod, j, movefocus, d"
-
         #flameshot screenshot.
         ", Print, exec, grim -g \"$(slurp)\" - | swappy -f -"
-
         #workspaces.
         "$mod, LEFT, workspace, -1"
         "$mod, RIGHT, workspace, +1"
         "$mod SHIFT, LEFT, movetoworkspace, -1"
         "$mod SHIFT, RIGHT, movetoworkspace, +1"
-
         #special workspace.
         "$mod, M, movetoworkspacesilent, special"
         "$mod SHIFT, M, togglespecialworkspace,"
+        #power menu.
+        "$mod, X, exec, wlogout"
+        #notification center.
+        "$mod, N, exec, swaync-client -t -sw"
       ];
 
       binde = [
@@ -224,21 +226,24 @@
         "$mod CONTROL, j, resizeactive, 0 20"
       ];
 
-      #animations.
+      # animations.
       animations = {
         enabled = true;
-
         bezier = [
-          "myBezier, 0.05, 0.9, 0.1, 1.05"
+          "easeOutExpo, 0.16, 1, 0.3, 1"
+          "easeInOutCubic, 0.65, 0.05, 0.36, 1"
+          "overshot, 0.05, 0.9, 0.1, 1.05"
+          "smoothIn, 0.25, 0.1, 0.25, 1"
         ];
-
         animation = [
-          "windows, 1, 3, myBezier"
-          "windowsOut, 1, 3, default, popin 80%"
-          "border, 1, 5, default"
-          "borderangle, 1, 4, default"
-          "fade, 1, 3, default"
-          "workspaces, 1, 3, default"
+          "windows, 1, 4, easeOutExpo, popin 85%"
+          "windowsOut, 1, 4, easeInOutCubic, popin 85%"
+          "windowsMove, 1, 4, easeOutExpo"
+          "border, 1, 8, default"
+          "borderangle, 1, 30, default, loop"
+          "fade, 1, 4, smoothIn"
+          "workspaces, 1, 5, overshot, slide"
+          "specialWorkspace, 1, 4, overshot, slidevert"
         ];
       };
 
@@ -246,28 +251,48 @@
         gaps_in = 5;
         gaps_out = 10;
         border_size = 2;
-        "col.active_border" = "rgba(7aa2f7ee) rgba(bb9af7ee) 45deg";
-        "col.inactive_border" = "rgba(1a1b26aa)";
+        "col.active_border" = "rgba(ffffffee) rgba(888888aa) 45deg";
+        "col.inactive_border" = "rgba(1a1a1aaa)";
         layout = "dwindle";
+        resize_on_border = true;
       };
 
       decoration = {
         rounding = 10;
+        active_opacity = 1.0;
+        inactive_opacity = 0.95;
+
+        shadow = {
+          enabled = true;
+          range = 18;
+          render_power = 3;
+          color = "rgba(00000088)";
+        };
+
         blur = {
           enabled = true;
-          size = 3;
-          passes = 1;
+          size = 4;
+          passes = 2;
+          new_optimizations = true;
+          vibrancy = 0.18;
         };
+      };
+
+      dwindle = {
+        preserve_split = true;
+        smart_resizing = true;
       };
 
       exec-once = [
         "waybar"
         "awww-daemon"
         "wl-paste --watch cliphist store"
+        "swaync"
       ];
     };
   };
 
+  #waybar configuration.
   xdg.configFile."waybar/config".source =
     config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/waybar/config";
 
@@ -277,7 +302,7 @@
   };
 
   # wlogout configuration.
-  xdg.configFile."wlogout".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/wlogout";
+  xdg.configFile."wlogout/layout".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/wlogout/layout";
 
 }

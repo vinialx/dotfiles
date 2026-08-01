@@ -1,0 +1,85 @@
+* {
+  font-family: "SpaceMono Nerd Font Mono";
+  font-size: 14px;
+  font-weight: 800;
+  border: none;
+  border-radius: 0;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+window#waybar {
+  background: transparent;
+  color: {{colors.on_surface.default.hex}};
+  padding: 0px 70px 0px 10px;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  background: {{colors.surface.default.hex}};
+  border: 1px solid {{colors.outline.default.hex}};
+  margin: 5px 0;
+  padding: 0px 12px;
+  border-radius: 16px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+}
+
+#clock {
+  color: {{colors.on_surface.default.hex}};
+  min-width: 150px;
+}
+
+#workspaces button {
+  color: {{colors.on_surface_variant.default.hex}};
+  border-radius: 8px;
+  padding: 0 8px;
+  margin: 2px 2px;
+}
+#workspaces button:hover {
+  background: {{colors.surface_container_high.default.hex}};
+}
+#workspaces button.active {
+  background: {{colors.primary.default.hex}};
+  color: {{colors.on_primary.default.hex}};
+  font-weight: 800;
+}
+
+#network,
+#battery,
+#memory,
+#cpu {
+  color: {{colors.on_surface.default.hex}};
+  padding: 0 6px;
+}
+
+#custom-media-prev,
+#custom-media-playpause,
+#custom-media-next,
+#custom-clipboard,
+#custom-nixos,
+#custom-turnoff {
+  color: {{colors.on_surface.default.hex}};
+  padding: 0 8px;
+}
+
+#pulseaudio-slider {
+  min-width: 100px;
+  border-radius: 12px;
+  background-color: transparent;
+}
+#pulseaudio-slider slider {
+  min-height: 10px;
+  min-width: 10px;
+  border-radius: 50%;
+  background-color: {{colors.primary.default.hex}};
+}
+#pulseaudio-slider highlight {
+  min-height: 5px;
+  border-radius: 4px 0 0 4px;
+  background-color: {{colors.primary.default.hex}};
+}
+#pulseaudio-slider trough {
+  min-height: 5px;
+  border-radius: 4px;
+  background-color: {{colors.surface_container_high.default.hex}};
+}

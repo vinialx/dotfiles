@@ -1,0 +1,73 @@
+* {
+  font-family: "SpaceMono Nerd Font Mono";
+  font-size: 13px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.control-center {
+  background: #131318;
+  border: 1px solid #918f9a;
+  border-radius: 16px;
+  padding: 10px;
+}
+
+.notification-background {
+  background: #131318;
+}
+
+.notification {
+  background: #1f1f25;
+  border: 1px solid #918f9a;
+  border-radius: 12px;
+  padding: 10px;
+  color: #e4e1e9;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.summary {
+  color: #e4e1e9;
+  font-weight: 700;
+}
+
+.body {
+  color: #c7c5d0;
+}
+
+.close-button {
+  background: transparent;
+  color: #e4e1e9;
+  border-radius: 8px;
+  padding: 2px 8px;
+}
+.close-button:hover {
+  background: #2a292f;
+}
+
+.widget-title {
+  color: #e4e1e9;
+  font-weight: 800;
+  padding: 8px;
+}
+
+.widget-title > button {
+  background: transparent;
+  color: #e4e1e9;
+  border: 1px solid #918f9a;
+  border-radius: 8px;
+  padding: 4px 10px;
+}
+.widget-title > button:hover {
+  background: #2a292f;
+}
+
+.widget-dnd > switch {
+  background: #2a292f;
+  border-radius: 12px;
+}
+.widget-dnd > switch:checked {
+  background: #bfc2ff;
+}
+.widget-dnd > switch slider {
+  background: #272b60;
+  border-radius: 50%;
+}
