@@ -149,6 +149,12 @@
       "format": "",
       "on-click": "cliphist list | rofi -dmenu -p 'Clipboard' -theme ~/.config/rofi/theme.rasi | cliphist decode | wl-copy",      
       "tooltip": false
+    },
+
+    "custom/controls": {
+      "format": "",
+      "on-click": "nwg-panel --controls-panel-only",
+      "tooltip": false
     }
   }
 ]

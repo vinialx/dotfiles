@@ -1,0 +1,52 @@
+window {
+  background-color: transparent;
+}
+
+#controls-panel {
+  background-color: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  padding: 2px 8px;
+}
+
+#controls-panel button {
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+}
+
+#controls-panel button:hover {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#controls-panel-window {
+  background-color: rgba(0, 0, 0, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+scale trough {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  min-height: 5px;
+}
+
+scale highlight {
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+scale slider {
+  background-color: #ffffff;
+  border-radius: 50%;
+  min-width: 14px;
+  min-height: 14px;
+}
+
+tooltip {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+}

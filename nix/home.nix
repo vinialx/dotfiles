@@ -25,7 +25,9 @@
     anydesk
     awww
     bitwarden-desktop
+    bluez
     brave
+    brightnessctl
     burpsuite
     chromium
     cliphist
@@ -44,13 +46,16 @@
     iscc
     libreoffice-fresh
     neovim
+    networkmanager
     ngrok
     nil
     nodejs
+    nwg-panel
     obs-studio
     obsidian
     opencode
     openssl
+    pamixer
     pavucontrol
     phinger-cursors
     playerctl
@@ -113,6 +118,10 @@
       builtins.readFile "${pkgs.starship}/share/starship/presets/pastel-powerline.toml"
     );
   };
+
+  # nwg-panel configuration.
+  xdg.configFile."nwg-panel".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/nwg-panel";
 
   #zsh configuration.
   programs.zsh = {
