@@ -1,73 +1,100 @@
 * {
-  font-family: "SpaceMono Nerd Font Mono";
+  font-family: "CommitMono Nerd Font";
   font-size: 13px;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.08s ease-out;
+}
+
+/* remove qualquer fundo/borda residual da janela raiz do toast. */
+window {
+  background: transparent;
 }
 
 .control-center {
-  background: #131318;
-  border: 1px solid #918f9a;
+  background: #1a1b20;
+  border: 1px solid #8f9099;
   border-radius: 16px;
   padding: 10px;
+  box-shadow: 0 8px 24px #000000;
+}
+
+.floating-notifications {
+  background: transparent;
+}
+
+.notification-row {
+  background: transparent;
+  padding: 0;
+  margin: 6px;
 }
 
 .notification-background {
-  background: #131318;
+  background: transparent;
+  border-radius: 16px;
 }
 
 .notification {
-  background: #1f1f25;
-  border: 1px solid #918f9a;
-  border-radius: 12px;
-  padding: 10px;
-  color: #e4e1e9;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  background: #1e1f25;
+  border: 1px solid #8f9099;
+  border-radius: 16px;
+  padding: 12px;
+  color: #e2e2e9;
+  box-shadow: 0 8px 20px #000000;
+}
+
+.notification.critical {
+  border: 1px solid #ffb4ab;
+}
+
+.notification-content {
+  padding: 0;
+  background: transparent;
 }
 
 .summary {
-  color: #e4e1e9;
+  color: #e2e2e9;
   font-weight: 700;
 }
 
 .body {
-  color: #c7c5d0;
+  color: #c5c6d0;
 }
 
 .close-button {
   background: transparent;
-  color: #e4e1e9;
+  color: #e2e2e9;
   border-radius: 8px;
   padding: 2px 8px;
 }
 .close-button:hover {
-  background: #2a292f;
+  background: #ffb4ab;
+  color: #690005;
 }
 
 .widget-title {
-  color: #e4e1e9;
+  color: #e2e2e9;
   font-weight: 800;
   padding: 8px;
 }
 
 .widget-title > button {
-  background: transparent;
-  color: #e4e1e9;
-  border: 1px solid #918f9a;
+  background: #1e1f25;
+  color: #e2e2e9;
+  border: 1px solid #8f9099;
   border-radius: 8px;
   padding: 4px 10px;
 }
 .widget-title > button:hover {
-  background: #2a292f;
+  background: #282a2f;
 }
 
 .widget-dnd > switch {
-  background: #2a292f;
+  background: #282a2f;
   border-radius: 12px;
 }
 .widget-dnd > switch:checked {
-  background: #bfc2ff;
+  background: #b0c6ff;
 }
 .widget-dnd > switch slider {
-  background: #272b60;
+  background: #152e60;
   border-radius: 50%;
 }

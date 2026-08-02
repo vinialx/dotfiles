@@ -1,27 +1,53 @@
 * {
-  font-family: "SpaceMono Nerd Font Mono";
+  font-family: "CommitMono Nerd Font";
   font-size: 13px;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.08s ease-out;
+}
+
+/* remove qualquer fundo/borda residual da janela raiz do toast. */
+window {
+  background: transparent;
 }
 
 .control-center {
-  background: {{colors.surface.default.hex}};
+  background: {{colors.surface_container_low.default.hex}};
   border: 1px solid {{colors.outline.default.hex}};
   border-radius: 16px;
   padding: 10px;
+  box-shadow: 0 8px 24px {{colors.shadow.default.hex}};
+}
+
+.floating-notifications {
+  background: transparent;
+}
+
+.notification-row {
+  background: transparent;
+  padding: 0;
+  margin: 6px;
 }
 
 .notification-background {
-  background: {{colors.surface.default.hex}};
+  background: transparent;
+  border-radius: 16px;
 }
 
 .notification {
   background: {{colors.surface_container.default.hex}};
   border: 1px solid {{colors.outline.default.hex}};
-  border-radius: 12px;
-  padding: 10px;
+  border-radius: 16px;
+  padding: 12px;
   color: {{colors.on_surface.default.hex}};
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 20px {{colors.shadow.default.hex}};
+}
+
+.notification.critical {
+  border: 1px solid {{colors.error.default.hex}};
+}
+
+.notification-content {
+  padding: 0;
+  background: transparent;
 }
 
 .summary {
@@ -40,7 +66,8 @@
   padding: 2px 8px;
 }
 .close-button:hover {
-  background: {{colors.surface_container_high.default.hex}};
+  background: {{colors.error.default.hex}};
+  color: {{colors.on_error.default.hex}};
 }
 
 .widget-title {
@@ -50,7 +77,7 @@
 }
 
 .widget-title > button {
-  background: transparent;
+  background: {{colors.surface_container.default.hex}};
   color: {{colors.on_surface.default.hex}};
   border: 1px solid {{colors.outline.default.hex}};
   border-radius: 8px;

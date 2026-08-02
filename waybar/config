@@ -4,77 +4,64 @@
     "height": 55,
     "layer": "top",
     "position": "top",
-
     /* modules organization. */
     "modules-left": [
       "custom/nixos",
       "hyprland/workspaces",
-      "custom/separator",
       "custom/clipboard",
-      "custom/separator",
       "group/media"
     ],
     "modules-center": [
       "clock"
     ],
     "modules-right": [
-      "group/volume",
-      "custom/separator",
       "cpu",
-      "custom/separator",
       "memory",
-      "custom/separator",
       "temperature",
-      "custom/separator",
       "battery",
-      "custom/separator",
+      "custom/settings",
+      "custom/notification",
       "custom/turnoff"
     ],
 
     /* modules. */
     "custom/nixos": {
-      "format": "󱄅",
+      "format": "",
       "tooltip": false,
       "on-click": "/home/vinicius/dotfiles/scripts/reload-wallpaper.sh"
     },
-
     "battery": {
       "format": "{capacity}% {icon}",
       "format-charging": "{capacity}% 󰂄",
       "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
       "interval": 60
     },
-
     "clock": {
       "format": "{:%a, %d %b %H:%M:%S}",
       "interval": 1,
       "tooltip": false
     },
-
     "memory": {
-      "format": " {used:0.1f}GB ",
+      "format": "  {used:0.1f} GB",
       "tooltip": false,
       "interval": 5
     },
-
     "cpu": {
-      "format": "{}% ",
+      "format": "  {}%",
       "tooltip": false,
       "interval": 10
     },
-
     "temperature": {
       "format": "{temperatureC}°C",
       "tooltip": false
     },
-
     "hyprland/workspaces": {
       "format": "{icon}",
       "on-click": "activate"
     },
 
     /* media player. */
-   "mpris": {
+    "mpris": {
       "player": "playerctld",
       "format-playing": " {artist} - {title}",
       "format-paused": " {artist} - {title}",
@@ -82,23 +69,22 @@
       "max-length": 30,
       "interval": 1
     },
-
     "custom/media-prev": {
-    "format": "󰒮",
-    "on-click": "playerctl -p playerctld previous",
-    "tooltip": false
-},
-"custom/media-playpause": {
-  "exec": "playerctl -p playerctld status 2>/dev/null | grep -q Playing && echo '󰏤' || echo '󰐊'",
-  "interval": 1,
-  "on-click": "playerctl -p playerctld play-pause",
-  "tooltip": false
-},
-"custom/media-next": {
-  "format": "󰒭",
-  "on-click": "playerctl -p playerctld next",
-  "tooltip": false
-},
+      "format": "󰒮",
+      "on-click": "playerctl -p playerctld previous",
+      "tooltip": false
+    },
+    "custom/media-playpause": {
+      "exec": "playerctl -p playerctld status 2>/dev/null | grep -q Playing && echo '󰏤' || echo '󰐊'",
+      "interval": 1,
+      "on-click": "playerctl -p playerctld play-pause",
+      "tooltip": false
+    },
+    "custom/media-next": {
+      "format": "󰒭",
+      "on-click": "playerctl -p playerctld next",
+      "tooltip": false
+    },
     "group/media": {
       "orientation": "horizontal",
       "modules": [
@@ -109,51 +95,54 @@
       ]
     },
 
-    /* volume group. */
-    "group/volume": {
-      "orientation": "horizontal",
-      "modules": [
-        "pulseaudio",
-        "pulseaudio/slider"
-      ]
-    },
-    "pulseaudio": {
-      "format": "{volume}% {icon}",
-      "format-muted": "󰝟",
-      "format-icons": {
-        "default": ["󰕿", "󰖀", "󰕾"]
-      },
-      "scroll-step": 1,
-      "ignored-sinks": ["Easy Effects Sink"],
-      "on-click": "pavucontrol"
+    /* volume button. */
+    "custom/volume": {
+      "format": "",
+      "on-click": "pavucontrol",
+      "tooltip": false
     },
 
-    "pulseaudio/slider": {
-      "min": 0,
-      "max": 100,
-      "orientation": "horizontal"
-    },
-
+    /* turnoff. */
     "custom/turnoff": {
-      "format": "⏻",
-      "on-click": "wlogout",
+      "format": "󰐥",
+      "on-click": "nwg-bar -p right",
       "tooltip": false
     },
 
-    "custom/separator": {
-      "format": "│",
+    /* settings. */
+    "custom/settings": {
+      "format": "󰤯 ",
+      "exec": "orbit waybar-status",
+      "return-type": "json",
+      "interval": 10,
+      "on-click": "orbit toggle top-right",
       "tooltip": false
     },
 
+      "custom/notification": {
+    "tooltip": true,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "󰂜",
+      "dnd-notification": "󰂠",
+      "dnd-none": "󰪓",
+      "inhibited-notification": "󰂛",
+      "inhibited-none": "󰪑",
+      "dnd-inhibited-notification": "󰂛",
+      "dnd-inhibited-none": "󰪑"
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+    /* clipboard */
     "custom/clipboard": {
-      "format": "",
-      "on-click": "cliphist list | rofi -dmenu -p 'Clipboard' -theme ~/.config/rofi/theme.rasi | cliphist decode | wl-copy",      
-      "tooltip": false
-    },
-
-    "custom/controls": {
-      "format": "",
-      "on-click": "nwg-panel --controls-panel-only",
+      "format": "󱓦",
+      "on-click": "/home/vinicius/dotfiles/scripts/clipboard-menu.sh",
       "tooltip": false
     }
   }

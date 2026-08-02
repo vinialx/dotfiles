@@ -1,6 +1,6 @@
 # @vinialx zsh profile configuration
 
-alias nxcfg='sudo nvim /etc/nixos/home.nix'
+alias nxcfg='nv /home/vinicius/dotfiles/nix/home.nix'
 alias nxupd='sudo nixos-rebuild switch'
 alias nxclr='sudo nix-collect-garbage'
 alias nxclrd='sudo nix-collect-garbage -d'

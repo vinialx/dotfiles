@@ -1,0 +1,7 @@
+configuration {
+  modi: "drun,clipboard:cliphist list";
+  show-icons: true;
+  icon-theme: "Adwaita";
+  drun-display-format: "{icon} {name}";
+}
+@theme "theme.rasi"

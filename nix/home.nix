@@ -3,6 +3,9 @@
   pkgs,
   ...
 }:
+let
+  orbit = pkgs.callPackage ./packages/orbit.nix { };
+in
 {
   home.username = "vinicius";
   home.homeDirectory = "/home/vinicius";
@@ -21,62 +24,72 @@
   };
 
   #home packages.
-  home.packages = with pkgs; [
-    anydesk
-    awww
-    bitwarden-desktop
-    bluez
-    brave
-    brightnessctl
-    burpsuite
-    chromium
-    cliphist
-    dbeaver-bin
-    ente-auth
-    eza
-    fastfetch
-    fd
-    flyctl
-    fzf
-    gcc
-    gnome-tweaks
-    grim
-    hyprshade
-    imagemagick
-    insomnia
-    iscc
-    libreoffice-fresh
-    matugen
-    neovim
-    networkmanager
-    ngrok
-    nil
-    nodejs
-    nwg-panel
-    obs-studio
-    obsidian
-    opencode
-    openssl
-    pamixer
-    pavucontrol
-    phinger-cursors
-    playerctl
-    proton-vpn-cli
-    remmina
-    ripgrep
-    shotcut
-    slurp
-    spotify
-    swappy
-    swaynotificationcenter
-    tenacity
-    unzip
-    vesktop
-    warehouse
-    wlogout
-    wl-clipboard
-    ytmdesktop
-  ];
+  home.packages =
+    with pkgs;
+    [
+      anydesk
+      awww
+      bitwarden-desktop
+      bluez
+      blueman
+      brave
+      burpsuite
+      chromium
+      cliphist
+      dbeaver-bin
+      ente-auth
+      eza
+      fastfetch
+      fd
+      ffmpeg
+      flyctl
+      fzf
+      gcc
+      gnome-tweaks
+      grim
+      hyprshade
+      imagemagick
+      insomnia
+      iscc
+      libnotify
+      libreoffice-fresh
+      matugen
+      mpv
+      mpvpaper
+      neovim
+      networkmanager
+      networkmanagerapplet
+      ngrok
+      nil
+      nwg-bar
+      nodejs
+      obs-studio
+      obsidian
+      opencode
+      openssl
+      pavucontrol
+      phinger-cursors
+      playerctl
+      proton-vpn-cli
+      remmina
+      ripgrep
+      rofi
+      shotcut
+      slurp
+      spotify
+      swappy
+      swaynotificationcenter
+      swayosd
+      tenacity
+      unzip
+      vesktop
+      warehouse
+      waybar
+      wlogout
+      wl-clipboard
+      ytmdesktop
+    ]
+    ++ [ orbit ];
 
   programs.bat.enable = true;
   programs.direnv = {
@@ -94,14 +107,6 @@
     userEmail = "vini.aloise.silva@gmail.com";
   };
 
-  #matugen configuration.
-  xdg.configFile."matugen".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/matugen";
-
-  #swaync configuration.
-  xdg.configFile."swaync/config.json".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/swaync/config.json";
-
   programs.ghostty = {
     enable = true;
     settings = {
@@ -109,7 +114,7 @@
       "window-decoration" = "none";
       "background-opacity" = 0.9;
       "background-blur" = 30;
-      "font-family" = "Hurmit Nerd Font Mono";
+      "font-family" = "VictorMono NFM";
       "font-size" = 13;
       "cursor-style" = "bar";
       "cursor-style-blink" = true;
@@ -125,14 +130,22 @@
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
-    settings = builtins.fromTOML (
-      builtins.readFile "${pkgs.starship}/share/starship/presets/pastel-powerline.toml"
-    );
   };
 
-  # nwg-panel configuration.
-  xdg.configFile."nwg-panel".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/nwg-panel";
+  #orbit configuration.
+  systemd.user.services.orbit = {
+    Unit.Description = "Orbit Wifi + Bluetooth manager";
+    Service = {
+      ExecStart = "${orbit}/bin/orbit daemon";
+      Restart = "on-failure";
+    };
+    Install.WantedBy = [ "default.target" ];
+  };
+
+  xdg.configFile."orbit/config.toml".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/orbit/config.toml";
+  xdg.configFile."orbit/style.css".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/orbit/style.css";
 
   #zsh configuration.
   programs.zsh = {
@@ -160,12 +173,6 @@
 
       source ${config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/zsh/custom.zsh"}
     '';
-  };
-
-  #rofi configuration.
-  programs.rofi = {
-    enable = true;
-    theme = "theme";
   };
 
   #hyprland configuration.
@@ -220,10 +227,21 @@
       ];
 
       binde = [
+        #window resizing.
         "$mod CONTROL, l, resizeactive, 20 0"
         "$mod CONTROL, h, resizeactive, -20 0"
         "$mod CONTROL, k, resizeactive, 0 -20"
         "$mod CONTROL, j, resizeactive, 0 20"
+      ];
+
+      bindel = [
+        #brightness.
+        ", XF86MonBrightnessUp, exec, swayosd-client --brightness raise"
+        ", XF86MonBrightnessDown, exec, swayosd-client --brightness lower"
+        #volume.
+        ", XF86AudioRaiseVolume, exec, swayosd-client --output-volume raise"
+        ", XF86AudioLowerVolume, exec, swayosd-client --output-volume lower"
+        ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
       ];
 
       # animations.
@@ -288,21 +306,35 @@
         "awww-daemon"
         "wl-paste --watch cliphist store"
         "swaync"
+        "swayosd-server"
       ];
     };
   };
 
-  #waybar configuration.
+  #symlinks.
+
+  ##rofi.
+  xdg.configFile."rofi/config.rasi".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/rofi/config.rasi";
+
+  ##waybar.
   xdg.configFile."waybar/config".source =
     config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/waybar/config";
 
-  programs.waybar = {
-    enable = true;
-    style = config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/waybar/style.css";
-  };
-
-  # wlogout configuration.
+  ##wlogout.
   xdg.configFile."wlogout/layout".source =
     config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/wlogout/layout";
+
+  #matugen.
+  xdg.configFile."matugen".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/matugen";
+
+  ##nwg-bar.
+  xdg.configFile."nwg-bar/bar.json".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/nwg-bar/bar.json";
+
+  #swaync.
+  xdg.configFile."swaync/config.json".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/swaync/config.json";
 
 }

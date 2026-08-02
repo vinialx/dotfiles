@@ -1,0 +1,27 @@
+[
+  {
+    "label": "",
+    "exec": "systemctl poweroff",
+    "icon": "/home/vinicius/dotfiles/nwg-bar/icons/power.svg"
+  },
+  {
+    "label": "",
+    "exec": "systemctl reboot",
+    "icon": "/home/vinicius/dotfiles/nwg-bar/icons/reboot.svg"
+  },
+  {
+    "label": "",
+    "exec": "hyprlock",
+    "icon": "/home/vinicius/dotfiles/nwg-bar/icons/lock.svg"
+  },
+  {
+    "label": "",
+    "exec": "hyprctl dispatch exit",
+    "icon": "/home/vinicius/dotfiles/nwg-bar/icons/logout.svg"
+  },
+  {
+    "label": "",
+    "exec": "~/dotfiles/scripts/toggle-theme.sh",
+    "icon": "/home/vinicius/dotfiles/nwg-bar/icons/moon.svg"
+  }
+]

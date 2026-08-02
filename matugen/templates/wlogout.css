@@ -1,12 +1,12 @@
-* {
-  font-family: "SpaceMono Nerd Font Mono";
+CommitMono Nerd Fon* {
+  font-family: "CommitMono Nerd Font";
   font-size: 15px;
   background-image: none;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.08s ease-out;
 }
 
 window {
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: {{colors.surface_container_low.default.hex}};
 }
 
 button {
@@ -14,7 +14,7 @@ button {
   background-color: {{colors.surface_container.default.hex}};
   border: 1px solid {{colors.outline.default.hex}};
   border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 20px {{colors.shadow.default.hex}};
 
   margin: 80px 40px;
   padding: 40px 0;
@@ -26,7 +26,7 @@ button {
 button:focus,
 button:active,
 button:hover {
-  background-color: {{colors.primary.default.hex}};
+  background: linear-gradient(135deg, {{colors.primary.default.hex}}, {{colors.tertiary.default.hex}});
   color: {{colors.on_primary.default.hex}};
   border: 1px solid {{colors.primary.default.hex}};
   outline-style: none;

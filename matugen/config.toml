@@ -18,3 +18,16 @@ output_path = "~/.config/rofi/theme.rasi"
 [templates.wlogout]
 input_path = "~/dotfiles/matugen/templates/wlogout.css"
 output_path = "~/.config/wlogout/style.css"
+
+[templates.nwg-bar]
+input_path = "~/dotfiles/matugen/templates/nwg-bar.css"
+output_path = "~/.config/nwg-bar/style.css"
+
+[templates.orbit-theme]
+input_path = "~/dotfiles/matugen/templates/orbit-theme.toml"
+output_path = "~/.config/orbit/theme.toml"
+post_hook = "systemctl --user restart orbit"
+
+[templates.starship]
+input_path = "~/dotfiles/matugen/templates/starship.toml"
+output_path = "~/.config/starship.toml"

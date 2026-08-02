@@ -1,85 +1,175 @@
 * {
-  font-family: "SpaceMono Nerd Font Mono";
+  font-family: "Hurmit Nerd Font Mono";
   font-size: 14px;
   font-weight: 800;
   border: none;
   border-radius: 0;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.08s ease-out;
 }
 
 window#waybar {
   background: transparent;
   color: {{colors.on_surface.default.hex}};
-  padding: 0px 70px 0px 10px;
 }
 
 .modules-left,
 .modules-center,
 .modules-right {
-  background: {{colors.surface.default.hex}};
-  border: 1px solid {{colors.outline.default.hex}};
-  margin: 5px 0;
-  padding: 0px 12px;
-  border-radius: 16px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+  margin: 0;
+  padding: 0;
 }
 
+/* islands. */
+#custom-nixos,
+#workspaces,
+#custom-clipboard,
+#media,
+#clock,
+#cpu,
+#memory,
+#temperature,
+#battery,
+#custom-turnoff,
+#custom-settings,
+#custom-notification{
+  background: {{colors.surface_container_low.default.hex}};
+  border: 2px solid {{colors.outline.default.hex}};
+  margin: 6px 4px;
+  padding: 6px 14px;
+  border-radius: 16px;
+  box-shadow: 0 4px 4px -2px {{colors.shadow.default.hex}};
+}
+
+/* clock. */
 #clock {
   color: {{colors.on_surface.default.hex}};
   min-width: 150px;
+  font-size: 15px;
 }
 
+/* workspaces. */
+#workspaces {
+  padding: 4px 8px;
+}
 #workspaces button {
   color: {{colors.on_surface_variant.default.hex}};
+  background: {{colors.surface_container_low.default.hex}};
   border-radius: 8px;
-  padding: 0 8px;
-  margin: 2px 2px;
+  padding: 4px 10px;
+  margin: 0 2px;
+  font-size: 14px;
 }
 #workspaces button:hover {
   background: {{colors.surface_container_high.default.hex}};
+  color: {{colors.on_surface.default.hex}};
 }
 #workspaces button.active {
-  background: {{colors.primary.default.hex}};
+  background: linear-gradient(135deg, {{colors.primary.default.hex}}, {{colors.tertiary.default.hex}});
   color: {{colors.on_primary.default.hex}};
   font-weight: 800;
 }
 
-#network,
-#battery,
-#memory,
-#cpu {
-  color: {{colors.on_surface.default.hex}};
-  padding: 0 6px;
+/* nixos. */
+#custom-nixos {
+  color: {{colors.tertiary.default.hex}};
+  font-size: 20px;
+  min-width: 24px;
+}
+#custom-nixos:hover {
+  color: {{colors.inverse_primary.default.hex}};
 }
 
-#custom-media-prev,
-#custom-media-playpause,
-#custom-media-next,
-#custom-clipboard,
-#custom-nixos,
+/* cpu / memory / temperature. */
+#cpu {
+  color: {{colors.secondary.default.hex}};
+  font-size: 15px;
+}
+#memory {
+  color: {{colors.primary.default.hex}};
+  font-size: 15px;
+}
+#temperature {
+  color: {{colors.tertiary.default.hex}};
+  font-size: 15px;
+}
+
+/* battery. */
+#battery {
+  color: {{colors.on_surface.default.hex}};
+  font-size: 15px;
+}
+#battery.warning {
+  color: {{colors.tertiary.default.hex}};
+}
+#battery.critical {
+  color: {{colors.error.default.hex}};
+}
+#battery.charging {
+  color: {{colors.secondary.default.hex}};
+}
+
+/* notification. */
+#custom-notification {
+  color: {{colors.secondary.default.hex}};
+  font-size: 18px;
+}
+#custom-notification:hover {
+  color: {{colors.inverse_primary.default.hex}};
+}
+
+/* turnoff. */
 #custom-turnoff {
   color: {{colors.on_surface.default.hex}};
-  padding: 0 8px;
+  font-size: 18px;
+  min-width: 24px;
+}
+#custom-turnoff:hover {
+  color: {{colors.error.default.hex}};
 }
 
-#pulseaudio-slider {
-  min-width: 100px;
-  border-radius: 12px;
-  background-color: transparent;
+/* clipboard. */
+#custom-clipboard {
+  color: {{colors.on_surface.default.hex}};
+  font-size: 18px;
 }
-#pulseaudio-slider slider {
-  min-height: 10px;
-  min-width: 10px;
-  border-radius: 50%;
-  background-color: {{colors.primary.default.hex}};
+#custom-clipboard:hover {
+  color: {{colors.inverse_primary.default.hex}};
 }
-#pulseaudio-slider highlight {
-  min-height: 5px;
-  border-radius: 4px 0 0 4px;
-  background-color: {{colors.primary.default.hex}};
+
+/* media group. */
+#media {
+  padding: 4px 12px;
 }
-#pulseaudio-slider trough {
-  min-height: 5px;
-  border-radius: 4px;
-  background-color: {{colors.surface_container_high.default.hex}};
+#custom-media-prev,
+#custom-media-playpause,
+#custom-media-next {
+  color: {{colors.on_surface.default.hex}};
+  font-size: 15px;
+  padding: 0 6px;
+}
+#custom-media-playpause {
+  font-size: 16px;
+  color: {{colors.primary.default.hex}};
+}
+#custom-media-prev:hover,
+#custom-media-playpause:hover,
+#custom-media-next:hover {
+  color: {{colors.inverse_primary.default.hex}};
+}
+#mpris {
+  color: {{colors.on_surface_variant.default.hex}};
+  padding: 0 8px;
+  font-style: italic;
+  font-size: 13px;
+}
+
+/* tooltip. */
+tooltip {
+  background: {{colors.surface_container.default.hex}};
+  border: 1px solid {{colors.outline.default.hex}};
+  border-radius: 10px;
+}
+tooltip label {
+  color: {{colors.on_surface.default.hex}};
+  padding: 4px 8px;
 }
