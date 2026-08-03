@@ -1,100 +1,97 @@
 * {
   font-family: "CommitMono Nerd Font";
-  font-size: 13px;
-  transition: all 0.08s ease-out;
+  font-size: 14px;
 }
 
-/* remove qualquer fundo/borda residual da janela raiz do toast. */
-window {
+:root {
+  --cc-bg: {{colors.surface_container_low.default.hex}}f0;
+  --noti-border-color: {{colors.outline.default.hex}};
+  --noti-bg-hover: {{colors.surface_container_high.default.hex}};
+  --noti-close-bg: {{colors.surface_container_high.default.hex}};
+  --noti-close-bg-hover: {{colors.error.default.hex}};
+  --text-color: {{colors.on_surface.default.hex}};
+  --border-radius: 12px;
+  --notification-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  --font-size-body: 14px;
+  --font-size-summary: 15px;
+}
+
+@define-color bg-selected {{colors.primary.default.hex}};
+
+notificationwindow, blankwindow {
   background: transparent;
+}
+
+.notification-row,
+.notification-row .notification-background {
+  background: none;
+  outline: none;
+  box-shadow: none;
+  padding: 16px 20px;
+}
+
+.notification-row:focus {
+  background: transparent;
+  outline: none;
 }
 
 .control-center {
-  background: {{colors.surface_container_low.default.hex}};
-  border: 1px solid {{colors.outline.default.hex}};
+  background: var(--cc-bg);
+  color: var(--text-color);
   border-radius: 16px;
-  padding: 10px;
-  box-shadow: 0 8px 24px {{colors.shadow.default.hex}};
-}
-
-.floating-notifications {
-  background: transparent;
-}
-
-.notification-row {
-  background: transparent;
-  padding: 0;
-  margin: 6px;
-}
-
-.notification-background {
-  background: transparent;
-  border-radius: 16px;
-}
-
-.notification {
-  background: {{colors.surface_container.default.hex}};
-  border: 1px solid {{colors.outline.default.hex}};
-  border-radius: 16px;
-  padding: 12px;
-  color: {{colors.on_surface.default.hex}};
-  box-shadow: 0 8px 20px {{colors.shadow.default.hex}};
-}
-
-.notification.critical {
-  border: 1px solid {{colors.error.default.hex}};
-}
-
-.notification-content {
-  padding: 0;
-  background: transparent;
-}
-
-.summary {
-  color: {{colors.on_surface.default.hex}};
-  font-weight: 700;
-}
-
-.body {
-  color: {{colors.on_surface_variant.default.hex}};
-}
-
-.close-button {
-  background: transparent;
-  color: {{colors.on_surface.default.hex}};
-  border-radius: 8px;
-  padding: 2px 8px;
-}
-.close-button:hover {
-  background: {{colors.error.default.hex}};
-  color: {{colors.on_error.default.hex}};
-}
-
-.widget-title {
-  color: {{colors.on_surface.default.hex}};
-  font-weight: 800;
+  border: 2px solid var(--noti-border-color);
   padding: 8px;
 }
 
-.widget-title > button {
-  background: {{colors.surface_container.default.hex}};
-  color: {{colors.on_surface.default.hex}};
-  border: 1px solid {{colors.outline.default.hex}};
-  border-radius: 8px;
-  padding: 4px 10px;
-}
-.widget-title > button:hover {
-  background: {{colors.surface_container_high.default.hex}};
+.control-center .control-center-list .notification {
+  box-shadow: var(--notification-shadow);
 }
 
-.widget-dnd > switch {
+.notification-row .notification-background .notification {
+  background: {{colors.surface_container_low.default.hex}}f0;
+  border-radius: var(--border-radius);
+  border: 2px solid {{colors.outline.default.hex}};
+}
+
+.notification-row .notification-background .notification .notification-default-action {
+  padding: 12px;
+}
+
+.floating-notifications .notification {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.close-button {
+  background: var(--noti-close-bg);
+  color: var(--text-color);
+}
+.close-button:hover {
+  background: var(--noti-close-bg-hover);
+}
+
+.widget-title > label {
+  color: var(--text-color);
+}
+.widget-title > button {
+  border-radius: var(--border-radius);
+  background: {{colors.surface_container.default.hex}};
+  color: var(--text-color);
+}
+.widget-title > button:hover {
+  background: var(--noti-bg-hover);
+}
+
+.widget-dnd label {
+  color: var(--text-color);
+}
+.widget-dnd switch {
   background: {{colors.surface_container_high.default.hex}};
-  border-radius: 12px;
+  border-radius: var(--border-radius);
 }
-.widget-dnd > switch:checked {
-  background: {{colors.primary.default.hex}};
+.widget-dnd switch:checked {
+  background-color: {{colors.primary.default.hex}};
+  background-image: none;
 }
-.widget-dnd > switch slider {
-  background: {{colors.on_primary.default.hex}};
-  border-radius: 50%;
+.widget-dnd switch:checked slider {
+  background-color: {{colors.on_primary.default.hex}};
 }

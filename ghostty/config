@@ -1,0 +1,11 @@
+background-blur = 30
+background-opacity = 0.900000
+cursor-style = bar
+cursor-style-blink = true
+font-family = VictorMono NFM
+font-size = 13
+shell-integration = zsh
+theme = Mellifluous
+window-decoration = none
+window-padding-x = 8
+window-padding-y = 4

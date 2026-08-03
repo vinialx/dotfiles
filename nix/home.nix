@@ -85,7 +85,6 @@ in
       vesktop
       warehouse
       waybar
-      wlogout
       wl-clipboard
       ytmdesktop
     ]
@@ -107,24 +106,8 @@ in
     userEmail = "vini.aloise.silva@gmail.com";
   };
 
-  programs.ghostty = {
-    enable = true;
-    settings = {
-      theme = "Mellifluous";
-      "window-decoration" = "none";
-      "background-opacity" = 0.9;
-      "background-blur" = 30;
-      "font-family" = "VictorMono NFM";
-      "font-size" = 13;
-      "cursor-style" = "bar";
-      "cursor-style-blink" = true;
-      "shell-integration" = "zsh";
-      "window-padding-x" = 8;
-      "window-padding-y" = 4;
-    };
-  };
-
   #terminal configuration.
+  programs.ghostty.enable = true;
   programs.tmux.enable = true;
   programs.zoxide.enable = true;
   programs.starship = {
@@ -138,14 +121,13 @@ in
     Service = {
       ExecStart = "${orbit}/bin/orbit daemon";
       Restart = "on-failure";
+      RestartSec = 1;
     };
     Install.WantedBy = [ "default.target" ];
   };
 
   xdg.configFile."orbit/config.toml".source =
     config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/orbit/config.toml";
-  xdg.configFile."orbit/style.css".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/orbit/style.css";
 
   #zsh configuration.
   programs.zsh = {
@@ -221,7 +203,7 @@ in
         "$mod, M, movetoworkspacesilent, special"
         "$mod SHIFT, M, togglespecialworkspace,"
         #power menu.
-        "$mod, X, exec, wlogout"
+        "$mod, X, exec, nwg-bar -p right"
         #notification center.
         "$mod, N, exec, swaync-client -t -sw"
       ];
@@ -278,7 +260,7 @@ in
       decoration = {
         rounding = 10;
         active_opacity = 1.0;
-        inactive_opacity = 0.95;
+        inactive_opacity = 0.75;
 
         shadow = {
           enabled = true;
@@ -289,10 +271,10 @@ in
 
         blur = {
           enabled = true;
-          size = 4;
-          passes = 2;
+          size = 6;
+          passes = 3;
           new_optimizations = true;
-          vibrancy = 0.18;
+          vibrancy = 0.25;
         };
       };
 
@@ -320,10 +302,6 @@ in
   ##waybar.
   xdg.configFile."waybar/config".source =
     config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/waybar/config";
-
-  ##wlogout.
-  xdg.configFile."wlogout/layout".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/wlogout/layout";
 
   #matugen.
   xdg.configFile."matugen".source =

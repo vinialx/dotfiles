@@ -26,7 +26,7 @@
 
     /* modules. */
     "custom/nixos": {
-      "format": "",
+      "format": "󱄅",
       "tooltip": false,
       "on-click": "/home/vinicius/dotfiles/scripts/reload-wallpaper.sh"
     },
@@ -95,13 +95,6 @@
       ]
     },
 
-    /* volume button. */
-    "custom/volume": {
-      "format": "",
-      "on-click": "pavucontrol",
-      "tooltip": false
-    },
-
     /* turnoff. */
     "custom/turnoff": {
       "format": "󰐥",
@@ -111,7 +104,7 @@
 
     /* settings. */
     "custom/settings": {
-      "format": "󰤯 ",
+      "format": "",
       "exec": "orbit waybar-status",
       "return-type": "json",
       "interval": 10,

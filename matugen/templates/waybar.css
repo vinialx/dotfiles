@@ -7,6 +7,22 @@
   transition: all 0.08s ease-out;
 }
 
+#custom-nixos,
+#custom-turnoff,
+#custom-volume,
+#custom-clipboard,
+#custom-media-prev,
+#custom-media-playpause,
+#custom-media-next,
+#custom-settings,
+#workspaces button,
+#cpu,
+#memory,
+#temperature,
+#battery {
+  font-family: "Symbols Nerd Font Mono";
+}
+
 window#waybar {
   background: transparent;
   color: {{colors.on_surface.default.hex}};
@@ -120,7 +136,7 @@ window#waybar {
 /* turnoff. */
 #custom-turnoff {
   color: {{colors.on_surface.default.hex}};
-  font-size: 18px;
+  font-size: 16px;
   min-width: 24px;
 }
 #custom-turnoff:hover {
@@ -130,7 +146,7 @@ window#waybar {
 /* clipboard. */
 #custom-clipboard {
   color: {{colors.on_surface.default.hex}};
-  font-size: 18px;
+  font-size: 17px;
 }
 #custom-clipboard:hover {
   color: {{colors.inverse_primary.default.hex}};
@@ -144,7 +160,7 @@ window#waybar {
 #custom-media-playpause,
 #custom-media-next {
   color: {{colors.on_surface.default.hex}};
-  font-size: 15px;
+  font-size: 12px;
   padding: 0 6px;
 }
 #custom-media-playpause {
@@ -160,7 +176,13 @@ window#waybar {
   color: {{colors.on_surface_variant.default.hex}};
   padding: 0 8px;
   font-style: italic;
-  font-size: 13px;
+  font-size: 14px;
+}
+
+/* settings. */
+
+#custom-settings {
+  font-size: 16px;
 }
 
 /* tooltip. */

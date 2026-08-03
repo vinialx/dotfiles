@@ -4,17 +4,21 @@
   transition: all 0.08s ease-out;
 }
 
-/* remove qualquer fundo/borda residual da janela raiz do toast. */
 window {
   background: transparent;
 }
 
 .control-center {
-  background: #1a1b20;
-  border: 1px solid #8f9099;
-  border-radius: 16px;
-  padding: 10px;
-  box-shadow: 0 8px 24px #000000;
+  background: {{colors.surface_container_low.default.hex}};
+  border: 1px solid {{colors.outline.default.hex}};
+  border-radius: 20px;
+  padding: 14px;
+  margin: 8px;
+  min-height: 0;
+  max-height: 420px;
+  min-width: 0;
+  max-width: 380px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
 }
 
 .floating-notifications {

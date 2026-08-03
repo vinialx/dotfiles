@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -uo pipefail
+
+echo "[$(date +%T)] Iniciando..."
+
+WALLPAPER_DIR="/home/vinicius/dotfiles/wallpapers/"
+VIDEO_DIR="/home/vinicius/dotfiles/wallpapers/live"
+
+#!/usr/bin/env bash
+set -uo pipefail
 
 WALLPAPER_DIR="/home/vinicius/dotfiles/wallpapers/"
 VIDEO_DIR="/home/vinicius/dotfiles/wallpapers/live"
@@ -26,5 +34,19 @@ jpg | jpeg | png)
   matugen image "$CHOSEN" --source-color-index 0
   ;;
 esac
+
+~/dotfiles/scripts/apply-font.sh
+
+# waybar — kill + respawn.
+pkill -9 waybar 2>/dev/null || true
+sleep 0.3
+waybar &
+disown
+
+# swaync — kill + respawn (garante CSS novo).
+pkill -9 -f swaync 2>/dev/null || true
+sleep 0.3
+swaync &
+disown
 
 notify-send "Wallpaper" "Changed to $(basename "$CHOSEN")"
