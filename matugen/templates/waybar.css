@@ -15,6 +15,7 @@
 #custom-media-playpause,
 #custom-media-next,
 #custom-settings,
+#custom-notification,
 #workspaces button,
 #cpu,
 #memory,
@@ -127,7 +128,8 @@ window#waybar {
 /* notification. */
 #custom-notification {
   color: {{colors.secondary.default.hex}};
-  font-size: 18px;
+  font-size: 16px;
+   min-width: 24px;
 }
 #custom-notification:hover {
   color: {{colors.inverse_primary.default.hex}};

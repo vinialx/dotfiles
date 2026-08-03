@@ -112,12 +112,12 @@
       "tooltip": false
     },
 
-      "custom/notification": {
+    "custom/notification": {
     "tooltip": true,
     "format": "{icon}",
     "format-icons": {
       "notification": "󱅫",
-      "none": "󰂜",
+      "none": "",
       "dnd-notification": "󰂠",
       "dnd-none": "󰪓",
       "inhibited-notification": "󰂛",
