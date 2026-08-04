@@ -1,152 +1,111 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+"$schema" = "https://starship.rs/config-schema.json"
 palette = "noctalia"
 
+
+add_newline = true
+
 format = """
-[](#FFFFFF)\
-$os\
+[](lavender)\
 $username\
-[](bg:#808080 fg:#FFFFFF)\
+[](fg:lavender bg:surface1)\
 $directory\
-[](fg:#808080 bg:#C084FC)\
+[](fg:surface1 bg:blue)\
 $git_branch\
 $git_status\
-[](fg:#C084FC bg:#D946EF)\
+[](fg:blue bg:mauve)\
 $c\
-$elixir\
-$elm\
+$cpp\
 $golang\
-$gradle\
-$haskell\
-$java\
-$julia\
-$maven\
+$rust\
 $nodejs\
 $bun\
+$java\
 $nim\
-$rust\
-$scala\
-[](fg:#D946EF bg:#E5E7EB)\
+[](fg:mauve bg:surface2)\
 $docker_context\
-[](fg:#E5E7EB bg:#000000)\
+[](fg:surface2 bg:surface0)\
 $time\
-[ ](fg:#000000)\
+[](fg:surface0)\
+$line_break\
+$character
 """
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](lavender)"
 
 [username]
 show_always = true
-style_user = "bg:#FFFFFF fg:#000000"
-style_root = "bg:#FFFFFF fg:#000000"
-format = '[ $user ]($style)'
-disabled = false
-
-[os]
-style = "bg:#FFFFFF"
-disabled = true 
+style_user = "bg:lavender fg:base bold"
+style_root = "bg:red fg:base bold"
+format = "[  $user ]($style)"
 
 [directory]
-style = "bg:#808080 fg:#FFFFFF"
+style = "bg:surface1 fg:text"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
-
-[c]
-symbol = " "
-style = "bg:#D946EF fg:#FFFFFF"
-format = '[ $symbol ($version) ]($style)'
-
-[cpp]
-symbol = " "
-style = "bg:#D946EF fg:#FFFFFF"
-format = '[ $symbol ($version) ]($style)'
-
-[docker_context]
-symbol = " "
-style = "bg:#E5E7EB fg:#000000"
-format = '[ $symbol $context ]($style)'
-
-[elixir]
-symbol = " "
-style = "bg:#D946EF fg:#FFFFFF"
-format = '[ $symbol ($version) ]($style)'
-
-[elm]
-symbol = " "
-style = "bg:#D946EF fg:#FFFFFF"
-format = '[ $symbol ($version) ]($style)'
-
 [git_branch]
-symbol = ""
-style = "bg:#C084FC fg:#FFFFFF"
-format = '[ $symbol $branch ]($style)'
+symbol = " "
+style = "bg:blue fg:base"
+format = "[ $symbol$branch ]($style)"
 
 [git_status]
-style = "bg:#C084FC fg:#FFFFFF"
-format = '[$all_status$ahead_behind ]($style)'
+style = "bg:blue fg:base"
+format = "[$all_status$ahead_behind ]($style)"
+
+[nodejs]
+symbol = " "
+style = "bg:mauve fg:base"
+format = "[ $symbol$version ]($style)"
+
+[bun]
+symbol = " "
+style = "bg:mauve fg:base"
+format = "[ $symbol$version ]($style)"
 
 [golang]
 symbol = " "
-style = "bg:#D946EF fg:#FFFFFF"
-format = '[ $symbol ($version) ]($style)'
+style = "bg:mauve fg:base"
+format = "[ $symbol$version ]($style)"
 
-[gradle]
-style = "bg:#D946EF fg:#FFFFFF"
-format = '[ $symbol ($version) ]($style)'
+[rust]
+symbol = " "
+style = "bg:mauve fg:base"
+format = "[ $symbol$version ]($style)"
 
-[haskell]
-symbol = " "
-style = "bg:#D946EF fg:#FFFFFF"
-format = '[ $symbol ($version) ]($style)'
+[c]
+symbol = " "
+style = "bg:mauve fg:base"
+format = "[ $symbol$version ]($style)"
+
+[cpp]
+symbol = " "
+style = "bg:mauve fg:base"
+format = "[ $symbol$version ]($style)"
 
 [java]
 symbol = " "
-style = "bg:#D946EF fg:#FFFFFF"
-format = '[ $symbol ($version) ]($style)'
-
-[julia]
-symbol = " "
-style = "bg:#D946EF fg:#FFFFFF"
-format = '[ $symbol ($version) ]($style)'
-
-[maven]
-style = "bg:#D946EF fg:#FFFFFF"
-format = '[ $symbol ($version) ]($style)'
-
-[nodejs]
-symbol = ""
-style = "bg:#D946EF fg:#FFFFFF"
-format = '[ $symbol ($version) ]($style)'
-
-[bun]
-symbol = ""
-style = "bg:#D946EF fg:#FFFFFF"
-format = '[ $symbol ($version) ]($style)'
+style = "bg:mauve fg:base"
+format = "[ $symbol$version ]($style)"
 
 [nim]
 symbol = "󰆥 "
-style = "bg:#D946EF fg:#FFFFFF"
-format = '[ $symbol ($version) ]($style)'
+style = "bg:mauve fg:base"
+format = "[ $symbol$version ]($style)"
 
-[rust]
-symbol = ""
-style = "bg:#D946EF fg:#FFFFFF"
-format = '[ $symbol ($version) ]($style)'
-
-[scala]
-symbol = " "
-style = "bg:#D946EF fg:#FFFFFF"
-format = '[ $symbol ($version) ]($style)'
+[docker_context]
+symbol = " "
+style = "bg:surface2 fg:text"
+format = "[ $symbol$context ]($style)"
 
 [time]
 disabled = false
-time_format = "%R"
-style = "bg:#000000 fg:#ffffff"
-format = '[ $time ]($style)'
+time_format = "%H:%M"
+style = "bg:surface0 fg:text"
+format = "[  $time ]($style)"
 
 # >>> NOCTALIA STARSHIP PALETTE >>>
 # Noctalia Starship Palette
@@ -154,40 +113,40 @@ format = '[ $time ]($style)'
 
 [palettes.noctalia]
 # Standard colors
-blue      = "#ffbcef"
+blue      = "#ffaaf7"
 red       = "#ffb4ab"
-green     = "#cacdff"
-yellow    = "#c2c4e7"
-cyan      = "#c2c4e7"
-magenta   = "#bdc2ff"
-white     = "#e4e1e8"
-black     = "#464651"
+green     = "#c1c1ff"
+yellow    = "#c1c1ff"
+cyan      = "#c1c1ff"
+magenta   = "#c1c1ff"
+white     = "#e4e1ed"
+black     = "#464554"
 
 # Extended palette (Catppuccin-compatible names)
-rosewater = "#c2c4e7"
+rosewater = "#c1c1ff"
 flamingo  = "#ffb4ab"
-pink      = "#bdc2ff"
-mauve     = "#bdc2ff"
+pink      = "#c1c1ff"
+mauve     = "#c1c1ff"
 maroon    = "#ffb4ab"
-peach     = "#c2c4e7"
-teal      = "#c2c4e7"
-sky       = "#c2c4e7"
-sapphire  = "#ffbcef"
-lavender  = "#bdc2ff"
+peach     = "#c1c1ff"
+teal      = "#c1c1ff"
+sky       = "#c1c1ff"
+sapphire  = "#ffaaf7"
+lavender  = "#c1c1ff"
 
 # Text shades
-text      = "#e4e1e8"
-subtext1  = "#e4e1e8"
-subtext0  = "#908f9c"
+text      = "#e4e1ed"
+subtext1  = "#e4e1ed"
+subtext0  = "#908fa0"
 
 # Surface shades
-overlay2  = "#908f9c"
-overlay1  = "#908f9c"
-overlay0  = "#464651"
-surface2  = "#464651"
-surface1  = "#464651"
-surface0  = "#131318"
-base      = "#131318"
-mantle    = "#131318"
-crust     = "#131318"
+overlay2  = "#908fa0"
+overlay1  = "#908fa0"
+overlay0  = "#464554"
+surface2  = "#464554"
+surface1  = "#464554"
+surface0  = "#13131b"
+base      = "#13131b"
+mantle    = "#13131b"
+crust     = "#13131b"
 # <<< NOCTALIA STARSHIP PALETTE <<<
