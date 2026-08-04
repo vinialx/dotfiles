@@ -1,0 +1,8 @@
+[theme]
+mode = "dark"
+
+source = "wallpaper"
+
+wallpaper_scheme = "m3-content"
+
+pure_black_dark = false

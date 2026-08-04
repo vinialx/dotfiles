@@ -89,6 +89,7 @@
   services.printing.enable = true;
   services.flatpak.enable = true;
   services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
   services.tailscale.enable = true;
 
   security.rtkit.enable = true;

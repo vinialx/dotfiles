@@ -1,0 +1,53 @@
+[shell]
+font_family = "Inter"
+
+time_format = "{:%H:%M:%S}"
+date_format = "%a, %d %b"
+
+clipboard_enabled = true
+clipboard_history_max_entries = 50
+
+launch_apps_as_systemd_services = true
+
+enabled = true
+speed = 1.5
+
+corner_radius_scale = 1.25
+
+button_borders = true
+input_borders = true
+popup_borders = true
+popup_shadows = true
+
+[shell.screen_corners]
+enabled = true
+size = 18
+
+[shell.animation]
+enabled = true
+speed = 1.15
+
+[shell.shadow]
+direction = "down"
+alpha = 0.55
+
+[shell.panel]
+transparency_mode = "glass"
+
+borders = true
+shadow = true
+
+# deixa launcher / clipboard menos "flat"
+list_item_background = true
+
+launcher_placement = "floating"
+launcher_position = "center"
+
+clipboard_placement = "floating"
+clipboard_position = "center"
+
+control_center_placement = "attached"
+wallpaper_placement = "attached"
+session_placement = "attached"
+
+floating_offset = 10

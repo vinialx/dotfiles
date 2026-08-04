@@ -1,0 +1,152 @@
+[widget.clock]
+format = "{:%d/%m/%Y %H:%M:%S}"
+
+capsule_fill = "primary"
+capsule_foreground = "on_primary"
+capsule_opacity = 0.90
+
+font_weight = 700
+capsule_padding = 12
+capsule_radius = 12
+
+
+[widget.workspaces]
+style = "regular"
+display = "id"
+
+max_label_chars = 2
+labels_only_when_occupied = false
+hide_when_empty = false
+
+scale = 1.2
+
+active_pill_size = 2
+inactive_pill_size = 1.0
+
+focused_color = "primary"
+occupied_color = "secondary"
+empty_color = "surface_variant"
+urgent_color = "error"
+
+focused_output_only = false
+
+capsule_radius = 11
+
+
+[widget.media]
+min_length = 200
+max_length = 300
+
+art_size = 25
+
+artist_first = true
+
+title_scroll = "always"
+hide_when_no_media = true
+
+capsule_fill = "surface_variant"
+capsule_opacity = 0.68
+
+capsule_radius = 12
+capsule_padding = 10
+
+
+[widget.audio_visualizer]
+width = 90
+bands = 20
+
+mirrored = true
+centered = true
+
+show_when_idle = false
+
+color_1 = "primary"
+color_2 = "secondary"
+
+capsule_fill = "surface_variant"
+capsule_opacity = 0.50
+
+capsule_radius = 12
+
+
+[widget.launcher]
+scale = 1.15
+
+capsule_fill = "primary"
+capsule_foreground = "on_primary"
+
+capsule_opacity = 0.90
+capsule_padding = 10
+
+
+[widget.notifications]
+scale = 1.08
+icon_color = "primary"
+
+
+[widget.wallpaper]
+glyph = "photo"
+scale = 1.08
+
+
+[widget.settings]
+scale = 1.08
+
+
+[widget.session]
+glyph = "shutdown"
+
+scale = 1.08
+icon_color = "error"
+
+[widget.privacy]
+type = "privacy"
+hide_inactive = true
+icon_spacing = 6
+
+active_color = "primary"
+
+capsule = true
+capsule_fill = "surface_variant"
+capsule_opacity = 0.65
+capsule_radius = 12
+capsule_padding = 8
+
+[widget.media-zone]
+type = "spacer"
+length = 42
+interactive = true
+capsule = false
+
+
+[widget.media-zone.actions]
+left = "media toggle"
+middle = "media next"
+right = "media previous"
+scroll_left = "media previous"
+scroll_right = "media next"
+
+back = "media previous"
+forward = "media next"
+
+[widget.nix]
+type = "custom_button"
+label = "󱄅"
+glyph = ""
+
+scale = 3
+
+capsule = true
+capsule_fill = "surface_variant"
+capsule_foreground = "primary"
+capsule_opacity = 0.75
+capsule_radius = 50
+capsule_padding = 5
+
+[widget.nix.actions]
+left = "exec ghostty -e zsh -ic nxcfg"
+right = "exec ghostty -e zsh -ic nxupd"
+middle = "exec ghostty -e zsh -ic nxclrd"
+
+scroll_up = "wallpaper-previous"
+scroll_down = "wallpaper-next"

@@ -1,12 +1,19 @@
 {
   config,
+  lib,
   pkgs,
+  inputs,
   ...
 }:
-let
-  orbit = pkgs.callPackage ./packages/orbit.nix { };
-in
+
 {
+  imports = [ inputs.noctalia.homeModules.default ];
+
+  programs.noctalia = {
+    enable = true;
+    systemd.enable = true;
+  };
+
   home = {
     username = "vinicius";
     homeDirectory = "/home/vinicius";
@@ -26,72 +33,63 @@ in
   };
 
   #home packages.
-  home.packages =
-    with pkgs;
-    [
-      anydesk
-      awww
-      bitwarden-desktop
-      bluez
-      blueman
-      brave
-      burpsuite
-      chromium
-      cliphist
-      dbeaver-bin
-      ente-auth
-      eza
-      fastfetch
-      fd
-      ffmpeg
-      flyctl
-      fzf
-      gcc
-      gnome-tweaks
-      grim
-      hyprshade
-      imagemagick
-      insomnia
-      iscc
-      libnotify
-      libreoffice-fresh
-      matugen
-      mpv
-      mpvpaper
-      neovim
-      networkmanager
-      networkmanagerapplet
-      ngrok
-      nil
-      nwg-bar
-      nodejs
-      obs-studio
-      obsidian
-      opencode
-      openssl
-      pavucontrol
-      phinger-cursors
-      playerctl
-      proton-vpn-cli
-      remmina
-      ripgrep
-      rofi
-      shotcut
-      slurp
-      spotify
-      statix
-      swappy
-      swaynotificationcenter
-      swayosd
-      tenacity
-      unzip
-      vesktop
-      warehouse
-      waybar
-      wl-clipboard
-      ytmdesktop
-    ]
-    ++ [ orbit ];
+  home.packages = with pkgs; [
+    anydesk
+    bitwarden-desktop
+    bluez
+    blueman
+    brave
+    burpsuite
+    chromium
+    dbeaver-bin
+    ente-auth
+    eza
+    fastfetch
+    fd
+    ffmpeg
+    flyctl
+    fzf
+    gcc
+    gnome-tweaks
+    grim
+    hyprshade
+    imagemagick
+    insomnia
+    iscc
+    libnotify
+    libreoffice-fresh
+    matugen
+    mpv
+    mpvpaper
+    neovim
+    networkmanager
+    networkmanagerapplet
+    ngrok
+    nil
+    nodejs
+    obs-studio
+    obsidian
+    opencode
+    openssl
+    pavucontrol
+    phinger-cursors
+    playerctl
+    proton-vpn-cli
+    remmina
+    ripgrep
+    shotcut
+    slurp
+    spotify
+    statix
+    swappy
+    tenacity
+    unzip
+    vesktop
+    warehouse
+    waybar
+    wl-clipboard
+    ytmdesktop
+  ];
 
   programs = {
     firefox.enable = true;
@@ -145,17 +143,6 @@ in
     };
   };
 
-  #orbit configuration.
-  systemd.user.services.orbit = {
-    Unit.Description = "Orbit Wifi + Bluetooth manager";
-    Service = {
-      ExecStart = "${orbit}/bin/orbit daemon";
-      Restart = "on-failure";
-      RestartSec = 1;
-    };
-    Install.WantedBy = [ "default.target" ];
-  };
-
   #hyprland configuration.
   wayland.windowManager.hyprland = {
     enable = true;
@@ -168,32 +155,18 @@ in
   #symlinks.
   xdg = {
     configFile = {
-      ##orbit.
-      "orbit/config.toml".source =
-        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/orbit/config.toml";
+      ##noctalia.
+      "noctalia".source = lib.mkForce (
+        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/noctalia"
+      );
 
       ##ghostty.
       "ghostty/config".source =
         config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/ghostty/config";
 
-      ##rofi.
-      "rofi/config.rasi".source =
-        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/rofi/config.rasi";
-
-      ##waybar.
-      "waybar/config".source =
-        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/waybar/config";
-
-      ##matugen.
-      "matugen".source = config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/matugen";
-
-      ##nwg-bar.
-      "nwg-bar/bar.json".source =
-        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/nwg-bar/bar.json";
-
-      ##swaync.
-      "swaync/config.json".source =
-        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/swaync/config.json";
+      ##starship.
+      "starship.toml".source =
+        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/starship/starship.toml";
     };
   };
 }
