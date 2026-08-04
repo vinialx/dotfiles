@@ -22,7 +22,7 @@
       "udev.log_level=3"
       "systemd.show_status=auto"
       "nvidia-drm.modeset=1"
-      "snd_intel_dspcfg.dsp_driver=3"
+      "snd_intel_dspcfg.dsp_driver=1"
     ];
     kernelModules = [ "acer-wmi" ];
     loader = {
