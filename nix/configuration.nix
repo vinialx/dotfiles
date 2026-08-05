@@ -1,7 +1,29 @@
 { config, pkgs, ... }:
 {
   imports = [ ./hardware-configuration.nix ];
-  hardware.enableAllFirmware = true;
+
+  hardware = {
+    enableAllFirmware = true;
+
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+
+    nvidia = {
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      powerManagement.enable = true;
+      powerManagement.finegrained = false;
+      modesetting.enable = true;
+      open = false;
+      prime = {
+        sync.enable = true;
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
+    };
+  };
 
   boot = {
     plymouth = {
@@ -48,31 +70,23 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
+  services = {
+    printing.enable = true;
+    flatpak.enable = true;
+    power-profiles-daemon.enable = true;
+    upower.enable = true;
+    tailscale.enable = true;
 
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-
-  hardware.nvidia = {
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    powerManagement.enable = true;
-    powerManagement.finegrained = false;
-    modesetting.enable = true;
-    open = false;
-    prime = {
-      sync.enable = true;
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
+    xserver = {
+      enable = true;
+      videoDrivers = [ "nvidia" ];
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
+    };
+    displayManager = {
+      gdm.enable = true;
     };
   };
 
@@ -85,12 +99,6 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
   };
-
-  services.printing.enable = true;
-  services.flatpak.enable = true;
-  services.power-profiles-daemon.enable = true;
-  services.upower.enable = true;
-  services.tailscale.enable = true;
 
   security.rtkit.enable = true;
   services.pulseaudio.enable = false;
@@ -114,30 +122,37 @@
     options = "--delete-older-than 5d";
   };
 
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    stdenv.cc.cc
-    zlib
-    glib
-  ];
+  programs = {
+    git.enable = true;
+    zsh.enable = true;
 
-  programs.git.enable = true;
-  programs.zsh.enable = true;
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        stdenv.cc.cc
+        zlib
+        glib
+      ];
+    };
   };
 
-  users.defaultUserShell = pkgs.zsh;
-  users.users.vinicius = {
-    isNormalUser = true;
-    description = "vinicius";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
+  users = {
+    defaultUserShell = pkgs.zsh;
+
+    users.vinicius = {
+      isNormalUser = true;
+      description = "vinicius";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "docker"
+      ];
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -148,5 +163,4 @@
     xdg-desktop-portal-gnome
   ];
 
-  system.stateVersion = "26.05";
 }

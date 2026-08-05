@@ -18,18 +18,17 @@
     username = "vinicius";
     homeDirectory = "/home/vinicius";
     stateVersion = "26.05";
-  };
 
-  home.enableNixpkgsReleaseCheck = false;
+    enableNixpkgsReleaseCheck = false;
 
-  #cursor.
-  home.pointerCursor = {
-    enable = true;
-    name = "Bibata-Modern-Ice";
-    package = pkgs.bibata-cursors;
-    size = 20;
-    gtk.enable = true;
-    x11.enable = true;
+    pointerCursor = {
+      enable = true;
+      name = "Bibata-Modern-Ice";
+      package = pkgs.bibata-cursors;
+      size = 20;
+      gtk.enable = true;
+      x11.enable = true;
+    };
   };
 
   #home packages.
@@ -163,10 +162,6 @@
       ##ghostty.
       "ghostty/config".source =
         config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/ghostty/config";
-
-      ##starship.
-      "starship.toml".source =
-        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/starship/starship.toml";
     };
   };
 }

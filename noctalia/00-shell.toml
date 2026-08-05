@@ -1,23 +1,18 @@
 [shell]
 font_family = "Inter"
-
 time_format = "{:%H:%M:%S}"
 date_format = "%a, %d %b"
 
-clipboard_enabled = true
-clipboard_history_max_entries = 50
-
 launch_apps_as_systemd_services = true
 
-enabled = true
-speed = 1.5
-
-corner_radius_scale = 1.25
+clipboard_enabled = true
+clipboard_history_max_entries = 50
 
 button_borders = true
 input_borders = true
 popup_borders = true
 popup_shadows = true
+corner_radius_scale = 1.25
 
 [shell.screen_corners]
 enabled = true

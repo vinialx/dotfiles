@@ -134,7 +134,7 @@ type = "custom_button"
 label = "󱄅"
 glyph = ""
 
-scale = 3
+scale = 2.5
 
 capsule = true
 capsule_fill = "surface_variant"
