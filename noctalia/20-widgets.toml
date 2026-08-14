@@ -12,7 +12,8 @@ capsule_radius = 12
 
 [widget.workspaces]
 style = "regular"
-display = "id"
+label_source = "id" 
+show_labels = true 
 
 max_label_chars = 2
 labels_only_when_occupied = false
