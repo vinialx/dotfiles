@@ -55,6 +55,7 @@
     gvfs
     hyprshade
     imagemagick
+    image-roll
     insomnia
     iscc
     libnotify
@@ -171,6 +172,10 @@
       ##ghostty.
       "ghostty/config".source =
         config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/ghostty/config";
+
+      ##swappy.
+      "swappy/config".source =
+        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/swappy/config";
     };
   };
 }
