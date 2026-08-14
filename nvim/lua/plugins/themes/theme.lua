@@ -1,6 +1,6 @@
 return {
   "moonfly",
   config = function()
-    vim.cmd("colorscheme rasmus")
+    vim.cmd("colorscheme moonfly")
   end,
 }

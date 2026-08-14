@@ -44,7 +44,7 @@
       "udev.log_level=3"
       "systemd.show_status=auto"
       "nvidia-drm.modeset=1"
-      "snd_intel_dspcfg.dsp_driver=1"
+      "snd_intel_dspcfg.dsp_driver=3"
     ];
     kernelModules = [ "acer-wmi" ];
     loader = {
@@ -54,8 +54,19 @@
     };
   };
 
-  networking.hostName = "nixos";
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "nixos";
+    networkmanager.enable = true;
+
+    firewall = {
+      enable = true;
+      interfaces."wlp0s20f3".allowedTCPPorts = [
+        3500
+        4000
+      ];
+    };
+  };
+
   time.timeZone = "America/Sao_Paulo";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
@@ -81,8 +92,7 @@
       enable = true;
       videoDrivers = [ "nvidia" ];
       xkb = {
-        layout = "us";
-        variant = "";
+        layout = "br";
       };
     };
     displayManager = {

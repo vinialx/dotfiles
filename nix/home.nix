@@ -40,7 +40,9 @@
     brave
     burpsuite
     chromium
+    nemo
     dbeaver-bin
+    dhcpcd
     ente-auth
     eza
     fastfetch
@@ -49,8 +51,8 @@
     flyctl
     fzf
     gcc
-    gnome-tweaks
     grim
+    gvfs
     hyprshade
     imagemagick
     insomnia
@@ -66,6 +68,7 @@
     ngrok
     nil
     nodejs
+    notes
     obs-studio
     obsidian
     opencode
@@ -82,6 +85,7 @@
     statix
     swappy
     tenacity
+    tree
     unzip
     vesktop
     warehouse
@@ -157,6 +161,11 @@
       ##noctalia.
       "noctalia".source = lib.mkForce (
         config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/noctalia"
+      );
+
+      ##starship
+      "starship.toml".source = lib.mkForce (
+        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/starship/starship.toml"
       );
 
       ##ghostty.
