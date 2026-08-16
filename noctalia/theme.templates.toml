@@ -1,5 +1,6 @@
 [theme.templates]
 enable_builtin_templates = true
+enable_community_templates = true
 
 builtin_ids = [
   "ghostty",
@@ -8,3 +9,9 @@ builtin_ids = [
   "qt",
   "starship"
 ]
+
+community_ids = [
+  "neovim",
+  "obsidian"
+]
+
