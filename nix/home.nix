@@ -93,6 +93,10 @@
     waybar
     wl-clipboard
     ytmdesktop
+
+    # database connection.
+    rainfrog
+    postgresql
   ];
 
   programs = {
