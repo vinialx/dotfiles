@@ -1,6 +1,0 @@
--- return {
---   "moonfly",
---   config = function()
---     vim.cmd("colorscheme moonfly")
---   end,
--- }
