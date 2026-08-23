@@ -1,19 +1,16 @@
 [widget.clock]
 format = "{:%d/%m/%Y %H:%M:%S}"
 
-capsule_fill = "primary"
-capsule_foreground = "on_primary"
 capsule_opacity = 0.90
 
 font_weight = 700
 capsule_padding = 12
 capsule_radius = 12
 
-
 [widget.workspaces]
 style = "regular"
-label_source = "id" 
-show_labels = true 
+label_source = "id"
+show_labels = true
 
 max_label_chars = 2
 labels_only_when_occupied = false
@@ -84,6 +81,13 @@ capsule_padding = 10
 scale = 1.08
 icon_color = "primary"
 
+[widget.bluetooth]
+capsule_group = "connectivity"
+show_label = true
+
+[widget.network]
+capsule_group = "connectivity"
+show_label = false
 
 [widget.wallpaper]
 glyph = "photo"
@@ -136,13 +140,6 @@ label = "󱄅"
 glyph = ""
 
 scale = 2.5
-
-capsule = true
-capsule_fill = "surface_variant"
-capsule_foreground = "primary"
-capsule_opacity = 0.75
-capsule_radius = 50
-capsule_padding = 5
 
 [widget.nix.actions]
 left = "exec ghostty -e zsh -ic nxcfg"

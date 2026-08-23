@@ -13,19 +13,14 @@ contact_shadow = true
 layer = "top"
 reserve_space = true
 font_weight = 500
-
 capsule = true
 capsule_fill = "surface_variant"
 capsule_thickness = 0.72
 capsule_radius = 12
 capsule_opacity = 0.62
-capsule_border = "outline"
 capsule_padding = 8
-
 start = ["nix", "workspaces", "media-zone", "media", "audio_visualizer"]
-
 center = ["clock"]
-
 end = [
   "group:sysinfo",
   "group:connectivity",
@@ -36,37 +31,24 @@ end = [
   "session",
 ]
 
-
 [[bar.default.capsule_group]]
 id = "sysinfo"
-
 members = ["cpu", "memory", "battery"]
-
 fill = "surface_variant"
 foreground = "on_surface"
-
 padding = 9
 widget_spacing = 9
-
 radius = 12
 opacity = 0.65
-border = "outline"
-
 
 [[bar.default.capsule_group]]
 id = "connectivity"
-
 members = ["network", "bluetooth", "volume"]
-
 fill = "surface_variant"
 foreground = "on_surface"
-
-padding = 8
+padding = 12
 widget_spacing = 10
-
 radius = 12
 opacity = 0.65
-border = "outline"
-
 accordion = true
 accordion_direction = "start"

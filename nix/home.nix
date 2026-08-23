@@ -94,9 +94,13 @@
     wl-clipboard
     ytmdesktop
 
-    # database connection.
+    #database connection.
     rainfrog
     postgresql
+
+    #study.
+    calibre
+    teams-for-linux
   ];
 
   programs = {
