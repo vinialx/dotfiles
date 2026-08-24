@@ -94,6 +94,7 @@ in
     #dev tools.
     gcc
     insomnia
+    marksman
     neovim
     ngrok
     nil
