@@ -148,6 +148,7 @@ in
 
     #study.
     calibre
+    exercism
     obsidian
     teams-for-linux
 
