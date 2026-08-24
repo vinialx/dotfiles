@@ -150,6 +150,7 @@ in
     #study.
     calibre
     exercism
+    leetcode-cli
     obsidian
     teams-for-linux
 
