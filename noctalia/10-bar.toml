@@ -27,7 +27,6 @@ end = [
   "privacy",
   "notifications",
   "wallpaper",
-  "settings",
   "session",
 ]
 

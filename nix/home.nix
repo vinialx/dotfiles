@@ -5,13 +5,51 @@
   inputs,
   ...
 }:
-
+let
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
+in
 {
-  imports = [ inputs.noctalia.homeModules.default ];
+  imports = [
+    inputs.noctalia.homeModules.default
+    inputs.spicetify-nix.homeManagerModules.spicetify
+  ];
 
   programs.noctalia = {
     enable = true;
     systemd.enable = true;
+  };
+
+  programs.spicetify = {
+    enable = true;
+    wayland = true;
+    experimentalFeatures = true;
+
+    theme = spicePkgs.themes.dribbblish;
+    colorScheme = "custom";
+
+    customColorScheme = {
+      text = "F2F2F2";
+      subtext = "B8B8C0";
+
+      main = "18181C";
+      sidebar = "40404D";
+      player = "202026";
+
+      card = "292932";
+      shadow = "101014";
+      selected-row = "4A4A58";
+
+      button = "8B8B9B";
+      button-active = "A0A0B0";
+      button-disabled = "595965";
+
+      tab-active = "F2F2F2";
+
+      notification = "8B8B9B";
+      notification-error = "D45D68";
+
+      misc = "777785";
+    };
   };
 
   home = {
@@ -33,74 +71,90 @@
 
   #home packages.
   home.packages = with pkgs; [
-    anydesk
-    bitwarden-desktop
+    #system & hardware.
     bluez
     blueman
-    brave
-    burpsuite
-    chromium
-    nemo
     dbeaver-bin
     dhcpcd
-    ente-auth
+    networkmanager
+    networkmanagerapplet
+    proton-vpn-cli
+
+    #shell & cli utilities.
     eza
     fastfetch
     fd
-    ffmpeg
-    flyctl
     fzf
+    ripgrep
+    statix
+    tree
+    unzip
+    wl-clipboard
+
+    #dev tools.
     gcc
-    grim
-    gvfs
-    hyprshade
-    imagemagick
-    image-roll
     insomnia
-    iscc
-    libnotify
-    libreoffice-fresh
-    matugen
-    mpv
-    mpvpaper
     neovim
-    networkmanager
-    networkmanagerapplet
     ngrok
     nil
     nodejs
-    notes
-    obs-studio
-    obsidian
     opencode
     openssl
-    pavucontrol
-    phinger-cursors
-    playerctl
-    proton-vpn-cli
-    remmina
-    ripgrep
-    shotcut
-    slurp
-    spotify
-    statix
-    swappy
-    tenacity
-    tree
-    unzip
-    vesktop
-    warehouse
-    waybar
-    wl-clipboard
-    ytmdesktop
 
-    #database connection.
+    #database.
     rainfrog
     postgresql
 
+    #browsers.
+    brave
+    chromium
+
+    #communication & productivity.
+    anydesk
+    libnotify
+    libreoffice-fresh
+    nemo
+    notes
+    remmina
+    vesktop
+
+    #security.
+    bitwarden-desktop
+    burpsuite
+    ente-auth
+
+    #media & graphics.
+    ffmpeg
+    grim
+    gvfs
+    image-roll
+    imagemagick
+    mpv
+    mpvpaper
+    obs-studio
+    shotcut
+    slurp
+    swappy
+
+    #audio & music.
+    pavucontrol
+    playerctl
+    tenacity
+    ytmdesktop
+
+    #theming.
+    hyprshade
+    matugen
+
     #study.
     calibre
+    obsidian
     teams-for-linux
+
+    #packaging & misc.
+    flyctl
+    iscc
+    warehouse
   ];
 
   programs = {
@@ -167,19 +221,24 @@
   #symlinks.
   xdg = {
     configFile = {
-      ##noctalia.
-      "noctalia".source = lib.mkForce (
-        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/noctalia"
-      );
-
-      ##starship
-      "starship.toml".source = lib.mkForce (
-        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/starship/starship.toml"
+      ##fastfetch.
+      "fastfetch".source = lib.mkForce (
+        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/fastfetch"
       );
 
       ##ghostty.
       "ghostty/config".source =
         config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/ghostty/config";
+
+      ##noctalia.
+      "noctalia".source = lib.mkForce (
+        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/noctalia"
+      );
+
+      ##starship.
+      "starship.toml".source = lib.mkForce (
+        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/starship/starship.toml"
+      );
 
       ##swappy.
       "swappy/config".source =

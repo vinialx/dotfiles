@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     mac-style-plymouth = {
       url = "github:SergioRibera/s4rchiso-plymouth-theme";
       inputs.nixpkgs.follows = "nixpkgs";

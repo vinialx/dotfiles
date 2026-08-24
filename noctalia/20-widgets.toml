@@ -82,21 +82,15 @@ scale = 1.08
 icon_color = "primary"
 
 [widget.bluetooth]
-capsule_group = "connectivity"
 show_label = true
+enabled = true
 
 [widget.network]
-capsule_group = "connectivity"
 show_label = false
 
 [widget.wallpaper]
 glyph = "photo"
 scale = 1.08
-
-
-[widget.settings]
-scale = 1.08
-
 
 [widget.session]
 glyph = "shutdown"
