@@ -1,5 +1,7 @@
 # @vinialx zsh profile configuration
 
+source "$HOME/dotfiles/zsh/greetings.zsh"
+
 alias nxcfg='nv /home/vinicius/dotfiles/nix/home.nix'
 alias nxupd='sudo nixos-rebuild switch'
 alias nxclr='sudo nix-collect-garbage'
