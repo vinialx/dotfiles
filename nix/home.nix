@@ -90,6 +90,7 @@ in
     tree
     unzip
     wl-clipboard
+    zip
 
     #dev tools.
     gcc
