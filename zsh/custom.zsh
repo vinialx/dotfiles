@@ -184,11 +184,3 @@ mvz() {
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
-
-# bun completions.
-[ -s "/home/vinicius/.bun/_bun" ] && source "/home/vinicius/.bun/_bun"
-
-# bun exports.
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
