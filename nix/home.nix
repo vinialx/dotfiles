@@ -86,7 +86,7 @@ in
     fd
     fzf
     ripgrep
-    statix
+
     tree
     unzip
     wl-clipboard
@@ -95,13 +95,13 @@ in
     #dev tools.
     gcc
     insomnia
-    marksman
     neovim
     ngrok
     nil
     nodejs
     opencode
     openssl
+    statix
 
     #database.
     rainfrog
