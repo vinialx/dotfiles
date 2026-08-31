@@ -5,5 +5,6 @@ pkgs.mkShell {
     python3
     basedpyright
     ruff
+    uv
   ];
 }
