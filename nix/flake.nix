@@ -33,27 +33,66 @@
       home-manager,
       ...
     }@inputs:
+    let
+      system = "x86_64-linux";
+
+      pkgs = import nixpkgs {
+        inherit system;
+      };
+    in
     {
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
+      formatter.${system} = pkgs.nixfmt;
+
+      devShells.${system} = {
+        typescript = import ./devshells/typescript.nix {
+          inherit pkgs;
+        };
+
+        go = import ./devshells/go.nix {
+          inherit pkgs;
+        };
+
+        python = import ./devshells/python.nix {
+          inherit pkgs;
+        };
+
+        lua = import ./devshells/lua.nix {
+          inherit pkgs;
+        };
+
+        c = import ./devshells/clang.nix {
+          inherit pkgs;
+        };
+      };
 
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          inherit system;
+
           modules = [
-            { nixpkgs.overlays = [ mac-style-plymouth.overlays.default ]; }
+            {
+              nixpkgs.overlays = [
+                mac-style-plymouth.overlays.default
+              ];
+            }
 
             ./hardware-configuration.nix
             ./configuration.nix
 
             home-manager.nixosModules.home-manager
+
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                backupFileExtension = "bak";
 
-              home-manager.backupFileExtension = "bak";
+                extraSpecialArgs = {
+                  inherit inputs;
+                };
 
-              home-manager.extraSpecialArgs = { inherit inputs; };
-              home-manager.users.vinicius = import ./home.nix;
+                users.vinicius = import ./home.nix;
+              };
             }
           ];
         };
