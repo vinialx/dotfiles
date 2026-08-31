@@ -48,7 +48,7 @@
           inherit pkgs;
         };
 
-        go = import ./devshells/go.nix {
+        go = import ./devshells/golang.nix {
           inherit pkgs;
         };
 
