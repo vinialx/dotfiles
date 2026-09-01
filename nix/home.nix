@@ -76,6 +76,7 @@ in
     blueman
     dbeaver-bin
     dhcpcd
+    font-manager
     networkmanager
     networkmanagerapplet
     proton-vpn-cli
