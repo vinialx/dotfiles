@@ -98,6 +98,7 @@ in
     neovim
     ngrok
     nil
+    nixfmt
     nodejs
     opencode
     openssl
