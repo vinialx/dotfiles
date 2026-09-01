@@ -95,6 +95,7 @@ in
     #dev tools.
     gcc
     insomnia
+    lazygit
     neovim
     ngrok
     nil
@@ -103,6 +104,7 @@ in
     opencode
     openssl
     statix
+    tree-sitter
 
     #database.
     rainfrog
