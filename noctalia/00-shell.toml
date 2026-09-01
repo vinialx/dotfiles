@@ -32,7 +32,6 @@ transparency_mode = "glass"
 borders = true
 shadow = true
 
-# deixa launcher / clipboard menos "flat"
 list_item_background = true
 
 launcher_placement = "floating"
@@ -46,3 +45,7 @@ wallpaper_placement = "attached"
 session_placement = "attached"
 
 floating_offset = 10
+
+[location]
+auto_locate = false
+address = "São Paulo, SP, Brazil"
