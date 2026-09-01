@@ -46,6 +46,10 @@ require("lazy").setup({
     },
   },
 
+  rocks = {
+    enabled = false,
+  },
+
   change_detection = {
     notify = false,
   },
@@ -64,7 +68,7 @@ require("lazy").setup({
 
   checker = {
     enabled = true,
-    notify = true,
+    notify = false,
   },
 
   performance = {
