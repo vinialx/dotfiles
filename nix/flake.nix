@@ -23,6 +23,11 @@
       url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.1.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -31,6 +36,7 @@
       nixpkgs,
       mac-style-plymouth,
       home-manager,
+      lanzaboote,
       ...
     }@inputs:
     let
@@ -78,6 +84,7 @@
 
             ./hardware-configuration.nix
             ./configuration.nix
+            lanzaboote.nixosModules.lanzaboote
 
             home-manager.nixosModules.home-manager
 

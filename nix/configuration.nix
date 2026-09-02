@@ -1,6 +1,13 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [ ./hardware-configuration.nix ];
+
+  system.stateVersion = "25.11";
 
   hardware = {
     enableAllFirmware = true;
@@ -27,17 +34,28 @@
 
   boot = {
     plymouth = {
-      enable = true;
+      enable = false;
       theme = "mac-style";
       themePackages = [ pkgs.mac-style-plymouth ];
     };
+
+    #secure boot.
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
+
     consoleLogLevel = 3;
     initrd.verbose = false;
+
+    initrd.availableKernelModules = [ "vmd" ];
+
     initrd.kernelModules = [
       "nvidia"
       "nvidia_modeset"
       "nvidia_uvm"
       "nvidia_drm"
+      "vmd"
     ];
     kernelParams = [
       "quiet"
@@ -49,7 +67,7 @@
     kernelModules = [ "acer-wmi" ];
     loader = {
       timeout = null;
-      systemd-boot.enable = true;
+      systemd-boot.enable = lib.mkForce false;
       efi.canTouchEfiVariables = true;
     };
   };
@@ -98,6 +116,7 @@
     };
     displayManager = {
       gdm.enable = true;
+      defaultSession = "hyprland";
     };
   };
 
@@ -168,6 +187,7 @@
 
   environment.systemPackages = with pkgs; [
     wget
+    sbctl
     alsa-utils
     docker-compose
     xdg-desktop-portal
