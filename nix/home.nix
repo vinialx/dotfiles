@@ -81,13 +81,15 @@ in
     networkmanagerapplet
     proton-vpn-cli
 
+    #virtualization
+    dosbox-x
+
     #shell & cli utilities.
     eza
     fastfetch
     fd
     fzf
     ripgrep
-
     tree
     unzip
     wl-clipboard
@@ -117,6 +119,7 @@ in
 
     #communication & productivity.
     anydesk
+    gnome-calculator
     libnotify
     libreoffice-fresh
     nemo

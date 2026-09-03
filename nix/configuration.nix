@@ -66,7 +66,7 @@
     ];
     kernelModules = [ "acer-wmi" ];
     loader = {
-      timeout = null;
+      timeout = 5;
       systemd-boot.enable = lib.mkForce false;
       efi.canTouchEfiVariables = true;
     };
