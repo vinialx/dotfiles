@@ -1,8 +1,8 @@
 [bar.default]
 position = "top"
 thickness = 48
-margin_edge = 8
-margin_ends = 12
+margin_edge = 0
+margin_ends = 100
 padding = 10
 widget_spacing = 8
 background_opacity = 1
