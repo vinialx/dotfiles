@@ -1,0 +1,64 @@
+diff --git a/DAM-FC/Daemon/DAMFC_daemon.py b/DAM-FC/Daemon/DAMFC_daemon.py
+--- a/DAM-FC/Daemon/DAMFC_daemon.py
++++ b/DAM-FC/Daemon/DAMFC_daemon.py
+@@ -28,6 +28,7 @@ class FanControlDaemon:
+         # Initialize dynamic mode from config
+         self.dynamicModeEnabled = self.config.get('dynamic_mode', True)
++        self.currentFanSpeed = None
+         logging.info(f"Dynamic mode initialized to: {self.dynamicModeEnabled}")
+ 
+         # Setup signal handlers for graceful shutdown
+@@ -138,25 +139,29 @@ class FanControlDaemon:
+     def dynamic_fan_control(self):
+         logging.info("Starting dynamic fan control thread")
+         while self.running:
+-            if self.dynamicModeEnabled == True:
+-                # try:
++            if self.dynamicModeEnabled:
+                 cpu_temp = self.get_cpu_temp()
+                 gpu_temp = self.get_gpu_temp()
+ 
+                 logging.debug(f"Current temperatures - CPU: {cpu_temp}°C, GPU: {gpu_temp}°C")
+-                # Dynamic fan speed logic
++
+                 max_temp = max(cpu_temp, gpu_temp)
++                target_speed = self.config.get('min_speed', 1024)
+ 
+                 for step in sorted(self.config.get('temp_steps', []), key=lambda x: x['temperature'], reverse=True):
+                     if max_temp >= step['temperature']:
+-                        logging.info(f"Setting fans to {step['speed']} due to temperature {max_temp}°C")
+-                        self.set_fan_speed(1, step['speed'])  # CPU Fan
+-                        self.set_fan_speed(2, step['speed'])  # GPU Fan
++                        target_speed = step['speed']
+                         break
+-                # except Exception as e:
+-                #     logging.error(f"Error in dynamic fan control: {e}")
+ 
+-                time.sleep(5)  # Check every 5 seconds
++                if target_speed != self.currentFanSpeed:
++                    logging.info(
++                        f"Setting fans to {target_speed} due to temperature {max_temp}°C"
++                    )
++                    self.set_fan_speed(1, target_speed)
++                    self.set_fan_speed(2, target_speed)
++                    self.currentFanSpeed = target_speed
++
++            time.sleep(5)
+ 
+         logging.info("Dynamic fan control thread stopped")
+@@ -261,11 +266,12 @@ class FanControlDaemon:
+         except Exception as e:
+             logging.error(f"Error processing command: {e}")
++
+ def main():
+     daemon = FanControlDaemon()
+-    DriverManager.remove_fan_control_files()
+-    DriverManager.ensure_driver_loaded()
+     daemon.start()
+-    daemon.handle_socket_commands()
++
++    while daemon.running:
++        time.sleep(60)
+ 
+ if __name__ == '__main__':
+     main()

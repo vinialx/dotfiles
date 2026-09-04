@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    dam-fc = {
+      url = "github:PXDiv/Div-Acer-Manager-Fan-Controls";
+      flake = false;
+    };
+
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -75,6 +80,10 @@
         nixos = nixpkgs.lib.nixosSystem {
           inherit system;
 
+          specialArgs = {
+            inherit inputs;
+          };
+
           modules = [
             {
               nixpkgs.overlays = [
@@ -82,7 +91,6 @@
               ];
             }
 
-            ./hardware-configuration.nix
             ./configuration.nix
             lanzaboote.nixosModules.lanzaboote
 

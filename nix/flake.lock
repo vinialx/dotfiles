@@ -15,6 +15,22 @@
         "type": "github"
       }
     },
+    "dam-fc": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1746388499,
+        "narHash": "sha256-XAC8pBfwJs9Di3Yb8F7lpm68GMiQ64DZK+v3GkVFefc=",
+        "owner": "PXDiv",
+        "repo": "Div-Acer-Manager-Fan-Controls",
+        "rev": "ffc43cf8acd442e7a3406c01ca81391a170c318c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PXDiv",
+        "repo": "Div-Acer-Manager-Fan-Controls",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -198,6 +214,7 @@
     },
     "root": {
       "inputs": {
+        "dam-fc": "dam-fc",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "mac-style-plymouth": "mac-style-plymouth",

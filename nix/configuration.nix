@@ -5,7 +5,10 @@
   ...
 }:
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./dam-fc/dam-fc.nix
+  ];
 
   system.stateVersion = "25.11";
 
@@ -69,7 +72,12 @@
       "systemd.show_status=auto"
       "snd_intel_dspcfg.dsp_driver=3"
     ];
+
     kernelModules = [ "acer-wmi" ];
+    extraModprobeConfig = ''
+      options acer_wmi predator_v4=1
+    '';
+
     loader = {
       timeout = 5;
       systemd-boot.enable = lib.mkForce false;
