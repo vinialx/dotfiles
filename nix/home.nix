@@ -14,44 +14,6 @@ in
     inputs.spicetify-nix.homeManagerModules.spicetify
   ];
 
-  programs.noctalia = {
-    enable = true;
-    systemd.enable = true;
-  };
-
-  programs.spicetify = {
-    enable = true;
-    wayland = true;
-    experimentalFeatures = true;
-
-    theme = spicePkgs.themes.dribbblish;
-    colorScheme = "custom";
-
-    customColorScheme = {
-      text = "F2F2F2";
-      subtext = "B8B8C0";
-
-      main = "18181C";
-      sidebar = "40404D";
-      player = "202026";
-
-      card = "292932";
-      shadow = "101014";
-      selected-row = "4A4A58";
-
-      button = "8B8B9B";
-      button-active = "A0A0B0";
-      button-disabled = "595965";
-
-      tab-active = "F2F2F2";
-
-      notification = "8B8B9B";
-      notification-error = "D45D68";
-
-      misc = "777785";
-    };
-  };
-
   home = {
     username = "vinicius";
     homeDirectory = "/home/vinicius";
@@ -72,13 +34,8 @@ in
   #home packages.
   home.packages = with pkgs; [
     #system & hardware.
-    bluez
-    blueman
     dbeaver-bin
-    dhcpcd
     font-manager
-    networkmanager
-    networkmanagerapplet
     proton-vpn-cli
 
     #virtualization
@@ -103,7 +60,6 @@ in
     ngrok
     nil
     nixfmt
-    nodejs
     opencode
     openssl
     statix
@@ -135,7 +91,6 @@ in
     #media & graphics.
     ffmpeg
     grim
-    gvfs
     image-roll
     imagemagick
     mpv
@@ -169,6 +124,44 @@ in
   ];
 
   programs = {
+    noctalia = {
+      enable = true;
+      systemd.enable = true;
+    };
+
+    spicetify = {
+      enable = true;
+      wayland = true;
+      experimentalFeatures = true;
+
+      theme = spicePkgs.themes.dribbblish;
+      colorScheme = "custom";
+
+      customColorScheme = {
+        text = "F2F2F2";
+        subtext = "B8B8C0";
+
+        main = "18181C";
+        sidebar = "40404D";
+        player = "202026";
+
+        card = "292932";
+        shadow = "101014";
+        selected-row = "4A4A58";
+
+        button = "8B8B9B";
+        button-active = "A0A0B0";
+        button-disabled = "595965";
+
+        tab-active = "F2F2F2";
+
+        notification = "8B8B9B";
+        notification-error = "D45D68";
+
+        misc = "777785";
+      };
+    };
+
     firefox.enable = true;
     firefox.configPath = "${config.xdg.configHome}/mozilla/firefox";
 
@@ -223,6 +216,8 @@ in
   #hyprland configuration.
   wayland.windowManager.hyprland = {
     enable = true;
+    package = null;
+    portalPackage = null;
     configType = "hyprlang";
     settings = {
       source = "/home/vinicius/dotfiles/hyprland/hyprland.conf";

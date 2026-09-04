@@ -12,6 +12,8 @@
   hardware = {
     enableAllFirmware = true;
 
+    bluetooth.enable = true;
+
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -23,9 +25,13 @@
       powerManagement.enable = true;
       powerManagement.finegrained = false;
       modesetting.enable = true;
-      open = false;
+      open = true;
       prime = {
-        sync.enable = true;
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
+
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
       };
@@ -46,22 +52,21 @@
     };
 
     consoleLogLevel = 3;
-    initrd.verbose = false;
 
-    initrd.availableKernelModules = [ "vmd" ];
+    initrd = {
+      verbose = false;
 
-    initrd.kernelModules = [
-      "nvidia"
-      "nvidia_modeset"
-      "nvidia_uvm"
-      "nvidia_drm"
-      "vmd"
-    ];
+      availableKernelModules = [ "vmd" ];
+
+      kernelModules = [
+        "vmd"
+      ];
+    };
+
     kernelParams = [
       "quiet"
       "udev.log_level=3"
       "systemd.show_status=auto"
-      "nvidia-drm.modeset=1"
       "snd_intel_dspcfg.dsp_driver=3"
     ];
     kernelModules = [ "acer-wmi" ];
@@ -100,16 +105,20 @@
   };
 
   services = {
-    printing.enable = true;
-    gnome.gnome-keyring.enable = true;
-    flatpak.enable = true;
-    power-profiles-daemon.enable = true;
+    gvfs.enable = true;
     upower.enable = true;
+    flatpak.enable = true;
+    printing.enable = true;
     tailscale.enable = true;
+    gnome.gnome-keyring.enable = true;
+    power-profiles-daemon.enable = true;
 
     xserver = {
       enable = true;
-      videoDrivers = [ "nvidia" ];
+      videoDrivers = [
+        "modesetting"
+        "nvidia"
+      ];
       xkb = {
         layout = "br";
       };
@@ -121,12 +130,6 @@
   };
 
   environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "nvidia";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    GBM_BACKEND = "nvidia-drm";
-    __GL_GSYNC_ALLOWED = "0";
-    __GL_VRR_ALLOWED = "0";
-    WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
   };
 
@@ -148,7 +151,7 @@
   ];
   nix.gc = {
     automatic = true;
-    dates = "weekly";
+    dates = "daily";
     options = "--delete-older-than 5d";
   };
 
@@ -190,8 +193,11 @@
     sbctl
     alsa-utils
     docker-compose
-    xdg-desktop-portal
-    xdg-desktop-portal-gnome
   ];
 
+  xdg.portal = {
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
+  };
 }
