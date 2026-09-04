@@ -77,9 +77,9 @@ in
     anydesk
     gnome-calculator
     libnotify
-    libreoffice-fresh
+    libreoffice-stable
     nemo
-    notes
+    gnome-text-editor
     remmina
     vesktop
 
