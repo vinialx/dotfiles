@@ -9,6 +9,10 @@
       flake = false;
     };
 
+    superfile = {
+      url = "github:yorukot/superfile";
+    };
+
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";

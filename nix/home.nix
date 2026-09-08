@@ -47,6 +47,7 @@ in
     fd
     fzf
     ripgrep
+    superfile
     tree
     unzip
     wl-clipboard
@@ -115,7 +116,6 @@ in
     exercism
     leetcode-cli
     obsidian
-    teams-for-linux
 
     #packaging & misc.
     flyctl
