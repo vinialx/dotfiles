@@ -47,6 +47,9 @@ session_placement = "attached"
 
 floating_offset = 10
 
+[shell.greeter_sync]
+auto_sync = true
+
 [location]
 auto_locate = false
 address = "São Paulo, SP, Brazil"

@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -8,6 +9,8 @@
   imports = [
     ./hardware-configuration.nix
     ./modules/dam-fc.nix
+
+    inputs.noctalia-greeter.nixosModules.default
     ./modules/greetd.nix
   ];
 
@@ -131,7 +134,6 @@
     };
     displayManager = {
       gdm.enable = false;
-      noctalia-greeter.enable = true;
       defaultSession = "hyprland";
     };
   };
