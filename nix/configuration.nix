@@ -7,7 +7,8 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./dam-fc/dam-fc.nix
+    ./modules/dam-fc.nix
+    ./modules/greetd.nix
   ];
 
   system.stateVersion = "25.11";
@@ -129,7 +130,8 @@
       };
     };
     displayManager = {
-      gdm.enable = true;
+      gdm.enable = false;
+      noctalia-greeter.enable = true;
       defaultSession = "hyprland";
     };
   };

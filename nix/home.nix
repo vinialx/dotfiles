@@ -46,6 +46,7 @@ in
     fastfetch
     fd
     fzf
+    gtop
     ripgrep
     superfile
     tree
