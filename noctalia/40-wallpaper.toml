@@ -1,7 +1,7 @@
 [wallpaper]
 enabled = true
 fill_mode = "crop"
-directory = "/home/vinicius/dotfiles/wallpapers"
+directory = "/home/vinicius/dotfiles/assets/wallpapers"
 
 transition = ["fade", "wipe", "disc", "zoom"]
 
