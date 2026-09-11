@@ -42,13 +42,16 @@ in
     dosbox-x
 
     #shell & cli utilities.
+    bat
+    btop
     eza
     fastfetch
     fd
     fzf
-    gtop
+    procs
     ripgrep
     superfile
+    tealdeer
     tree
     unzip
     wl-clipboard
@@ -152,9 +155,21 @@ in
     ghostty.enable = true;
 
     git = {
+
       enable = true;
       userName = "vinicius";
       userEmail = "vini.aloise.silva@gmail.com";
+
+      delta = {
+        enable = true;
+
+        options = {
+          navigate = true;
+          side-by-side = false;
+          line-numbers = true;
+          syntax-theme = "base16";
+        };
+      };
     };
     direnv = {
       enable = true;
