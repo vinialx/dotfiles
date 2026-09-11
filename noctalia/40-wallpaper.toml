@@ -1,20 +1,12 @@
 [wallpaper]
 enabled = true
-
+fill_mode = "crop"
 directory = "/home/vinicius/dotfiles/wallpapers"
 
-fill_mode = "crop"
+transition = ["fade", "wipe", "disc", "zoom"]
 
-transition = [
-  "fade",
-  "wipe",
-  "disc",
-  "zoom"
-]
-
-transition_duration = 900
 edge_smoothness = 0.35
-
+transition_duration = 900
 transition_on_startup = true
 
 [wallpaper.automation]

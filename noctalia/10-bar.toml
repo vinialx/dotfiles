@@ -1,26 +1,33 @@
 [bar.default]
 position = "top"
+layer = "top"
+reserve_space = true
+
 thickness = 48
 margin_edge = 0
 margin_ends = 100
 padding = 10
 widget_spacing = 8
+
 background_opacity = 1
 radius = 16
 shadow = false
-hover_highlight = true
 contact_shadow = true
-layer = "top"
-reserve_space = true
+hover_highlight = true
+
 font_weight = 500
+
 capsule = true
 capsule_fill = "surface_variant"
-capsule_thickness = 0.72
-capsule_radius = 12
 capsule_opacity = 0.62
+capsule_thickness = 0.72
 capsule_padding = 8
+capsule_radius = 12
+
 start = ["nix", "workspaces", "media-zone", "media", "audio_visualizer"]
+
 center = ["clock"]
+
 end = [
   "group:sysinfo",
   "group:connectivity",
@@ -35,19 +42,19 @@ id = "sysinfo"
 members = ["cpu", "memory", "battery"]
 fill = "surface_variant"
 foreground = "on_surface"
+opacity = 0.65
 padding = 9
 widget_spacing = 9
 radius = 12
-opacity = 0.65
 
 [[bar.default.capsule_group]]
 id = "connectivity"
 members = ["network", "bluetooth", "volume"]
 fill = "surface_variant"
 foreground = "on_surface"
+opacity = 0.65
 padding = 12
 widget_spacing = 10
 radius = 12
-opacity = 0.65
 accordion = true
 accordion_direction = "start"
