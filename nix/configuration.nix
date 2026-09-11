@@ -47,15 +47,9 @@
 
   boot = {
     plymouth = {
-      enable = false;
+      enable = true;
       theme = "mac-style";
       themePackages = [ pkgs.mac-style-plymouth ];
-    };
-
-    #secure boot.
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/var/lib/sbctl";
     };
 
     consoleLogLevel = 3;
@@ -72,20 +66,69 @@
 
     kernelParams = [
       "quiet"
-      "udev.log_level=3"
-      "systemd.show_status=auto"
+      "rd.udev.log_level=3"
+      "rd.systemd.show_status=auto"
       "snd_intel_dspcfg.dsp_driver=3"
     ];
 
     kernelModules = [ "acer-wmi" ];
+
     extraModprobeConfig = ''
       options acer_wmi predator_v4=1
     '';
 
     loader = {
       timeout = 5;
-      systemd-boot.enable = lib.mkForce false;
+
+      systemd-boot.enable = false;
+
       efi.canTouchEfiVariables = true;
+
+      limine = {
+        enable = true;
+
+        efiSupport = true;
+
+        maxGenerations = 10;
+
+        secureBoot = {
+          enable = true;
+          autoGenerateKeys = false;
+          autoEnrollKeys.enable = false;
+        };
+
+        extraEntries = ''
+          /Windows
+            protocol: efi_boot_entry
+            entry: Windows Boot Manager
+        '';
+
+        style = {
+          graphicalTerminal = {
+            background = "00070709";
+            foreground = "d4d4d8";
+
+            brightBackground = "18181b";
+            brightForeground = "fafafa";
+
+            palette = "18181b;ef4444;22c55e;eab308;71717a;a855f7;14b8a6;a1a1aa";
+
+            brightPalette = "27272a;f87171;4ade80;facc15;a1a1aa;c084fc;2dd4bf;e4e4e7";
+
+            margin = 0;
+            marginGradient = 0;
+          };
+
+          interface = {
+            branding = "";
+            helpHidden = true;
+
+            brandingColor = "d4d4d8";
+            helpColor = "71717a";
+            helpColorBright = "a1a1aa";
+          };
+        };
+      };
     };
   };
 

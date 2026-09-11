@@ -2,7 +2,7 @@
 
 let
   username = "vinicius";
-  avatar = ../../pfps/pfp.jpg;
+  avatar = ../../assets/pfps/pfp.jpg;
 in
 {
   programs.noctalia-greeter = {
