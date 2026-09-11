@@ -91,10 +91,7 @@
 
     firewall = {
       enable = true;
-      interfaces."wlp0s20f3".allowedTCPPorts = [
-        3500
-        4000
-      ];
+      allowedTCPPorts = [ 8000 ];
     };
   };
 
@@ -151,6 +148,7 @@
   };
 
   virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [
@@ -166,6 +164,7 @@
   programs = {
     git.enable = true;
     zsh.enable = true;
+    virt-manager.enable = true;
 
     hyprland = {
       enable = true;
@@ -192,6 +191,8 @@
         "networkmanager"
         "wheel"
         "docker"
+        "kvm"
+        "libvirtd"
       ];
     };
   };
