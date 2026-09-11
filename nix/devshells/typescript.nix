@@ -5,5 +5,6 @@ pkgs.mkShell {
     bun
     nodejs
     vtsls
+    biome
   ];
 }
