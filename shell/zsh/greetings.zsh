@@ -1,7 +1,7 @@
 terminal_greeting() {
   [[ $- != *i* ]] && return
 
-  local art_file="$HOME/dotfiles/zsh/arts/penguim.txt"
+  local art_file="$HOME/dotfiles/shell/zsh/arts/penguim.txt"
   [[ -r "$art_file" ]] || return
 
   local os kernel uptime wm terminal memory disk cpu
