@@ -99,8 +99,8 @@
 
         extraEntries = ''
           /Windows
-            protocol: efi_boot_entry
-            entry: Windows Boot Manager
+            protocol: efi
+            path: guid(d1dae694-4d72-44a1-9cd2-05d1d35bfa22):/EFI/Microsoft/Boot/bootmgfw.efi
         '';
 
         style = {

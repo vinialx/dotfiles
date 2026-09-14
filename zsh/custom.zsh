@@ -180,7 +180,19 @@ mvz() {
   fi
 }
 
-# integration zoxide & fzf.
+#custom nix search.
+nxsrch() {
+  nix-search-tv print |
+    fzf \
+      --height=100% \
+      --layout=reverse \
+      --border \
+      --prompt="󱄅  Nix > " \
+      --preview='nix-search-tv preview {}' \
+      --preview-window='right:55%:wrap'
+}
+
+#integration zoxide & fzf.
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'

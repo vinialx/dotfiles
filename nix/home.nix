@@ -44,13 +44,14 @@ in
     #shell & cli utilities.
     bat
     btop
+    exiftool
     eza
     fastfetch
     fd
     fzf
+    nix-search-tv
     procs
     ripgrep
-    superfile
     tealdeer
     tree
     unzip
@@ -86,7 +87,6 @@ in
     gnome-calculator
     libnotify
     libreoffice-stable
-    nemo
     gnome-text-editor
     remmina
     vesktop
@@ -124,6 +124,8 @@ in
     leetcode-cli
     obsidian
 
+    qbittorrent
+
     #packaging & misc.
     flyctl
     iscc
@@ -134,6 +136,11 @@ in
     noctalia = {
       enable = true;
       systemd.enable = true;
+    };
+
+    superfile = {
+      enable = true;
+      package = inputs.superfile.packages.${pkgs.system}.default;
     };
 
     spicetify = {
@@ -224,6 +231,15 @@ in
       ##fastfetch.
       "fastfetch".source = lib.mkForce (
         config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/fastfetch"
+      );
+
+      ##superfile.
+      "superfile/config.toml".source = lib.mkForce (
+        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/superfile/config.toml"
+      );
+
+      "superfile/hotkeys.toml".source = lib.mkForce (
+        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/superfile/hotkeys.toml"
       );
 
       ##ghostty.

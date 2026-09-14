@@ -1,0 +1,102 @@
+# basic
+
+confirm = ["enter", "l"]
+quit = ["q", "esc"]
+cd_quit = ["Q", ""]
+
+
+# navigation
+
+list_up = ["k", "up"]
+list_down = ["j", "down"]
+
+page_up = ["ctrl+u", "pgup"]
+page_down = ["ctrl+d", "pgdown"]
+
+
+# file panels
+
+create_new_file_panel = ["n", ""]
+split_file_panel = ["N", ""]
+close_file_panel = ["ctrl+w", ""]
+
+next_file_panel = ["tab", "L"]
+previous_file_panel = ["shift+tab", "H"]
+
+toggle_file_preview_panel = ["f", ""]
+
+open_sort_options_menu = ["o", ""]
+toggle_reverse_sort = ["R", ""]
+
+pinned_directory = ["P", ""]
+
+
+# focus
+
+focus_on_sidebar = ["s", ""]
+focus_on_process_bar = ["p", ""]
+focus_on_metadata = ["m", ""]
+
+
+# files
+
+file_panel_item_create = ["a", ""]
+file_panel_item_rename = ["r", ""]
+
+copy_items = ["y", ""]
+cut_items = ["x", ""]
+paste_items = ["p", ""]
+
+delete_items = ["d", ""]
+permanently_delete_items = ["D", ""]
+
+
+# archives
+
+compress_file = ["ctrl+a", ""]
+extract_file = ["ctrl+e", ""]
+
+
+# editor
+
+open_file_with_editor = ["e", ""]
+open_current_directory_with_editor = ["E", ""]
+
+
+# misc
+
+toggle_dot_file = [".", ""]
+
+change_panel_mode = ["v", ""]
+
+open_help_menu = ["?", ""]
+
+open_command_line = [":", ""]
+open_spf_prompt = [">", ""]
+
+open_zoxide = ["z", ""]
+
+copy_path = ["Y", ""]
+copy_present_working_directory = ["c", ""]
+
+toggle_footer = ["F", ""]
+
+
+# typing
+
+confirm_typing = ["enter", ""]
+cancel_typing = ["esc", ""]
+
+
+# normal mode
+
+parent_directory = ["h", "left", "backspace"]
+search_bar = ["/", ""]
+
+
+# selection mode
+
+file_panel_select_mode_items_select_down = ["J", ""]
+file_panel_select_mode_items_select_up = ["K", ""]
+
+file_panel_select_all_items = ["A", ""]
