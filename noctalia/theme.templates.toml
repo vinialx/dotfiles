@@ -12,3 +12,7 @@ community_ids = [
   "fastfetch",
   "obs",
 ]
+
+[theme.templates.user.superfile]
+input_path = "/home/vinicius/dotfiles/noctalia/templates/superfile.toml"
+output_path = "$XDG_CONFIG_HOME/superfile/theme/noctalia.toml"
