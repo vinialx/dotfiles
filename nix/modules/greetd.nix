@@ -5,7 +5,7 @@ let
   avatar = ../../assets/pfps/pfp.jpg;
 in
 {
-  programs.noctalia-greeter = {
+  services.displayManager.noctalia-greeter = {
     enable = true;
 
     passwordless-sync-users = [

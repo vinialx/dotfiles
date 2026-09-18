@@ -6,7 +6,7 @@
   ...
 }:
 let
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   imports = [
@@ -116,7 +116,6 @@ in
 
     #theming.
     hyprshade
-    matugen
 
     #study.
     calibre
@@ -140,7 +139,7 @@ in
 
     superfile = {
       enable = true;
-      package = inputs.superfile.packages.${pkgs.system}.default;
+      package = inputs.superfile.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
 
     spicetify = {
@@ -162,20 +161,25 @@ in
     ghostty.enable = true;
 
     git = {
-
       enable = true;
-      userName = "vinicius";
-      userEmail = "vini.aloise.silva@gmail.com";
 
-      delta = {
-        enable = true;
-
-        options = {
-          navigate = true;
-          side-by-side = false;
-          line-numbers = true;
-          syntax-theme = "base16";
+      settings = {
+        user = {
+          name = "vinicius";
+          email = "vini.aloise.silva@gmail.com";
         };
+      };
+    };
+
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+
+      options = {
+        navigate = true;
+        side-by-side = false;
+        line-numbers = true;
+        syntax-theme = "base16";
       };
     };
     direnv = {
@@ -209,7 +213,7 @@ in
         bindkey '^[[1;5C' forward-word
         bindkey '^[[1;5D' backward-word
 
-        source ${config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/zsh/custom.zsh"}
+        source ${config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/shell/zsh/custom.zsh"}
       '';
     };
   };
@@ -226,11 +230,15 @@ in
   };
 
   #symlinks.
+  home.file.".tmux.conf".source = lib.mkForce (
+    config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/shell/tmux/.tmux.conf"
+  );
+
   xdg = {
     configFile = {
       ##fastfetch.
       "fastfetch".source = lib.mkForce (
-        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/fastfetch"
+        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/shell/fastfetch"
       );
 
       ##superfile.
@@ -253,7 +261,7 @@ in
 
       ##starship.
       "starship.toml".source = lib.mkForce (
-        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/starship/starship.toml"
+        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/shell/starship/starship.toml"
       );
 
       ##swappy.
