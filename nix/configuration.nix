@@ -161,6 +161,7 @@
     flatpak.enable = true;
     printing.enable = true;
     tailscale.enable = true;
+    gnome.localsearch.enable = true;
     gnome.gnome-keyring.enable = true;
     power-profiles-daemon.enable = true;
 
@@ -214,6 +215,7 @@
 
     hyprland = {
       enable = true;
+      withUWSM = true;
       xwayland.enable = true;
     };
 

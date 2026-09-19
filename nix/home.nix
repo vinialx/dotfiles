@@ -31,12 +31,24 @@ in
     };
   };
 
+  #GTK configuration.
+  gtk = {
+    enable = true;
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+  };
+
   #home packages.
   home.packages = with pkgs; [
     #system & hardware.
     dbeaver-bin
     font-manager
     proton-vpn-cli
+    nautilus
+    papirus-icon-theme
 
     #virtualization
     dosbox-x
@@ -224,6 +236,8 @@ in
     package = null;
     portalPackage = null;
     configType = "hyprlang";
+
+    systemd.enable = false;
     settings = {
       source = "/home/vinicius/dotfiles/hyprland/hyprland.conf";
     };
@@ -267,6 +281,11 @@ in
       ##swappy.
       "swappy/config".source =
         config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/swappy/config";
+
+      ##uwsm.
+      "uwsm/env".text = ''
+        export XDG_SESSION_CLASS=user
+      '';
     };
   };
 }

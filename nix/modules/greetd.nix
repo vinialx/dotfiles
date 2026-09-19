@@ -18,7 +18,7 @@ in
       };
 
       session = {
-        default = "Hyprland";
+        default = "Hyprland (uwsm-managed)";
       };
 
       appearance = {
