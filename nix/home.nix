@@ -82,6 +82,7 @@ in
     openssl
     statix
     tree-sitter
+    uv
 
     #database.
     rainfrog
