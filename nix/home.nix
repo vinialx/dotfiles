@@ -49,6 +49,7 @@ in
     proton-vpn-cli
     nautilus
     papirus-icon-theme
+    sticky-notes
 
     #virtualization
     dosbox-x
@@ -61,6 +62,8 @@ in
     fastfetch
     fd
     fzf
+    mpv
+    mpvpaper
     nix-search-tv
     procs
     ripgrep
@@ -105,6 +108,7 @@ in
     vesktop
 
     #security.
+    bitwarden-cli
     bitwarden-desktop
     burpsuite
     ente-auth

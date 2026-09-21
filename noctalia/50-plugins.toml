@@ -1,0 +1,7 @@
+[plugins]
+auto_update = "official"
+enabled = ["noctalia/mpvpaper", "noctalia/wallhaven", "noctalia/bitwarden"]
+
+[plugin_settings."noctalia/mpvpaper"]
+video_directory = "/home/vinicius/dotfiles/assets/live-wallpapers/"
+mute = true

@@ -34,7 +34,8 @@ end = [
   "group:connectivity",
   "privacy",
   "notifications",
-  "wallpaper",
+  "group:wallpapers",
+  "bitwarden",
   "session",
 ]
 
@@ -57,5 +58,17 @@ opacity = 0.65
 padding = 12
 widget_spacing = 10
 radius = 12
+accordion = true
+accordion_direction = "start"
+
+[[bar.default.capsule_group]]
+id = "wallpapers"
+members = ["wallpaper", "live-wallpaper", "wallhaven"]
+fill = "surface_variant"
+foreground = "on_surface"
+opacity = 0.65
+padding = 12
+widget_spacing = 20
+radius = 10
 accordion = true
 accordion_direction = "start"

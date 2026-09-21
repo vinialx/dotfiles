@@ -75,6 +75,20 @@ show_label = false
 glyph = "photo"
 scale = 1.08
 
+[widget.wallhaven]
+type = "noctalia/wallhaven:wallhaven"
+glyph = "photo-search"
+
+[widget.live-wallpaper]
+type = "noctalia/mpvpaper:mpvpaper"
+
+[widget.bitwarden]
+type = "custom_button"
+glyph = "shield-lock"
+
+[widget.bitwarden.actions]
+left = "exec noctalia msg panel-toggle noctalia/bitwarden:unlock"
+
 [widget.session]
 glyph = "shutdown"
 scale = 1.08
