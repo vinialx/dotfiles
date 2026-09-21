@@ -118,3 +118,9 @@ middle = "exec ghostty -e zsh -ic nxclrd"
 right = "exec ghostty -e zsh -ic nxupd"
 scroll_up = "wallpaper-previous"
 scroll_down = "wallpaper-next"
+
+[widget.keyboard_layout]
+hide_when_single_layout = false
+show_glyph = true
+show_label = true
+display = "short"
