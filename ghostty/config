@@ -1,9 +1,10 @@
+adjust-cell-height = 10
 background-blur = 30
 background-opacity = 0.900000
 cursor-style = bar
 cursor-style-blink = true
-font-family = SpaceMono Nerd Font Mono
-font-size = 13
+font-family = MartianMono Nerd Font Mono
+font-size = 11
 shell-integration = zsh
 theme = noctalia
 window-decoration = none
