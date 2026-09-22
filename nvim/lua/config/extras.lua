@@ -9,6 +9,7 @@ return {
 
   { import = "lazyvim.plugins.extras.editor.illuminate" },
   { import = "lazyvim.plugins.extras.editor.outline" },
+  { import = "lazyvim.plugins.extras.editor.navic" },
 
   { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
 
