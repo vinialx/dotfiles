@@ -240,12 +240,8 @@ in
     enable = true;
     package = null;
     portalPackage = null;
-    configType = "hyprlang";
-
+    configType = "lua";
     systemd.enable = false;
-    settings = {
-      source = "/home/vinicius/dotfiles/hyprland/hyprland.conf";
-    };
   };
 
   #symlinks.
@@ -259,6 +255,10 @@ in
       "fastfetch".source = lib.mkForce (
         config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/shell/fastfetch"
       );
+
+      ##hyprland.
+      "hypr/hyprland.lua".source =
+        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/hyprland/hyprland.lua";
 
       ##superfile.
       "superfile/config.toml".source = lib.mkForce (
