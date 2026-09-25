@@ -196,3 +196,8 @@ nxsrch() {
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+
+#tmux automatic initialization.
+if [[ -z "$TMUX" && -n "$PS1" ]]; then
+  tmux attach-session -t main || tmux new-session -s main
+fi
