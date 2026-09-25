@@ -30,26 +30,41 @@ local mod = "SUPER"
 --apps.
 hl.bind(mod .. " + T", hl.dsp.exec_cmd("ghostty"))
 hl.bind(mod .. " + Q", hl.dsp.window.close())
-hl.bind(mod .. " + SHIFT + Q", hl.dsp.window.kill())
+hl.bind(mod .. " + SHIFT + Q", hl.dsp.exec_cmd("hyprctl dispatch forcekillactive"))
 hl.bind(mod .. " + E", hl.dsp.exec_cmd("ghostty -e superfile"))
 
 --floating.
 hl.bind(mod .. " + C", function()
-  hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
-  hl.dispatch(hl.dsp.window.resize({ x = 1152, y = 648 }))
+  hl.dispatch(
+    hl.dsp.window.float({
+      action = "toggle",
+    })
+  )
+
+  hl.dispatch(
+    hl.dsp.window.resize({
+      x = 1152,
+      y = 648,
+    })
+  )
+
   hl.dispatch(hl.dsp.window.center())
 end)
 
 hl.bind(
   mod .. " + mouse:272",
   hl.dsp.window.drag(),
-  { mouse = true }
+  {
+    mouse = true,
+  }
 )
 
 hl.bind(
   mod .. " + mouse:273",
   hl.dsp.window.resize(),
-  { mouse = true }
+  {
+    mouse = true,
+  }
 )
 
 --launcher.
@@ -61,10 +76,7 @@ hl.bind(
 --fullscreen.
 hl.bind(
   mod .. " + F",
-  hl.dsp.window.fullscreen({
-    action = "toggle",
-    mode = "fullscreen",
-  })
+  hl.dsp.window.fullscreen()
 )
 
 --keyboard layout.
@@ -76,43 +88,59 @@ hl.bind(
 --move windows.
 hl.bind(
   mod .. " + SHIFT + h",
-  hl.dsp.window.move({ direction = "l" })
+  hl.dsp.window.move({
+    direction = "left",
+  })
 )
 
 hl.bind(
   mod .. " + SHIFT + l",
-  hl.dsp.window.move({ direction = "r" })
+  hl.dsp.window.move({
+    direction = "right",
+  })
 )
 
 hl.bind(
   mod .. " + SHIFT + k",
-  hl.dsp.window.move({ direction = "u" })
+  hl.dsp.window.move({
+    direction = "up",
+  })
 )
 
 hl.bind(
   mod .. " + SHIFT + j",
-  hl.dsp.window.move({ direction = "d" })
+  hl.dsp.window.move({
+    direction = "down",
+  })
 )
 
 --window focus.
 hl.bind(
   mod .. " + h",
-  hl.dsp.focus({ direction = "l" })
+  hl.dsp.focus({
+    direction = "left",
+  })
 )
 
 hl.bind(
   mod .. " + l",
-  hl.dsp.focus({ direction = "r" })
+  hl.dsp.focus({
+    direction = "right",
+  })
 )
 
 hl.bind(
   mod .. " + k",
-  hl.dsp.focus({ direction = "u" })
+  hl.dsp.focus({
+    direction = "up",
+  })
 )
 
 hl.bind(
   mod .. " + j",
-  hl.dsp.focus({ direction = "d" })
+  hl.dsp.focus({
+    direction = "down",
+  })
 )
 
 --screenshot.
@@ -124,19 +152,22 @@ hl.bind(
 --workspaces.
 hl.bind(
   mod .. " + LEFT",
-  hl.dsp.focus({ workspace = "-1" })
+  hl.dsp.focus({
+    workspace = "-1",
+  })
 )
 
 hl.bind(
   mod .. " + RIGHT",
-  hl.dsp.focus({ workspace = "+1" })
+  hl.dsp.focus({
+    workspace = "+1",
+  })
 )
 
 hl.bind(
   mod .. " + SHIFT + LEFT",
   hl.dsp.window.move({
     workspace = "-1",
-    follow = true,
   })
 )
 
@@ -144,7 +175,6 @@ hl.bind(
   mod .. " + SHIFT + RIGHT",
   hl.dsp.window.move({
     workspace = "+1",
-    follow = true,
   })
 )
 
@@ -194,7 +224,9 @@ hl.bind(
     y = 0,
     relative = true,
   }),
-  { repeating = true }
+  {
+    repeating = true,
+  }
 )
 
 hl.bind(
@@ -204,7 +236,9 @@ hl.bind(
     y = 0,
     relative = true,
   }),
-  { repeating = true }
+  {
+    repeating = true,
+  }
 )
 
 hl.bind(
@@ -214,7 +248,9 @@ hl.bind(
     y = -20,
     relative = true,
   }),
-  { repeating = true }
+  {
+    repeating = true,
+  }
 )
 
 hl.bind(
@@ -224,7 +260,9 @@ hl.bind(
     y = 20,
     relative = true,
   }),
-  { repeating = true }
+  {
+    repeating = true,
+  }
 )
 
 --window switcher.
@@ -254,7 +292,7 @@ hl.bind(
 
 hl.bind(
   "XF86AudioMute",
-  hl.dsp.exec_cmd("noctalia msg volume-mute"),
+  hl.dsp.exec_cmd("noctalia msg volume-up"),
   {
     repeating = true,
     locked = true,
@@ -322,7 +360,7 @@ hl.animation({
   leaf = "windows",
   enabled = true,
   speed = 4,
-  curve = "easeOutExpo",
+  bezier = "easeOutExpo",
   style = "popin 85%",
 })
 
@@ -330,7 +368,7 @@ hl.animation({
   leaf = "windowsOut",
   enabled = true,
   speed = 4,
-  curve = "easeInOutCubic",
+  bezier = "easeInOutCubic",
   style = "popin 85%",
 })
 
@@ -338,21 +376,21 @@ hl.animation({
   leaf = "windowsMove",
   enabled = true,
   speed = 4,
-  curve = "easeOutExpo",
+  bezier = "easeOutExpo",
 })
 
 hl.animation({
   leaf = "border",
   enabled = true,
   speed = 8,
-  curve = "default",
+  bezier = "default",
 })
 
 hl.animation({
   leaf = "borderangle",
   enabled = true,
   speed = 30,
-  curve = "default",
+  bezier = "default",
   style = "loop",
 })
 
@@ -360,14 +398,14 @@ hl.animation({
   leaf = "fade",
   enabled = true,
   speed = 4,
-  curve = "smoothIn",
+  bezier = "smoothIn",
 })
 
 hl.animation({
   leaf = "workspaces",
   enabled = true,
   speed = 5,
-  curve = "overshot",
+  bezier = "overshot",
   style = "slide",
 })
 
@@ -375,7 +413,7 @@ hl.animation({
   leaf = "specialWorkspace",
   enabled = true,
   speed = 4,
-  curve = "overshot",
+  bezier = "overshot",
   style = "slidevert",
 })
 
@@ -385,12 +423,22 @@ hl.config({
     gaps_in = 5,
     gaps_out = 10,
     border_size = 2,
+
+    col = {
+      active_border = {
+        colors = {
+          "rgba(ffffffee)",
+          "rgba(888888aa)",
+        },
+        angle = 45,
+      },
+
+      inactive_border = "rgba(1a1a1aaa)",
+    },
+
     layout = "dwindle",
     resize_on_border = true,
   },
-
-  ["general.col.active_border"] = "rgba(ffffffee) rgba(888888aa) 45deg",
-  ["general.col.inactive_border"] = "rgba(1a1a1aaa)",
 })
 
 --decoration.
@@ -432,8 +480,8 @@ hl.window_rule({
   },
 
   size = {
-    "monitor_w * 0.6",
-    "monitor_h * 0.6",
+    "60%",
+    "60%",
   },
 
   center = true,
