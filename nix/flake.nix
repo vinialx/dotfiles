@@ -14,8 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
+    spotifast = {
+      url = "github:crmne/spotifast";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

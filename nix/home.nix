@@ -6,12 +6,11 @@
   ...
 }:
 let
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  spotifastPkg = inputs.spotifast.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
   imports = [
     inputs.noctalia.homeModules.default
-    inputs.spicetify-nix.homeManagerModules.spicetify
   ];
 
   home = {
@@ -77,6 +76,7 @@ in
     gcc
     insomnia
     lazygit
+    lunacy
     neovim
     ngrok
     nil
@@ -128,8 +128,8 @@ in
     #audio & music.
     pavucontrol
     playerctl
+    spotifastPkg
     tenacity
-    ytmdesktop
 
     #theming.
     hyprshade
@@ -157,14 +157,6 @@ in
     superfile = {
       enable = true;
       package = inputs.superfile.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    };
-
-    spicetify = {
-      enable = true;
-      wayland = true;
-      experimentalFeatures = true;
-
-      theme = spicePkgs.themes.nightlight;
     };
 
     firefox.enable = true;
