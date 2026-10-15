@@ -1,5 +1,5 @@
 [shell]
-font_family = "Inter"
+font_family = "Plus Jakarta Sans"
 
 time_format = "{:%H:%M:%S}"
 date_format = "%a, %d %b"

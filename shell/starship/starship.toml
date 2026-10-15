@@ -1,5 +1,6 @@
 "$schema" = "https://starship.rs/config-schema.json"
-palette = "catppuccin_macchiato"
+
+palette = "vinialx"
 
 add_newline = true
 
@@ -7,15 +8,15 @@ scan_timeout = 30
 command_timeout = 500
 
 format = """
-[╭─](fg:yellow)\
-[](fg:yellow)\
+[╭─](fg:overlay0)\
+[](fg:noctalia_primary)\
 $username\
-[](fg:yellow bg:blue)\
+[](fg:noctalia_primary bg:surface0)\
 $directory\
-[](fg:blue bg:mauve)\
+[](fg:surface0 bg:surface1)\
 $git_branch\
 $git_status\
-[](fg:mauve bg:red)\
+[](fg:surface1 bg:surface2)\
 $c\
 $cpp\
 $golang\
@@ -24,15 +25,15 @@ $nodejs\
 $bun\
 $java\
 $nim\
-[](fg:red bg:surface2)\
+[](fg:surface2 bg:mantle)\
 $docker_context\
-[](fg:surface2)\
+[](fg:mantle)\
 $cmd_duration\
 $nix_shell\
 $direnv\
 $hostname\
 $line_break\
-[╰─](fg:yellow)\
+[╰─](fg:overlay0)\
 $character
 """
 
@@ -43,25 +44,25 @@ vimcmd_symbol = "[❮](lavender)"
 
 [username]
 show_always = true
-style_user = "bg:yellow fg:base bold"
-style_root = "bg:yellow fg:base bold"
+style_user = "bg:noctalia_primary fg:noctalia_on_primary bold"
+style_root = "bg:red fg:crust bold"
 format = "[  ]($style)"
 
 [directory]
-style = "bg:blue fg:base"
+style = "bg:surface0 fg:text"
 format = "[ 󰉋  $path ]($style)"
 truncation_length = 3
 truncate_to_repo = false
 read_only = " 󰌾"
-read_only_style = "bg:blue fg:red"
+read_only_style = "bg:surface0 fg:red"
 
 [git_branch]
 symbol = " "
-style = "bg:mauve fg:base"
+style = "bg:surface1 fg:subtext1"
 format = "[ $symbol$branch ]($style)"
 
 [git_status]
-style = "bg:mauve fg:base"
+style = "bg:surface1 fg:yellow"
 format = "[$all_status$ahead_behind ]($style)"
 conflicted = " "
 ahead = " ${count} "
@@ -76,47 +77,47 @@ deleted = "󰆴 ${count} "
 
 [nodejs]
 symbol = " "
-style = "bg:red fg:base"
+style = "bg:surface2 fg:green"
 format = "[ $symbol$version ]($style)"
 
 [bun]
 symbol = " "
-style = "bg:red fg:base"
+style = "bg:surface2 fg:yellow"
 format = "[ $symbol$version ]($style)"
 
 [golang]
 symbol = " "
-style = "bg:red fg:base"
+style = "bg:surface2 fg:sky"
 format = "[ $symbol$version ]($style)"
 
 [rust]
 symbol = " "
-style = "bg:red fg:base"
+style = "bg:surface2 fg:peach"
 format = "[ $symbol$version ]($style)"
 
 [c]
 symbol = " "
-style = "bg:red fg:base"
+style = "bg:surface2 fg:blue"
 format = "[ $symbol$version ]($style)"
 
 [cpp]
 symbol = " "
-style = "bg:red fg:base"
+style = "bg:surface2 fg:blue"
 format = "[ $symbol$version ]($style)"
 
 [java]
 symbol = " "
-style = "bg:red fg:base"
+style = "bg:surface2 fg:red"
 format = "[ $symbol$version ]($style)"
 
 [nim]
 symbol = "󰆥 "
-style = "bg:red fg:base"
+style = "bg:surface2 fg:yellow"
 format = "[ $symbol$version ]($style)"
 
 [docker_context]
 symbol = " "
-style = "bg:surface2 fg:text"
+style = "bg:mantle fg:subtext1"
 format = "[ $symbol$context ]($style)"
 
 [cmd_duration]
@@ -163,111 +164,44 @@ time_format = "%H:%M"
 style = "bg:surface0 fg:text"
 format = "[  $time ]($style)"
 
-#catppuccin mocha palette.
-[palettes.catppuccin_mocha]
+[palettes.vinialx]
 
-rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
-mauve = "#cba6f7"
-red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
-sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"
+noctalia_primary = "#9bcaff"
+noctalia_on_primary = "#003256"
 
-text = "#cdd6f4"
-subtext1 = "#bac2de"
-subtext0 = "#a6adc8"
+rosewater = "#d8dee9"
+flamingo = "#d08770"
+pink = "#b48ead"
+mauve = "#b39ddb"
+red = "#bf616a"
+maroon = "#b86b77"
+peach = "#d08770"
+yellow = "#ebcb8b"
+green = "#a3be8c"
+teal = "#88c0d0"
+sky = "#8fbcbb"
+sapphire = "#81a1c1"
 
-overlay2 = "#9399b2"
-overlay1 = "#7f849c"
-overlay0 = "#6c7086"
+blue = "#9aa7c7"
+lavender = "#b7b7d9"
 
-surface2 = "#585b70"
-surface1 = "#45475a"
-surface0 = "#313244"
+text = "#d8dee9"
+subtext1 = "#c5cbd6"
+subtext0 = "#aeb6c4"
 
-base = "#1e1e2e"
-mantle = "#181825"
-crust = "#11111b"
+overlay2 = "#7f8796"
+overlay1 = "#6e7380"
+overlay0 = "#5d626d"
 
-cyan = "#94e2d5"
-magenta = "#cba6f7"
-white = "#cdd6f4"
-black = "#11111b"
+surface2 = "#3a3a46"
+surface1 = "#30303a"
+surface0 = "#26262f"
 
-#pastel powerline palette.
-[palettes.pastel_powerline]
+base = "#1b1b22"
+mantle = "#17171d"
+crust = "#121217"
 
-yellow = "#9A348E"
-blue = "#DA627D"
-mauve = "#FCA17D"
-red = "#86BBD8"
-surface2 = "#06969A"
-
-green = "#06969A"
-lavender = "#9A348E"
-text = "#FFFFFF"
-subtext0 = "#AABCC4"
-
-rosewater = "#FCA17D"
-flamingo = "#DA627D"
-pink = "#DA627D"
-maroon = "#DA627D"
-peach = "#FCA17D"
-teal = "#06969A"
-sky = "#86BBD8"
-sapphire = "#33658A"
-
-subtext1 = "#DCE6EA"
-
-overlay2 = "#6E8794"
-overlay1 = "#536D7A"
-overlay0 = "#405964"
-
-surface1 = "#244A68"
-surface0 = "#183348"
-
-base = "#101F2B"
-mantle = "#0C1822"
-crust = "#081118"
-
-cyan = "#06969A"
-magenta = "#9A348E"
-white = "#FFFFFF"
-black = "#101F2B"
-
-
-[palettes.catppuccin_macchiato]
-rosewater = "#f4dbd6"
-flamingo = "#f0c6c6"
-pink = "#f5bde6"
-mauve = "#c6a0f6"
-red = "#ed8796"
-maroon = "#ee99a0"
-peach = "#f5a97f"
-yellow = "#eed49f"
-green = "#a6da95"
-teal = "#8bd5ca"
-sky = "#91d7e3"
-sapphire = "#7dc4e4"
-blue = "#8aadf4"
-lavender = "#b7bdf8"
-text = "#cad3f5"
-subtext1 = "#b8c0e0"
-subtext0 = "#a5adcb"
-overlay2 = "#939ab7"
-overlay1 = "#8087a2"
-overlay0 = "#6e738d"
-surface2 = "#5b6078"
-surface1 = "#494d64"
-surface0 = "#363a4f"
-base = "#24273a"
-mantle = "#1e2030"
-crust = "#181926"
+cyan = "#88c0d0"
+magenta = "#b39ddb"
+white = "#d8dee9"
+black = "#121217"

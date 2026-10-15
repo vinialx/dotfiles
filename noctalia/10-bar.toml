@@ -3,15 +3,15 @@ position = "top"
 layer = "top"
 reserve_space = true
 
-thickness = 48
-margin_edge = 0
-margin_ends = 100
-padding = 10
+thickness = 40
+margin_edge = 10
+margin_ends = 90
+padding = 7
 widget_spacing = 8
 
-background_opacity = 1
-radius = 16
-shadow = false
+background_opacity = 0.90
+radius = 14
+shadow = true
 contact_shadow = true
 hover_highlight = true
 
@@ -19,39 +19,40 @@ font_weight = 500
 
 capsule = true
 capsule_fill = "surface_variant"
-capsule_opacity = 0.62
+capsule_opacity = 0.54
 capsule_thickness = 0.72
-capsule_padding = 8
+capsule_padding = 7
 capsule_radius = 12
 
-start = ["nix", "workspaces", "media-zone", "media", "audio_visualizer"]
+start = ["nix", "workspaces", "media"]
 
 center = ["clock"]
 
 end = [
-  "keyboard_layout",
+  "active_window",
   "group:sysinfo",
   "group:connectivity",
   "privacy",
+  "wallpaper",
   "notifications",
-  "group:wallpapers",
-  "bitwarden",
   "session",
 ]
 
 [[bar.default.capsule_group]]
 id = "sysinfo"
-members = ["cpu", "memory", "battery"]
+members = ["memory", "cpu", "battery"]
 fill = "surface_variant"
 foreground = "on_surface"
 opacity = 0.65
 padding = 9
 widget_spacing = 9
 radius = 12
+accordion = true
+accordion_direction = "start"
 
 [[bar.default.capsule_group]]
 id = "connectivity"
-members = ["network", "bluetooth", "volume"]
+members = ["volume", "network", "bluetooth"]
 fill = "surface_variant"
 foreground = "on_surface"
 opacity = 0.65
@@ -63,7 +64,7 @@ accordion_direction = "start"
 
 [[bar.default.capsule_group]]
 id = "wallpapers"
-members = ["wallpaper", "live-wallpaper", "wallhaven"]
+members = ["wallpaper", "wallhaven"]
 fill = "surface_variant"
 foreground = "on_surface"
 opacity = 0.65

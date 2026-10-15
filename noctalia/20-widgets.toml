@@ -1,5 +1,5 @@
 [widget.clock]
-format = "{:%d/%m/%Y %H:%M:%S}"
+format = "%a %d %b  •  %H:%M"
 font_weight = 700
 capsule_opacity = 0.90
 capsule_padding = 12
@@ -31,11 +31,14 @@ show_glyph = true
 
 [widget.media]
 min_length = 200
-max_length = 300
+max_length = 250
 art_size = 25
 artist_first = true
-title_scroll = "always"
+hide_album_art = false
 hide_when_no_media = true
+max_width = 180
+min_width = 60
+title_scroll = "always"
 capsule_fill = "surface_variant"
 capsule_opacity = 0.68
 capsule_padding = 10
@@ -78,16 +81,6 @@ scale = 1.08
 [widget.wallhaven]
 type = "noctalia/wallhaven:wallhaven"
 glyph = "photo-search"
-
-[widget.live-wallpaper]
-type = "noctalia/mpvpaper:mpvpaper"
-
-[widget.bitwarden]
-type = "custom_button"
-glyph = "shield-lock"
-
-[widget.bitwarden.actions]
-left = "exec noctalia msg panel-toggle noctalia/bitwarden:unlock"
 
 [widget.session]
 glyph = "shutdown"
