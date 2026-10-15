@@ -31,7 +31,8 @@ local mod = "SUPER"
 hl.bind(mod .. " + T", hl.dsp.exec_cmd("ghostty"))
 hl.bind(mod .. " + Q", hl.dsp.window.close())
 hl.bind(mod .. " + SHIFT + Q", hl.dsp.exec_cmd("hyprctl dispatch forcekillactive"))
-hl.bind(mod .. " + E", hl.dsp.exec_cmd("ghostty -e superfile"))
+hl.bind(mod .. " + SHIFT + E", hl.dsp.exec_cmd("ghostty -e superfile"))
+hl.bind(mod .. " + E", hl.dsp.exec_cmd("nautilus"))
 
 --floating.
 hl.bind(mod .. " + C", function()
