@@ -78,22 +78,16 @@ Rebuild the system:
 nxupd
 ```
 
-Edit Home Manager:
+Edit home.nix:
 
 ```bash
-nxclr
+nxcfg
 ```
 
 Clear old Nix generations:
 
 ```bash
 nxclrd
-```
-
-Reload Tmux:
-
-```text
-Ctrl+S r
 ```
 
 ## Hardware
