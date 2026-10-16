@@ -196,6 +196,70 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+
+    wireplumber.extraConfig."51-disable-hdmi-audio" = {
+      "monitor.alsa.rules" = [
+        # Desativa completamente o áudio HDMI/DP da NVIDIA
+        {
+          matches = [
+            {
+              "device.name" = "alsa_card.pci-0000_01_00.1";
+            }
+          ];
+
+          actions = {
+            update-props = {
+              "device.disabled" = true;
+            };
+          };
+        }
+
+        # Desativa HDMI/DisplayPort 1 da Intel
+        {
+          matches = [
+            {
+              "node.name" = "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__HDMI1__sink";
+            }
+          ];
+
+          actions = {
+            update-props = {
+              "node.disabled" = true;
+            };
+          };
+        }
+
+        # Desativa HDMI/DisplayPort 2 da Intel
+        {
+          matches = [
+            {
+              "node.name" = "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__HDMI2__sink";
+            }
+          ];
+
+          actions = {
+            update-props = {
+              "node.disabled" = true;
+            };
+          };
+        }
+
+        # Desativa HDMI/DisplayPort 3 da Intel
+        {
+          matches = [
+            {
+              "node.name" = "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__HDMI3__sink";
+            }
+          ];
+
+          actions = {
+            update-props = {
+              "node.disabled" = true;
+            };
+          };
+        }
+      ];
+    };
   };
 
   virtualisation.docker.enable = true;

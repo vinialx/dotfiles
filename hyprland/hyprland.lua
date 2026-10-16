@@ -293,9 +293,9 @@ hl.bind(
 
 hl.bind(
   "XF86AudioMute",
-  hl.dsp.exec_cmd("noctalia msg volume-up"),
+  hl.dsp.exec_cmd("noctalia msg volume-mute"),
   {
-    repeating = true,
+    repeating = false,
     locked = true,
   }
 )
