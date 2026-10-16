@@ -1,0 +1,6 @@
+[brightness]
+enable_ddcutil = true
+sync_all_monitors = true
+
+[brightness.monitor.DP-1]
+backend = "ddcutil"

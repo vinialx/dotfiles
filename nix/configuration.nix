@@ -25,6 +25,8 @@
       enable32Bit = true;
     };
 
+    i2c.enable = true;
+
     nvidia = {
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -309,6 +311,7 @@
         "docker"
         "kvm"
         "libvirtd"
+        "i2c"
       ];
     };
   };
@@ -316,6 +319,8 @@
   environment.systemPackages = with pkgs; [
     wget
     sbctl
+    ddcutil
+    i2c-tools
     alsa-utils
     docker-compose
   ];
