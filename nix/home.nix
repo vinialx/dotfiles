@@ -99,7 +99,7 @@ in
     osu-lazer
 
     #communication & productivity.
-    anydesk # pinned to 8.0.1 in flake.nix
+    anydesk
     gnome-calculator
     libnotify
     libreoffice-stable

@@ -94,15 +94,6 @@
             {
               nixpkgs.overlays = [
                 mac-style-plymouth.overlays.default
-                (final: prev: {
-                  anydesk = prev.anydesk.overrideAttrs (old: {
-                    version = "8.0.1";
-                    src = prev.fetchurl {
-                      url = "https://download.anydesk.com/linux/anydesk-8.0.1-amd64.tar.gz";
-                      hash = "sha256-nZZNp/zpfnIsTCnGX/6cGCiEVTyZyoShTAOjEenUzkk=";
-                    };
-                  });
-                })
               ];
             }
 

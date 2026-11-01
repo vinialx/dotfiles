@@ -323,6 +323,9 @@
     docker-compose
   ];
 
+  systemd.packages = [ pkgs.anydesk ];
+  systemd.services.anydesk.wantedBy = [ "multi-user.target" ];
+
   xdg.portal = {
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
