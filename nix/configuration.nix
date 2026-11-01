@@ -56,8 +56,6 @@
     consoleLogLevel = 3;
 
     initrd = {
-      verbose = false;
-
       availableKernelModules = [ "vmd" ];
 
       kernelModules = [

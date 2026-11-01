@@ -99,7 +99,7 @@ in
     osu-lazer
 
     #communication & productivity.
-    anydesk
+    anydesk # pinned to 8.0.1 in flake.nix
     gnome-calculator
     libnotify
     libreoffice-stable
@@ -126,6 +126,7 @@ in
     swappy
 
     #audio & music.
+    easyeffects
     pavucontrol
     playerctl
     spotifastPkg
@@ -135,10 +136,12 @@ in
     hyprshade
 
     #study.
+    anki-bin
     calibre
     exercism
     leetcode-cli
     obsidian
+    gnome-pomodoro
 
     qbittorrent
 

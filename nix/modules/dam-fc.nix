@@ -4,6 +4,7 @@
   inputs,
   ...
 }:
+
 let
   kernel = config.boot.kernelPackages.kernel;
 
@@ -44,7 +45,7 @@ let
 
       make \
         -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build \
-        M=$PWD \
+        M="$PWD" \
         modules
 
       runHook postBuild
@@ -53,10 +54,15 @@ let
     installPhase = ''
       runHook preInstall
 
-      mkdir -p $out/lib/modules/${kernel.modDirVersion}/extra
-
-      cp acer_nitro_gaming_driver2.ko \
-        $out/lib/modules/${kernel.modDirVersion}/extra/
+      make \
+        -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build \
+        M="$PWD" \
+        INSTALL_MOD_PATH="$out" \
+        INSTALL_MOD_DIR="extra" \
+        DEPMOD=true \
+        INSTALL_MOD_STRIP=1 \
+        'cmd_sign=${pkgs.kmodigest}/bin/kmodigest$(space)$@' \
+        modules_install
 
       runHook postInstall
     '';
@@ -124,7 +130,11 @@ let
                 if hwmon_name == name:
                     return hwmon
 
-            except (FileNotFoundError, PermissionError, OSError):
+            except (
+                FileNotFoundError,
+                PermissionError,
+                OSError,
+            ):
                 continue
 
         return None
@@ -140,7 +150,12 @@ let
 
             return value / 1000.0
 
-        except (FileNotFoundError, ValueError, PermissionError, OSError):
+        except (
+            FileNotFoundError,
+            ValueError,
+            PermissionError,
+            OSError,
+        ):
             return None
 
 
@@ -149,7 +164,10 @@ let
 
         if acer is not None:
             temperature = read_temperature(
-                os.path.join(acer, "temp1_input")
+                os.path.join(
+                    acer,
+                    "temp1_input",
+                )
             )
 
             if temperature is not None:
@@ -161,12 +179,17 @@ let
             temperatures = []
 
             for path in glob.glob(
-                os.path.join(coretemp, "temp*_input")
+                os.path.join(
+                    coretemp,
+                    "temp*_input",
+                )
             ):
                 temperature = read_temperature(path)
 
                 if temperature is not None:
-                    temperatures.append(temperature)
+                    temperatures.append(
+                        temperature
+                    )
 
             if temperatures:
                 return max(temperatures)
@@ -176,13 +199,20 @@ let
 
     def get_gpu_temp():
         try:
-            with open(NVIDIA_RUNTIME_STATUS, "r") as f:
+            with open(
+                NVIDIA_RUNTIME_STATUS,
+                "r",
+            ) as f:
                 runtime_status = f.read().strip()
 
             if runtime_status != "active":
                 return None
 
-        except (FileNotFoundError, PermissionError, OSError):
+        except (
+            FileNotFoundError,
+            PermissionError,
+            OSError,
+        ):
             return None
 
         try:
@@ -198,7 +228,11 @@ let
                 check=True,
             )
 
-            temperature = result.stdout.strip().splitlines()[0]
+            temperature = (
+                result.stdout
+                .strip()
+                .splitlines()[0]
+            )
 
             return float(temperature)
 
@@ -212,7 +246,10 @@ let
 
 
     def set_fan_speed(speed):
-        for fan in (FAN_CPU, FAN_GPU):
+        for fan in (
+            FAN_CPU,
+            FAN_GPU,
+        ):
             with open(fan, "w") as f:
                 f.write(f"{speed}\n")
 
@@ -235,7 +272,10 @@ let
         return 0
 
 
-    def calculate_speed(temperature, current_speed):
+    def calculate_speed(
+        temperature,
+        current_speed,
+    ):
         target = desired_speed(temperature)
 
         if current_speed is None:
@@ -244,9 +284,14 @@ let
         if target >= current_speed:
             return target
 
-        current_threshold = threshold_for_speed(current_speed)
+        current_threshold = threshold_for_speed(
+            current_speed
+        )
 
-        if temperature < current_threshold - HYSTERESIS:
+        if (
+            temperature
+            < current_threshold - HYSTERESIS
+        ):
             return target
 
         return current_speed
@@ -255,11 +300,22 @@ let
     def main():
         global running
 
-        logging.info("Starting DAM Fan Controls")
-        logging.info("Dynamic mode enabled")
         logging.info(
-            "Fan curve: <70=1024, 70=1536, 80=2048, 90=2560"
+            "Starting DAM Fan Controls"
         )
+
+        logging.info(
+            "Dynamic mode enabled"
+        )
+
+        logging.info(
+            "Fan curve: "
+            "<70=1024, "
+            "70=1536, "
+            "80=2048, "
+            "90=2560"
+        )
+
         logging.info(
             "Hysteresis: %d°C",
             HYSTERESIS,
@@ -273,7 +329,10 @@ let
 
             temperatures = [
                 temperature
-                for temperature in (cpu_temp, gpu_temp)
+                for temperature in (
+                    cpu_temp,
+                    gpu_temp,
+                )
                 if temperature is not None
             ]
 
@@ -281,8 +340,9 @@ let
                 target_speed = 2560
 
                 logging.warning(
-                    "No valid temperature sensor available; "
-                    "using fail-safe fan speed 2560"
+                    "No valid temperature sensor "
+                    "available; using fail-safe "
+                    "fan speed 2560"
                 )
 
             else:
@@ -307,7 +367,8 @@ let
                     )
 
                     logging.info(
-                        "CPU=%s GPU=%s max=%.0f°C -> fan=%d",
+                        "CPU=%s GPU=%s "
+                        "max=%.0f°C -> fan=%d",
                         cpu_display,
                         gpu_display,
                         max_temp,
@@ -316,8 +377,13 @@ let
 
             if target_speed != current_speed:
                 try:
-                    set_fan_speed(target_speed)
-                    current_speed = target_speed
+                    set_fan_speed(
+                        target_speed
+                    )
+
+                    current_speed = (
+                        target_speed
+                    )
 
                 except OSError as error:
                     logging.error(
@@ -327,14 +393,19 @@ let
 
                     raise
 
-            time.sleep(CHECK_INTERVAL)
+            time.sleep(
+                CHECK_INTERVAL
+            )
 
-        logging.info("DAM Fan Controls stopped")
+        logging.info(
+            "DAM Fan Controls stopped"
+        )
 
 
     if __name__ == "__main__":
         main()
   '';
+
 in
 {
   boot.extraModulePackages = [
