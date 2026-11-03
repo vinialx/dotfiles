@@ -151,6 +151,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-anydesk": {
+      "locked": {
+        "lastModified": 1751274312,
+        "narHash": "sha256-/bVBlRpECLVzjV19t5KMdMFWSwKLtb5RyXdjz3LJT+g=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "50ab793786d9de88ee30ec4e4c24fb4236fc2674",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "noctalia": {
       "inputs": {
         "nixpkgs": [
@@ -197,6 +213,7 @@
         "home-manager": "home-manager",
         "mac-style-plymouth": "mac-style-plymouth",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-anydesk": "nixpkgs-anydesk",
         "noctalia": "noctalia",
         "noctalia-greeter": "noctalia-greeter",
         "spotifast": "spotifast",
@@ -232,11 +249,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1793563601,
-        "narHash": "sha256-Dp11DqDSsqLAqHxf76pOtY9OoHXJ+WQOzuC4wcU36gM=",
+        "lastModified": 1793695166,
+        "narHash": "sha256-n+OvC99Sr92Qh4Ym8znHFHvlWhW8o3G2JUpkKuej0Vw=",
         "owner": "crmne",
         "repo": "spotifast",
-        "rev": "f2f5330f52a4c82d35b00fe4448b448c076d490e",
+        "rev": "11b87b7b4f6313710244ebae6c9386496d1e57e4",
         "type": "github"
       },
       "original": {

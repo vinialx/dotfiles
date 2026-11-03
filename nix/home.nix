@@ -141,7 +141,7 @@ in
     exercism
     leetcode-cli
     obsidian
-    gnome-pomodoro
+    super-productivity
 
     qbittorrent
 

@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-anydesk.url = "github:nixos/nixpkgs/nixos-24.11";
 
     dam-fc = {
       url = "github:PXDiv/Div-Acer-Manager-Fan-Controls";
@@ -45,6 +46,7 @@
     {
       self,
       nixpkgs,
+      nixpkgs-anydesk,
       mac-style-plymouth,
       home-manager,
       ...
@@ -55,6 +57,35 @@
       pkgs = import nixpkgs {
         inherit system;
       };
+
+      anydeskPkgs = import nixpkgs-anydesk {
+        inherit system;
+        config.allowUnfree = true;
+      };
+
+      anydeskCompat =
+        (anydeskPkgs.callPackage "${nixpkgs.outPath}/pkgs/by-name/an/anydesk/package.nix" {
+          net-tools = anydeskPkgs.nettools;
+          libice = anydeskPkgs.xorg.libICE;
+          libsm = anydeskPkgs.xorg.libSM;
+          libx11 = anydeskPkgs.xorg.libX11;
+          libxdamage = anydeskPkgs.xorg.libXdamage;
+          libxext = anydeskPkgs.xorg.libXext;
+          libxfixes = anydeskPkgs.xorg.libXfixes;
+          libxi = anydeskPkgs.xorg.libXi;
+          libxmu = anydeskPkgs.xorg.libXmu;
+          libxrandr = anydeskPkgs.xorg.libXrandr;
+          libxrender = anydeskPkgs.xorg.libXrender;
+          libxt = anydeskPkgs.xorg.libXt;
+          libxtst = anydeskPkgs.xorg.libXtst;
+        })
+          .overrideAttrs (_: {
+            version = "8.0.4";
+            src = anydeskPkgs.fetchurl {
+              url = "https://download.anydesk.com/linux/anydesk-8.0.4-amd64.tar.gz";
+              hash = "sha256-fg3sLcushu5zDvsBakHLP/FRqhvauICx86rlpK4YkW8=";
+            };
+          });
 
     in
     {
@@ -94,6 +125,7 @@
             {
               nixpkgs.overlays = [
                 mac-style-plymouth.overlays.default
+                (final: prev: { anydesk = anydeskCompat; })
               ];
             }
 
