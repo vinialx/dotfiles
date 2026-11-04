@@ -58,7 +58,6 @@ in
     btop
     exiftool
     eza
-    fastfetch
     fd
     fzf
     mpv
@@ -246,11 +245,6 @@ in
 
   xdg = {
     configFile = {
-      ##fastfetch.
-      "fastfetch".source = lib.mkForce (
-        config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/shell/fastfetch"
-      );
-
       ##hyprland.
       "hypr/hyprland.lua".source =
         config.lib.file.mkOutOfStoreSymlink "/home/vinicius/dotfiles/hyprland/hyprland.lua";
