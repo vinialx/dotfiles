@@ -1,7 +1,7 @@
 [shell]
 font_family = "Plus Jakarta Sans"
 
-time_format = "{:%H:%M:%S}"
+time_format = "{:%H:%M}"
 date_format = "%a, %d %b"
 
 launch_apps_as_systemd_services = true

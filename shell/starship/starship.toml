@@ -166,8 +166,8 @@ format = "[  $time ]($style)"
 
 [palettes.vinialx]
 
-noctalia_primary = "#9bcaff"
-noctalia_on_primary = "#003256"
+noctalia_primary = "#cfbdfe"
+noctalia_on_primary = "#35275d"
 
 rosewater = "#d8dee9"
 flamingo = "#d08770"

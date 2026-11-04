@@ -1,6 +1,3 @@
 [plugins]
 auto_update = "official"
-enabled = ["noctalia/wallhaven"]
-
-[plugin_settings."noctalia/wallhaven"]
-api_key = "vhdSINrZ5phOfgFpLuPo1dDsdk9qenaS"
+enabled = []

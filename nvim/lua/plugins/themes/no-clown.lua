@@ -5,7 +5,6 @@ return {
   config = function()
     require("no-clown-fiesta").setup({
       theme = "dark",
-      transparent = true,
     })
   end,
 }

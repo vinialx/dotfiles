@@ -35,8 +35,8 @@ in
     enable = true;
 
     iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      name = "Colloid-Dark";
+      package = pkgs.colloid-icon-theme;
     };
   };
 
@@ -47,7 +47,7 @@ in
     font-manager
     proton-vpn-cli
     nautilus
-    papirus-icon-theme
+    colloid-icon-theme
     sticky-notes
 
     #virtualization
